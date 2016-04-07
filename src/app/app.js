@@ -27,10 +27,11 @@ var app = angular.module( 'Vyomo', [
     }
   });
   $scope.routeIs = function(routeName) {
-    if(routeName != "/")
+    if(routeName != "/") {
       return $location.path().indexOf(routeName) > -1;
-    else
+    } else {
       return $location.path() === routeName ;
+    }
   };
 
 });
