@@ -17,50 +17,12 @@ angular.module( 'vyomo.homePage', [
 ])
 
 /**
- * Each section or module of the site can also have its own routes. AngularJS
- * will handle ensuring they are all available at run-time, but splitting it
- * this way makes each module more "self-contained".
- */
-.config(function config( $stateProvider ) {
-  $stateProvider.state( 'homePage', {
-    url: '/',
-    views: {
-      "main": {
-        controller: 'HomeCtrl',
-        templateUrl: 'homePage/views/home.tpl.html'
-      },
-      "homeFeaturePackage@homePage" :{
-        controller: 'HomePackageCtrl',
-        templateUrl: 'homePage/views/packages.tpl.html'
-      },
-      "homeFeatureService@homePage" :{
-        controller: 'HomeServiceCtrl',
-        templateUrl: 'homePage/views/services.tpl.html'
-      },
-      "homeOffers@homePage" :{
-        controller: 'HomeOffersCtrl',
-        templateUrl: 'homePage/views/offers.tpl.html'
-      },
-      "homeCustomerReviews@homePage" : {
-        controller: 'HomeReviewsCtrl',
-        templateUrl: 'homePage/views/reviews.tpl.html'
-      },
-      "homeCareers@homePage" : {
-        controller : 'HomeCareersCtrl',
-        templateUrl: 'homePage/views/careers.tpl.html'
-      }
-    },
-    data:{ pageTitle: 'Home' }
-  });
-})
-
-/**
  * And of course we define a controller for our route.
  */
 .controller( 'HomeCtrl', function HomeController() {
 })
 // Include service to fetch packages
-.controller('HomePackageCtrl', function HomePackageController($scope){
+.controller('HomePackageCtrl',['$scope', function HomePackageController($scope){
   //Dummy data for now, to be popuated by the packages retrieved from back end
   $scope.packageList = [
     {
@@ -83,97 +45,97 @@ angular.module( 'vyomo.homePage', [
     }
   ];
   $scope.viewMorePackagesUrl = "/abc";
-})
+}])
 
 // Include service to fetch Vyom Services
-    .controller('HomeServiceCtrl', function HomeServiceController($scope){
-      //Dummy data for now, to be popuated by the packages retrieved from back end
-      $scope.servicesList = [
-        {
-          name : "CRYSTEINE HAIR TREATMENT",
-          imgName : "crystHairTreatMent"
-        },
-        {
-          name : "REAL FRUIT FACIAL",
-          imgName : "fruitFacial"
-        },
-        {
-          name : "BODY POLISH",
-          imgName : "bodyPolish"
-        },
-        {
-          name : "CHOCOLATE WAXING",
-          imgName : "chocWaxing"
-        },
-        {
-          name : "DE-TAN",
-          imgName : "deTan"
-        },
-        {
-          name : "HAIR-SPA",
-          imgName : "hairSpa"
-        },
-        {
-          name : "PEDICURE",
-          imgName : "pedicure"
-        },
-        {
-          name : "HAIR COLORING",
-          imgName : "haircolor"
-        },
-        {
-          name : "MEHENDI",
-          imgName : "mehendi"
-        }
-      ];
-      $scope.viewMoreServicesUrl = "/abc";
-    })
-    //Offers section controller
-    .controller( 'HomeOffersCtrl', function HomeOffersController( ) {
-    })
+.controller('HomeServiceCtrl', ['$scope', function HomeServiceController($scope){
+  //Dummy data for now, to be popuated by the packages retrieved from back end
+  $scope.servicesList = [
+    {
+      name : "CRYSTEINE HAIR TREATMENT",
+      imgName : "crystHairTreatMent"
+    },
+    {
+      name : "REAL FRUIT FACIAL",
+      imgName : "fruitFacial"
+    },
+    {
+      name : "BODY POLISH",
+      imgName : "bodyPolish"
+    },
+    {
+      name : "CHOCOLATE WAXING",
+      imgName : "chocWaxing"
+    },
+    {
+      name : "DE-TAN",
+      imgName : "deTan"
+    },
+    {
+      name : "HAIR-SPA",
+      imgName : "hairSpa"
+    },
+    {
+      name : "PEDICURE",
+      imgName : "pedicure"
+    },
+    {
+      name : "HAIR COLORING",
+      imgName : "haircolor"
+    },
+    {
+      name : "MEHENDI",
+      imgName : "mehendi"
+    }
+  ];
+  $scope.viewMoreServicesUrl = "/abc";
+}])
+//Offers section controller
+.controller( 'HomeOffersCtrl', function HomeOffersController( ) {
+})
 
-    //Offers section controller
-    .controller( 'HomeReviewsCtrl', function HomeReviewsController( $scope ) {
-      $scope.myInterval = 3000;
-      $scope.reviews = [
-        {
-          customerName : "Astha Goel",
-          description : "Amazing app!!! Great job..kudos to the developers .loved it so much ! Very useful",
-          rating: 5
-        },
-        {
-          customerName : "Hinal Nayak",
-          description : "Excellent service! Lily and Kashifa was really professional and good in their service and attitude. Superb work. Thanks.",
-          rating: 5
-        },
-        {
-          customerName : "PeMa Dolma",
-          description : "Simply love it vyomo!! Manesha is just so good n frank,I like the way she behave and handle clients and her service is so good,excellent.",
-          rating: 5
-        },
-        {
-          customerName : "Archi mohan",
-          description : "Loved the app and the service..The head oil massage by Komati was awesome! I wish I could get this done every other day!",
-          rating: 5
-        },
-        {
-          customerName : "Punita Verma",
-          description : "Excellent ! Excellent home beauty service !",
-          rating: 5
-        },
-        {
-          customerName : "Asma Abid ali",
-          description : "Awesome work! Makeup artist is good by nature I really like that work and most important their timing they was coming on time.",
-          rating: 4
-        }
+//Offers section controller
+.controller( 'HomeReviewsCtrl', ['$scope', function HomeReviewsController( $scope ) {
+  $scope.myInterval = 3000;
+  $scope.reviews = [
+    {
+      customerName : "Astha Goel",
+      description : "Amazing app!!! Great job..kudos to the developers .loved it so much ! Very useful",
+      rating: 5
+    },
+    {
+      customerName : "Hinal Nayak",
+      description : "Excellent service! Lily and Kashifa was really professional and good in their service and attitude. Superb work. Thanks.",
+      rating: 5
+    },
+    {
+      customerName : "PeMa Dolma",
+      description : "Simply love it vyomo!! Manesha is just so good n frank,I like the way she behave and handle clients and her service is so good,excellent.",
+      rating: 5
+    },
+    {
+      customerName : "Archi mohan",
+      description : "Loved the app and the service..The head oil massage by Komati was awesome! I wish I could get this done every other day!",
+      rating: 5
+    },
+    {
+      customerName : "Punita Verma",
+      description : "Excellent ! Excellent home beauty service !",
+      rating: 5
+    },
+    {
+      customerName : "Asma Abid ali",
+      description : "Awesome work! Makeup artist is good by nature I really like that work and most important their timing they was coming on time.",
+      rating: 4
+    }
 
-      ];
-    })
+  ];
+}])
 
-    //Careers section controller
-    .controller( 'HomeCareersCtrl', function HomeCareersController( ) {
+//Careers section controller
+.controller( 'HomeCareersCtrl', function HomeCareersController( ) {
 
-    });
+});
 
 
 

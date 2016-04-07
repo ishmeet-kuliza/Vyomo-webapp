@@ -4,41 +4,13 @@
 
 angular.module( 'vyomo.servicesPage', [
     'ui.router',
-    'ui.bootstrap',
-    'vyomo.apis'
+    'ui.bootstrap'
 ])
-
-    .config(function config( $stateProvider ) {
-        $stateProvider.state( 'servicesPage', {
-            url: '/servicesPage',
-            views: {
-                "main": {
-                    controller: 'ServiceCtrl',
-                    templateUrl: 'servicesPage/views/services.tpl.html'
-                }
-            },
-            data:{ pageTitle: 'Beauty Services' }
-        })
-            .state('servicesPage.list',{
-                url : "/list",
-                views : {
-                    "packagesView":{
-                        controller : 'ServicePackageCtrl',
-                        templateUrl : 'servicesPage/views/packageList.tpl.html'
-                    },
-                    "servicesView":{
-                        controller : 'ServiceListCtrl',
-                        templateUrl : 'servicesPage/views/serviceList.tpl.html'
-                    }
-                }
-            })
-        ;
-    })
 
     /**
      * And of course we define a controller for our route.
      */
-    .controller( 'ServiceCtrl', function ServiceController( $scope,$state, vyomoAPIservice ) {
+    .controller( 'ServiceCtrl', ['$scope', '$state', 'vyomoAPIservice', function ServiceController( $scope,$state, vyomoAPIservice ) {
         $scope.citySelected = false;
         $scope.data = {
             selectedCity : null,
@@ -98,7 +70,7 @@ angular.module( 'vyomo.servicesPage', [
                 $state.go('servicesPage.list');
             }
         };
-    })
+    }])
 
     .controller( 'ServicePackageCtrl', function ServiceController() {
 

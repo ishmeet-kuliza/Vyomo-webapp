@@ -2,9 +2,9 @@
  *  Services/ Factory for fetching api data
  */
 
-angular.module( 'vyomo.apis',[])
+angular.module( 'Vyomo')
 
-    .factory('vyomoAPIservice', function($http) {
+    .factory('vyomoAPIservice', ['$http', function($http) {
         var vyomoAPI = {};
 
         vyomoAPI.getPackages = function(latLong) {
@@ -19,4 +19,4 @@ angular.module( 'vyomo.apis',[])
         };
 
         return vyomoAPI;
-    });
+    }]);

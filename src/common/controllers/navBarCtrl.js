@@ -1,7 +1,7 @@
 
 var appModule = angular.module('navBarCtrl',['ngAnimate', 'ui.bootstrap']);
 
-appModule.controller('headerController',function($scope, $log){
+appModule.controller('headerController', ['$scope', '$log', function($scope, $log){
 
     $scope.status = {
         isopen: false
@@ -18,5 +18,5 @@ appModule.controller('headerController',function($scope, $log){
     };
 
     $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
-});
+}]);
 

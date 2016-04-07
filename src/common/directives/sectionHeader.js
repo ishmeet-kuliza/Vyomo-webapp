@@ -1,5 +1,5 @@
 
-app.directive('sectionHeader',function(){
+angular.module('Vyomo').directive('sectionHeader',function(){
     return {
         restrict : 'E',
         scope:{

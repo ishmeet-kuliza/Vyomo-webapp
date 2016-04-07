@@ -16,6 +16,7 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks('grunt-bump');
   grunt.loadNpmTasks('grunt-ng-annotate');
   grunt.loadNpmTasks('grunt-html2js');
+  grunt.loadNpmTasks('grunt-neuter');
 
   /**
    * Load in our build configuration file.
@@ -320,6 +321,18 @@ module.exports = function ( grunt ) {
       }
     },
 
+    neuter: {
+      options: {
+        basePath: 'src'
+        //, includeSourceMap: true
+      },
+      application: {
+        src: ['src/**/!(*.spec).js'],  //, '<%= config.tmp %>/es6/babel-build.js'],
+        dest: '<%= build_dir %>/app-build.js'
+        // dest: './app-build.js'
+      },
+    },
+
     /**
      * The `index` task compiles the `index.html` file as a Grunt template. CSS
      * and JS files co-exist here but they get split apart later.
@@ -336,10 +349,10 @@ module.exports = function ( grunt ) {
         dir: '<%= build_dir %>',
         src: [
           '<%= vendor_files.js %>',
-          '<%= build_dir %>/src/**/*.js',
           '<%= html2js.common.dest %>',
           '<%= html2js.app.dest %>',
           '<%= vendor_files.css %>',
+          '<%= build_dir %>/app-build.js',
           '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
         ]
       },
@@ -479,7 +492,7 @@ module.exports = function ( grunt ) {
    * The `build` task gets your app ready to run for development and testing.
    */
   grunt.registerTask( 'build', [
-    'clean', 'html2js', 'jshint', 'less:build',
+    'clean', 'html2js', 'neuter', 'jshint', 'less:build',
     'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
     'copy:build_appjs', 'copy:build_vendorjs', 'copy:build_vendorcss', 'index:build' 
   ]);
