@@ -1,6 +1,4 @@
 
-'use strict';
-
 var appModule = angular.module('navBarCtrl',['ngAnimate', 'ui.bootstrap']);
 
 appModule.controller('headerController',function($scope, $log){

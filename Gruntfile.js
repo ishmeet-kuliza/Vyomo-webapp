@@ -1,3 +1,4 @@
+
 module.exports = function ( grunt ) {
   
   /** 
@@ -267,17 +268,24 @@ module.exports = function ( grunt ) {
       test: [
         '<%= app_files.jsunit %>'
       ],
-      gruntfile: [
-        'Gruntfile.js'
-      ],
       options: {
         curly: true,
         immed: true,
+        eqeqeq: true,
         newcap: true,
+        maxparams: 4,
+        noempty: true,
+        undef: true,
+        unused: true,
         noarg: true,
         sub: true,
         boss: true,
-        eqnull: true
+        eqnull: true,
+        globals : {
+          angular: true,
+          document: true,
+          app: true //TO_DO: investigate this
+        }
       },
       globals: {}
     },
@@ -532,3 +540,4 @@ module.exports = function ( grunt ) {
 
 
 };
+

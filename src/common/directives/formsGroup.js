@@ -1,4 +1,3 @@
-'use strict';
 
 app.directive('formGroup',function(){
     return {
@@ -12,5 +11,5 @@ app.directive('formGroup',function(){
         },
 
         template : '<div class="form-group">'
-    }
-})
+    };
+});

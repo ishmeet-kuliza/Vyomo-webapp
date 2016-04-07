@@ -56,6 +56,14 @@ angular.module( 'vyomo.servicesPage', [
                     lat_long : "18.975,72.825"
                 }
             ]
+        }; 
+
+        function _sortAccordingtoPrice(packagesList) {
+            return packagesList.sort(function (a, b) {
+                                a = parseInt(a.services[0].cost_including_discount, 10);
+                                b = parseInt(b.services[0].cost_including_discount, 10);
+                                return (a - b);
+                            });
         }
 
 
@@ -63,46 +71,39 @@ angular.module( 'vyomo.servicesPage', [
             if ($scope.data.selectedCity != null) {
                 $scope.citySelected = true;
 
-
                 //API calling to get packages and services
-                var cityName = $scope.data.selectedCity;
+                //var cityName = $scope.data.selectedCity;
                 var latLong = angular.element('.vm-select-city option:selected').attr('latLong');
-                    vyomoAPIservice.getPackages(latLong).success(function (response) {
-                        $scope.packages = [];
-                        $scope.services = [];
-                        if (response.hasOwnProperty("message")) {
-                            if (response.message.hasOwnProperty('categories')) {
-                                for (var i in response.message.categories) {
-                                    var categories = response.message.categories;
-                                    if (categories[i].label === "Packages") {
-                                        var packagesList = categories[i].services_by_group;
-                                        packagesList.sort(function (a, b) {
-                                            a = parseInt(a.services[0].cost_including_discount);
-                                            b = parseInt(b.services[0].cost_including_discount);
-                                            return a - b;
-                                        });
-                                        ////Function to fill in packages list
-                                        //fillPackagesList(packagesList);
-                                        $scope.packages = packagesList
-                                    }
-                                    if (categories[i].label === "Menu") {
-                                        $scope.services = categories[i].services_by_group;
-
-                                    }
+                vyomoAPIservice.getPackages(latLong).success(function (response) {
+                    $scope.packages = [];
+                    $scope.services = [];
+                    if (response.hasOwnProperty("message")) {
+                        if (response.message.hasOwnProperty('categories')) {
+                            for (var i in response.message.categories) {
+                                var categories = response.message.categories;
+                                if (categories[i].label === "Packages") {
+                                    $scope.packages = _sortAccordingtoPrice(categories[i].services_by_group);
+                                    
+                                    ////Function to fill in packages list
+                                    //fillPackagesList(packagesList);
                                 }
-
+                                if (categories[i].label === "Menu") {
+                                    $scope.services = categories[i].services_by_group;
+                                }
                             }
+
                         }
-                    });
-                $state.go('services.list');
+                    }
+                });
+                $state.go('servicesPage.list');
             }
-        }
+        };
     })
 
-    .controller( 'ServicePackageCtrl', function ServiceController( $scope) {
+    .controller( 'ServicePackageCtrl', function ServiceController() {
 
     })
 
-    .controller( 'ServiceListCtrl', function ServiceController( $scope ) {
+    .controller( 'ServiceListCtrl', function ServiceController( ) {
 
     });

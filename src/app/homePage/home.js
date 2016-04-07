@@ -29,23 +29,23 @@ angular.module( 'vyomo.homePage', [
         controller: 'HomeCtrl',
         templateUrl: 'homePage/views/home.tpl.html'
       },
-      "homeFeaturePackage@home" :{
+      "homeFeaturePackage@homePage" :{
         controller: 'HomePackageCtrl',
         templateUrl: 'homePage/views/packages.tpl.html'
       },
-      "homeFeatureService@home" :{
+      "homeFeatureService@homePage" :{
         controller: 'HomeServiceCtrl',
         templateUrl: 'homePage/views/services.tpl.html'
       },
-      "homeOffers@home" :{
+      "homeOffers@homePage" :{
         controller: 'HomeOffersCtrl',
         templateUrl: 'homePage/views/offers.tpl.html'
       },
-      "homeCustomerReviews@home" : {
+      "homeCustomerReviews@homePage" : {
         controller: 'HomeReviewsCtrl',
         templateUrl: 'homePage/views/reviews.tpl.html'
       },
-      "homeCareers@home" : {
+      "homeCareers@homePage" : {
         controller : 'HomeCareersCtrl',
         templateUrl: 'homePage/views/careers.tpl.html'
       }
@@ -57,7 +57,7 @@ angular.module( 'vyomo.homePage', [
 /**
  * And of course we define a controller for our route.
  */
-.controller( 'HomeCtrl', function HomeController( $scope ) {
+.controller( 'HomeCtrl', function HomeController() {
 })
 // Include service to fetch packages
 .controller('HomePackageCtrl', function HomePackageController($scope){
@@ -129,7 +129,7 @@ angular.module( 'vyomo.homePage', [
       $scope.viewMoreServicesUrl = "/abc";
     })
     //Offers section controller
-    .controller( 'HomeOffersCtrl', function HomeOffersController( $scope ) {
+    .controller( 'HomeOffersCtrl', function HomeOffersController( ) {
     })
 
     //Offers section controller
@@ -139,39 +139,39 @@ angular.module( 'vyomo.homePage', [
         {
           customerName : "Astha Goel",
           description : "Amazing app!!! Great job..kudos to the developers .loved it so much ! Very useful",
-          rating: 5,
+          rating: 5
         },
         {
           customerName : "Hinal Nayak",
           description : "Excellent service! Lily and Kashifa was really professional and good in their service and attitude. Superb work. Thanks.",
-          rating: 5,
+          rating: 5
         },
         {
           customerName : "PeMa Dolma",
           description : "Simply love it vyomo!! Manesha is just so good n frank,I like the way she behave and handle clients and her service is so good,excellent.",
-          rating: 5,
+          rating: 5
         },
         {
           customerName : "Archi mohan",
           description : "Loved the app and the service..The head oil massage by Komati was awesome! I wish I could get this done every other day!",
-          rating: 5,
+          rating: 5
         },
         {
           customerName : "Punita Verma",
           description : "Excellent ! Excellent home beauty service !",
-          rating: 5,
+          rating: 5
         },
         {
           customerName : "Asma Abid ali",
           description : "Awesome work! Makeup artist is good by nature I really like that work and most important their timing they was coming on time.",
-          rating: 4,
+          rating: 4
         }
 
       ];
     })
 
     //Careers section controller
-    .controller( 'HomeCareersCtrl', function HomeCareersController( $scope ) {
+    .controller( 'HomeCareersCtrl', function HomeCareersController( ) {
 
     });
 
