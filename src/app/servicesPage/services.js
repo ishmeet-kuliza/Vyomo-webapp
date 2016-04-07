@@ -2,33 +2,33 @@
  * Services Module
  */
 
-angular.module( 'vyomo.services', [
+angular.module( 'vyomo.servicesPage', [
     'ui.router',
     'ui.bootstrap',
     'vyomo.apis'
 ])
 
     .config(function config( $stateProvider ) {
-        $stateProvider.state( 'services', {
-            url: '/services',
+        $stateProvider.state( 'servicesPage', {
+            url: '/servicesPage',
             views: {
                 "main": {
                     controller: 'ServiceCtrl',
-                    templateUrl: 'services/views/services.tpl.html'
+                    templateUrl: 'servicesPage/views/services.tpl.html'
                 }
             },
             data:{ pageTitle: 'Beauty Services' }
         })
-            .state('services.list',{
+            .state('servicesPage.list',{
                 url : "/list",
                 views : {
                     "packagesView":{
                         controller : 'ServicePackageCtrl',
-                        templateUrl : 'services/views/packageList.tpl.html'
+                        templateUrl : 'servicesPage/views/packageList.tpl.html'
                     },
                     "servicesView":{
                         controller : 'ServiceListCtrl',
-                        templateUrl : 'services/views/serviceList.tpl.html'
+                        templateUrl : 'servicesPage/views/serviceList.tpl.html'
                     }
                 }
             })

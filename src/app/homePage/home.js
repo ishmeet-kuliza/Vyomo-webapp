@@ -11,9 +11,9 @@
  * The dependencies block here is also where component dependencies should be
  * specified, as shown below.
  */
-angular.module( 'vyomo.home', [
+angular.module( 'vyomo.homePage', [
   'ui.router',
-    'ui.bootstrap'
+  'ui.bootstrap'
 ])
 
 /**
@@ -22,32 +22,32 @@ angular.module( 'vyomo.home', [
  * this way makes each module more "self-contained".
  */
 .config(function config( $stateProvider ) {
-  $stateProvider.state( 'home', {
+  $stateProvider.state( 'homePage', {
     url: '/',
     views: {
       "main": {
         controller: 'HomeCtrl',
-        templateUrl: 'home/views/home.tpl.html'
+        templateUrl: 'homePage/views/home.tpl.html'
       },
       "homeFeaturePackage@home" :{
         controller: 'HomePackageCtrl',
-        templateUrl: 'home/views/packages.tpl.html'
+        templateUrl: 'homePage/views/packages.tpl.html'
       },
       "homeFeatureService@home" :{
         controller: 'HomeServiceCtrl',
-        templateUrl: 'home/views/services.tpl.html'
+        templateUrl: 'homePage/views/services.tpl.html'
       },
       "homeOffers@home" :{
         controller: 'HomeOffersCtrl',
-        templateUrl: 'home/views/offers.tpl.html'
+        templateUrl: 'homePage/views/offers.tpl.html'
       },
       "homeCustomerReviews@home" : {
         controller: 'HomeReviewsCtrl',
-        templateUrl: 'home/views/reviews.tpl.html'
+        templateUrl: 'homePage/views/reviews.tpl.html'
       },
       "homeCareers@home" : {
         controller : 'HomeCareersCtrl',
-        templateUrl: 'home/views/careers.tpl.html'
+        templateUrl: 'homePage/views/careers.tpl.html'
       }
     },
     data:{ pageTitle: 'Home' }
