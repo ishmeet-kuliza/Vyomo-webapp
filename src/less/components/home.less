@@ -1,0 +1,445 @@
+/*****************************
+Start General Classes
+****************************/
+
+/* make keyframes that tell the start state and the end state of our object */
+.animate-enter,
+.animate-leave
+{
+  -webkit-transition: 400ms ease all;
+  -moz-transition: 400ms ease all;
+  -ms-transition: 400ms ease all;
+  -o-transition: 400ms ease all;
+  transition: 400ms ease all;
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.animate-leave.animate-leave-active,
+.animate-enter {
+  opacity: 0;
+}
+
+.animate-enter.animate-enter-active,
+.animate-leave {
+  opacity: 1;
+
+}
+.sideLinesHeader(@width:350px){
+  content: '';
+  position: absolute;
+  top: 5px;
+ .separator();
+  width: @width;
+}
+@-webkit-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@-moz-keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+.fade-in {
+  opacity:0;  /* make things invisible upon start */
+  -webkit-animation:fadeIn ease-in 1;  /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
+  -moz-animation:fadeIn ease-in 1;
+  animation:fadeIn ease-in 1;
+
+  -webkit-animation-fill-mode:forwards;  /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
+  -moz-animation-fill-mode:forwards;
+  animation-fill-mode:forwards;
+
+  -webkit-animation-duration:1s;
+  -moz-animation-duration:1s;
+  animation-duration:1s;
+
+}
+.text-center{
+  text-align: center !important;
+}
+.lazyloaded {
+  opacity: 1;
+  .transition(150ms ease-out);
+}
+@keyframes w70 {
+  from { opacity: 0;transform: translateY(-10px);}
+  to { opacity:1; transform: translateY(10px); }
+}
+
+/*****************************
+End General Classes
+****************************/
+
+/*****************************
+Home Above the fold section
+****************************/
+
+.banner-image picture{
+  top: 0;
+  left:0;
+  //To be removed
+  img{
+    .fade-in;
+    transform: rotateY(180deg);
+  }
+}
+
+.banner-text{
+  position:absolute;
+
+  top:calc(@headerHeight - 25px);
+  left:60%;
+  padding:30px 70px;
+  border:1px solid @pink;
+  .box-shadow(1px 1px 2px #ddd);
+  color: @white;
+  background: @pink;
+  border-radius:200px;
+  p{
+    margin:0;
+    animation: w70 0.5s linear;
+  }
+  p:nth-child(1),p:nth-child(2) {
+    font-size:2.4rem;
+    font-weight:600;
+  }
+  p:nth-child(3) {
+    font-size:2.2rem;
+  }
+  p:nth-child(4) {
+    font-size:2.4rem;
+    font-weight:600;
+  }
+  p:nth-child(5) {
+    margin-top:10px;
+    font-size:1.8rem;
+    font-weight:600;
+    span{
+      font-size:1.4rem;
+    }
+    &:before {
+      content: '';
+      position: absolute;
+      height: 1px;
+      left: 23%;
+      width: 54%;
+      background: #fff;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      height: 1px;
+      top: 90%;
+      right: 30%;
+      width: 39%;
+      background: rgb(255, 190, 208);;
+    }
+  }
+}
+
+.sectionHead(@width : 300px){
+  line-height: 0.5;
+  font-size:2.4rem;
+  margin : 0;
+  color:@textColor;
+  span {
+    position: relative;
+    display: inline-block;
+    &:before {
+      .sideLinesHeader(@width);
+      right: 100%;
+      margin-right: 15px;
+    }
+    &:after {
+      .sideLinesHeader(@width);
+      left: 100%;
+      margin-left: 15px;
+    }
+  }
+}
+h2.sectionHead {
+  .sectionHead();
+}
+p.sectionSubhead{
+  line-height:2.4;
+  font-size:1.4rem;
+  color:@grayLight;
+}
+/**********************
+How It Works Section
+***********************/
+.vyomo-home-page-how-it-works-section{
+  h2{
+    .sectionHead(350px)
+  }
+  div#vyomo-home-video-container{
+    min-height:400px;
+  }
+}
+.box-inner{
+  background: white;
+}
+
+.vyomo-home-page-customer-revies{
+  background: white;
+}
+.vyomo-home-page-feature-packages-services{
+  background: #f7f7f7;
+}
+/************************
+Package Section
+ ************************/
+.vyomo-home-page-feature-packages{
+  h2{
+    .sectionHead(300px);
+  }
+  .vm-package-row{
+    margin: 15px 30px;
+  }
+  .vm-package-box{
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 1%;
+    width : 100% ;
+  }
+  .vm-package-box-inner {
+    flex: 1 1;
+    .vm-package-box-head {
+      position: relative;
+      color: #6b6b6b;
+
+      &:after {
+        content: '';
+        .separator();
+        position: absolute;
+        width: 90%;
+        bottom: 0;
+      }
+
+      .vm-hf-package-cost{
+        font-weight:600;
+      }
+    }
+
+    .vm-package-box-detail {
+      color: #909090;
+      text-align: center;
+      flex:1 0 auto;
+    }
+  }
+}
+
+/******Services Section *****/
+.vyomo-home-page-feature-services {
+  h2 {
+    .sectionHead(300px);
+  }
+  .vm-services-row{
+    margin: 15px 30px;
+  }
+  .vm-service-box{
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+
+    margin-bottom: 1%;
+    width:100%;
+  }
+
+  .vm-service-box-inner{
+    flex: 1 1 auto;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background: white;
+
+    .imgBox{
+      align-self: flex-end;
+      width:55%;
+    }
+
+    .vm-service-title{
+      padding-right:5px;
+      font-size:18px;
+      width:45%;
+    }
+  }
+}
+
+/****************Offers Section *************/
+.offers-section-row{
+  background:#19b2eb;
+  color: @white;
+  font-family: SourceSansPro;
+  .vm-home-offers-head {
+    position: relative;
+    min-height: 150px;
+    margin-top: 20px;
+    .border-salon {
+      position: absolute;
+      min-height: 100px;
+      top: 0;
+      left: 20%;
+      border: 70px solid transparent;
+      padding: 1rem;
+      border-image: url(../assets/img/border-img2.png) 40% stretch;
+    }
+    div.head {
+      position: absolute;
+      top: 3rem;
+      left: 35%;
+      h2 {
+        font-size: 6rem;
+        font-family: SourceSansPro-Bold;
+        margin-bottom: 0;
+      }
+      p {
+        font-size: 1.8rem;
+      }
+    }
+  }
+  .vm-offers-detail{
+    margin-top:10px;
+      p{
+        margin-bottom: 0 !important;
+        font-size:1.6rem;
+      }
+      p:first-of-type{
+        font-size:1.8rem;
+        font-weight:bold;
+      }
+    }
+
+
+  .vm-home-view-offers-btn{
+    color:white;
+    border-color: white;
+  }
+}
+
+/********************Customers Reviews **************/
+#vm-customers-review-slider{
+
+  position: relative;
+  padding-bottom: 20px;
+  .customer-review-text{
+    color:@textColor;
+    padding-left: 100px;
+    padding-right: 100px;
+    font-size: 2.4rem;
+    position:relative;
+
+  }
+  .customer-info-header{
+    position: relative;
+  }
+  .customer-image {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    img {
+      height: 25px;
+      width: 25px;
+    }
+  }
+  .customer-info{
+      padding-top: 30px;
+      padding-left:25px;
+      .customer-name{
+        font-size:1.6rem;
+        font-weight: 600;
+      }
+  }
+
+  .star-rating-container{
+    background: url("../assets/img/star-rating-sprite.png") repeat-x;
+    font-size: 0;
+    height: 20px;
+    line-height: 0;
+    overflow: hidden;
+    text-indent: -999em;
+    width: 110px;
+    margin: 0 auto;
+
+    .current-rating {
+      background: url("../assets/img/star-rating-sprite.png") repeat-x;
+      background-position: 0 100%;
+      float: left;
+      height: 20px;
+      display:block;
+    }
+  }
+}
+
+/********************Careers Section **************/
+.vyomo-home-page-careers{
+
+  .careersImg{
+
+  }
+  .careersFormContainer{
+      h2{
+        .sectionHead(100px);
+      }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .banner-image picture{
+    left:@sidebarWidthCollapsed;
+  }
+  .vyomo-home-page-feature-packages{
+    .vm-package-box{
+      width : 32.33% ; //The remaining width of 4% (i.e. 32 x 3 = 96%) will be used to create the space between the boxes and simulate margins
+    }
+  }
+  .vyomo-home-page-feature-services{
+    .vm-service-box{
+      width : 32.33% ; //The remaining width of 4% (i.e. 32 x 3 = 96%) will be used to create the space between the boxes and simulate margins
+    }
+  }
+  .offers-section-row{
+    .vm-offers-detail {
+      margin-top:20px !important;
+    }
+  }
+  .customer-review-text{
+    &::before{
+      content:'\f10d';
+      position: absolute;
+      top:-15px;
+      left:6.5%;
+      color:#c3e2e1;
+      font-family:FontAwesome;
+      font-size:3.2rem;
+    }
+    &::after{
+      content:'\f10e';
+      position: absolute;
+      bottom:-15px;
+      right:6.5%;
+      color:#c3e2e1;
+      font-family:FontAwesome;
+      font-size:3.2rem;
+    }
+  }
+  .customer-image {
+    left: 40% !important;
+  }
+  .customer-info {
+    padding-top: 0px !important;
+    padding-left: 25px;
+  }
+}
+@media only screen and (min-width: 1170px) {
+  .banner-image picture{
+    left:@sidebarWidth;
+  }
+  .banner-text{
+    left:62.5%;
+  }
+}

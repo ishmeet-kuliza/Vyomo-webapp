@@ -1,0 +1,19 @@
+<section-header title = "FEATURED SERVICES" subtext ="Pamper yourself with our choice selection of services this month"></section-header>
+
+<div class="flexBox vm-services-row">
+    <div class="flexItem vm-service-box" ng-repeat="service in servicesList | orderBy :'name'">
+        <div class="vm-service-box-inner">
+            <div class="pull-left imgBox">
+                <img alt="Vyomo Services {{service.name}}" src="{{imgPath}}HomeServices-{{service.imgName}}.jpg"/>
+            </div>
+            <div class="pull-left vm-service-title">
+                {{service.name}}
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+<div class = "mt-20 row removeMarginLeft removeMarginRight text-center" style="min-height:50px;">
+    <a class="vm-secondary-btn vm-home-view-services-btn">VIEW MORE SERVICES</a>
+</div>

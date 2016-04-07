@@ -1,0 +1,48 @@
+<div class="vyomo-home-page" ng-controller="HomeCtrl">
+  <!--Home Landing Page Above the fold first look -->
+  <div class="vyomo-home-page-above-the-fold">
+    <div class="banner-image">
+      <picture>
+        <source data-srcset="{{imgPath}}homeBanner1.jpg" srcset="{{imgPath}}HomeBanner.jpg" media="(min-width: 0px) and (max-width: 580px)" sizes="996px">
+        <source data-srcset="{{imgPath}}homeBanner1.jpg" srcset="{{imgPath}}HomeBanner.jpg" media="(min-width: 580px) and (max-width: 980px)" sizes="996px">
+        <source data-srcset="{{imgPath}}homeBanner1.jpg" srcset="{{imgPath}}HomeBanner.jpg" media="(min-width: 980px) and (max-width: 4000px)" sizes="1296px">
+        <img style="width: 100%" class=" lazyautosizes lazyloaded" alt="Loading..." data-sizes="auto" src="{{imgPath}}HomeBanner.jpg" sizes="1296px">
+      </picture>
+    </div>
+
+    <div class="banner-text"  ng-animate="'animate'">
+      <p class="text-center">BEAUTY</p>
+      <p class="text-center">SERVICES</p>
+      <p class="text-center">AT YOUR</p>
+      <p class="text-center">DOORSTEP</p>
+      <p class="text-center"><span>TAP TO</span><br>BOOK NOW</p>
+    </div>
+  </div>
+  <!-- =============================================================================== -->
+ <!--End Landing Page  -->
+  <!-- =============================================================================== -->
+  <!--Start How it works section Page  -->
+  <!-- =============================================================================== -->
+  <section class="vyomo-home-page-customer-revies">
+
+    <div class="mt-10 vyomo-home-page-reviews" ui-view="homeCustomerReviews"></div>
+  </section>
+  <!-- =============================================================================== -->
+  <!--Start
+   Always add position relative to new divs/sections created-->
+  <!-- =============================================================================== -->
+  <section class="vyomo-home-page-feature-packages-services">
+
+    <div class="vyomo-home-page-feature-packages" ui-view="homeFeaturePackage"></div>
+
+    <div class="mt-20 vyomo-home-page-feature-services" ui-view="homeFeatureService"></div>
+
+    <div class="mt-10 vyomo-home-page-offers" ui-view="homeOffers"></div>
+
+    <div class="mt-10 vyomo-home-page-careers" ui-view="homeCareers"></div>
+
+  </section>
+  <!-- =============================================================================== -->
+  <!--End -->
+  <!-- =============================================================================== -->
+</div>

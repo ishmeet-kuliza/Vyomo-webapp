@@ -1,0 +1,85 @@
+/**
+* Service Stylesheet
+*/
+.inlineElem{
+  display: inline-block;
+  width:75%;
+}
+span.label-selected-city{
+  font-weight: 600;
+  margin-right: 10px;
+}
+.vyomo-feature-packages {
+  .vyomo-home-page-feature-packages;
+}
+.vyomo-feature-services{
+  .vyomo-home-page-feature-services;
+}
+@media only screen and (min-width: 768px)  {
+  .vyomo-service-page{
+    position: relative;
+    min-height: 560px;
+
+    background: #f7f7f7;
+    z-index: 5;
+    /**********************
+    Start Top Row City Selection
+    ***********************/
+    .citySelection{
+      display: block;
+      background: @pink;
+      padding: 15px 25px;
+      color: white;
+
+      .servicesHead{
+        font-weight: 600;
+        font-family: SourceSansPro;
+        font-size: 1.6rem;
+      }
+
+      select.vm-select-city{
+        background: transparent;
+        background: url('../assets/img/down-arrow.png') no-repeat right transparent;
+        background-size: contain;
+        -webkit-appearance: none;
+        background-position-x: 100%;
+        border: none;
+        border-bottom: 1px solid #fff;
+        border-radius: 0;
+        width: 25%;
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: white;
+        box-shadow: none;
+        -webkit-box-shadow: none;
+
+        option{
+          background: rgba(51, 54, 63, 0.84);
+
+          &.placeholder{
+            display:none;
+          }
+        }
+      }
+    }
+    //End Top Row City Selection
+    .stepHead{
+      section-header h2{
+        font-size:1.8rem !important;
+        color: #939393 !important;
+      }
+
+    }
+
+  }
+  .vyomo-feature-packages{
+    .vm-package-box{
+      width : 32.33% ; //The remaining width of 4% (i.e. 32 x 3 = 96%) will be used to create the space between the boxes and simulate margins
+    }
+  }
+  .vyomo-feature-services{
+    .vm-service-box{
+      width : 32.33% ; //The remaining width of 4% (i.e. 32 x 3 = 96%) will be used to create the space between the boxes and simulate margins
+    }
+  }
+}

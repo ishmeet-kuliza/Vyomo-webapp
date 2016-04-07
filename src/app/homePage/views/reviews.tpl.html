@@ -1,0 +1,23 @@
+<section-header title = "WHAT OUR CUSTOMERS SAY" subtext ="Hear from some of our many customers and why they love us"></section-header>
+
+<div id="vm-customers-review-slider" class=""row removeMargin>
+    <uib-carousel interval="myInterval">
+        <uib-slide ng-repeat="review in reviews" active="review.active">
+            <h2 class="customer-review-text">{{review.description}}</h2>
+
+            <div class="customer-info-header text-center">
+                <div class="customer-image">
+                    <img alt="Vyomo customer" src="{{imgPath}}userImg.png"/>
+                </div>
+                <div class = "customer-info">
+                    <span class="customer-name">{{review.customerName}}</span>
+                    <div class="customer-info-star-rating">
+                        <div class="tiny-star star-rating-container" aria-label=" Rated {{review.rating}} stars out of five stars ">
+                            <div class="current-rating"  style="width: {{review.rating * 20}}%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </uib-slide>
+    </uib-carousel>
+</div>

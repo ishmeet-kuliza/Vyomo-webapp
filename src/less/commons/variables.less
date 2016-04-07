@@ -1,0 +1,302 @@
+/**
+ *------------------------------------------------------------------------------
+ * @package      Vyomo style sheet
+ *------------------------------------------------------------------------------
+ * @authors       Gaurav
+ *------------------------------------------------------------------------------
+ */
+
+/**
+ * Typography-related.
+ */
+
+@sansFontFamily: 'Roboto', sans-serif;
+
+//
+// Variables
+// --------------------------------------------------
+
+// Global values
+// --------------------------------------------------
+@ImagePath:           "/assets/img";
+
+// Grayshades
+// -------------------------
+@black:					#000;
+@blackShade:            #333333;
+@grayDarker:            #262a35;
+@grayDark:              #33363f;
+@gray:                  #666;
+@grayLight:             #b2b2b2;
+@grayLighter:           #e4e4e4;
+@whiteShade:			#ebeeee;
+@grayShade:				#f5f5f5;
+@whiteLighter:			#f8f8f8;
+@white:                 #fff;
+
+
+// Accent colors
+// -------------------------
+@blueLight:				#e3f6f6;
+@blue:                  #07b;
+@blueDark:              #057cb4;
+@cyan:                  #5dc1bc; //button
+@cyanDark:			    #45edeb;
+@lightBlue: 			#67c2ef;
+@green: 				#32cc73;
+@darkGreen: 			#78cd51;
+@pink: 					#e84c8a;
+@orange: 				#fa603d;
+@lightOrange: 			#fabb3d;
+@red:                   #c00;
+@yellow:                #fcbc00;
+@blueDarker:			#33363f;
+@greyishBlue:           #757a88;
+@skyBlue:				#51d3d1;
+@pinkLight:             #fff6e9;
+@pink:                  #ff6a94;
+
+// Vyomo Main colors
+// -------------------------
+@vmPrimaryColor:        @pink;
+
+// Scaffolding
+// -------------------------
+@bodyBackground:        @whiteLighter;
+
+// Links
+// -------------------------
+@linkColor:             @blueDark;
+@linkColorHover:        lighten(@linkColor, 15%);
+
+
+// Typography
+// -------------------------
+@textColor:             @blackShade;
+@serifFontFamily:       serif;
+@monoFontFamily:        monospace;
+
+@baseFontSize:          12px;
+@baseFontFamily:        sans pro;
+@baseLineHeight:        10px;
+@altFontFamily:         @serifFontFamily;
+@headingsFontWeight:    bold;    // instead of browser default, bold
+@headingsColor:         @grayLighter; // empty to use BS default, @textColor
+
+
+
+// Component sizing
+// -------------------------
+
+@paddingLarger:        	30px ; //Sidebar-content
+@paddingLarge:			15px ;
+@paddingSmall:          10px 10px;  // 26px
+@paddingMini:           1px 6px;   // 24px
+
+@borderColor:			#ccc;
+@borderWidth:			1px;
+@baseBorderRadius:      4px;
+@borderRadiusLarge:     50px;
+@borderRadiusSmall:     8px;
+@LargeBorderRadius:		@borderRadiusLarge;
+
+// Tables
+// -------------------------
+@tableBackground:                   transparent; // overall background-color
+@tableOddRowBackground:				#fbfbfb;	// Odd row coloring
+@tableEvenRowBackground:			#f5f5f5;	// Odd row coloring
+@tableHeaderBackground:				#e3f6f6;
+@tableBackgroundHover:              #f5f5f5; 	// for hover
+@tableBorder:                       #e3f6f6; 		// table and cell border
+
+
+// Buttons
+// -------------------------
+@btnBackground:                     @cyan;
+@btnBackgroundHover:				@cyanDark;
+@btnTextColor:						@white;
+@btnBorderRadius:					@borderRadiusLarge;
+@btnBackgroundHighlight:            lighten(@cyan, 10%);
+@btnBackgroundDisable:				lighten(@cyan, 20%);
+
+@btnBorder:                         darken(@cyan, 10%);
+
+@btnPrimaryBackground:              @linkColor;
+@btnPrimaryBackgroundHighlight:     lighten(@linkColor, 10%);
+
+@btnInfoBackground:                 @cyan;
+@btnInfoBackgroundHighlight:        lighten(@cyan, 10%);
+
+@btnDangerBackground:               @red;
+@btnDangerBackgroundHighlight:      lighten(@red, 10%);
+
+@btnInverseBackground:              @grayDark;
+@btnInverseBackgroundHighlight:     lighten(@grayDark, 10%);
+
+
+// Forms
+// -------------------------
+@inputBackground:         @white;
+@inputBorder:             #ccc;
+@inputBorderRadius:       @baseBorderRadius;
+@inputDisabledBackground: @grayLighter;
+@inputFocusBorder:		  @blue;
+@inputErrorBoder:		  @red;
+@formActionsBackground:   #f5f5f5;
+
+
+
+// COMPONENT VARIABLES
+// --------------------------------------------------
+
+// Z-index master list
+// -------------------------
+// Used for a bird's eye view of components dependent on the z-axis
+// Try to avoid customizing these :)
+@zindexDropdown:          1000;
+@zindexPopover:           1010;
+@zindexTooltip:           1030;
+@zindexFixedNavbar:       1030;
+@zindexModalBackdrop:     1040;
+@zindexModal:             1050;
+
+
+// Sprite icons path
+// -------------------------
+//@iconSpritePath:          "assets/img/glyphicons-halflings.png";
+//@iconWhiteSpritePath:     "assets/img/glyphicons-halflings-white.png";
+
+
+// Input placeholder text color
+// -------------------------
+@placeholderText:         @grayLight;
+
+
+// Hr border color
+// -------------------------
+@hrBorder:                @grayLighter;
+
+
+// Wells
+// -------------------------
+@wellBackground:          #f5f5f5;
+
+//Header
+@headerHeight:            80px;
+@headerHeightMobile:      50px;
+@headerLogoBackground:    @white;
+
+
+//Sidebar
+// -------------------------
+@sidebarWidth:					280px;
+@sidebarWidthCollapsed:			100px;
+
+@sidebarTextColor:				@grayLight;
+@sidebarTextColorActive:		@white;
+@sidebarTextColorHover:			@white;
+
+
+
+
+
+// Dropdowns
+// -------------------------
+@dropdownBackground:            @white;
+@dropdownBorderColor:           @borderColor;
+@dropdownBorderRadius:			4px;
+@dropdownDividerTop:            @whiteShade;
+@dropdownDividerBottom:         @whiteShade;
+
+@dropdownLinkColor:             @grayLight;
+@dropdownLinkColorHover:	@blackShade;
+@dropdownLinkBackgroundHover:   @whiteLighter;
+
+
+// Pagination
+// -------------------------
+@paginationBackground:          @whiteShade;
+@paginationBorder:              @borderColor;
+@paginationActiveBackground:    @cyan;
+
+// Form states and alerts
+// -------------------------
+
+@warningBackground:       #fcf8e3;
+@warningBorder:           darken(spin(@warningBackground, -10), 3%);
+
+@errorText:               @red;
+@errorBackground:         #f2dede;
+@errorBorder:             darken(spin(@errorBackground, -10), 3%);
+
+
+@successBackground:       #dff0d8;
+@successBorder:           darken(spin(@successBackground, -10), 5%);
+
+@infoText:                @blue;
+@infoBackground:          #d9edf7;
+@infoBorder:              darken(spin(@infoBackground, -10), 7%);
+
+
+// Tooltips and popovers
+// -------------------------
+@tooltipColor:            #fff;
+@tooltipBackground:       #757a88;
+@tooltipArrowWidth:       10px;
+@tooltipArrowColor:       @tooltipBackground;
+
+@popoverBackground:       #fff;
+@popoverArrowWidth:       10px;
+@popoverTextColor:        @blackShade;
+@popoverArrowColor:       #fff;
+@popoverTitleBackground:  darken(@popoverBackground, 3%);
+
+// Special enhancement for popovers
+@popoverArrowOuterWidth:  @popoverArrowWidth + 1;
+@popoverArrowOuterColor:  rgba(0,0,0,.25);
+
+
+
+// GRID
+// --------------------------------------------------
+
+// Default 940px grid
+// -------------------------
+@vmGridWidth:             940px;  // For non-responsive layout.
+@gridColumns:             12;
+@gridGutterWidth:         40px;
+@gridColumnWidth:     	  floor((@vmGridWidth - @gridGutterWidth * (@gridColumns - 1)) / @gridColumns);
+@gridRowWidth:            (@gridColumns * @gridColumnWidth) + (@gridGutterWidth * (@gridColumns - 1));
+
+// 1200px min
+@vmGridWidth1200:         1200px;  //
+@gridGutterWidth1200:     40px;
+@gridColumnWidth1200:     floor((@vmGridWidth1200 - @gridGutterWidth1200 * (@gridColumns - 1)) / @gridColumns);
+@gridRowWidth1200:        (@gridColumns * @gridColumnWidth1200) + (@gridGutterWidth1200 * (@gridColumns - 1));
+
+// 980px-1199px
+@vmGridWidth980:          940px;  //
+@gridGutterWidth980:      40px;
+@gridColumnWidth980:      floor((@vmGridWidth980 - @gridGutterWidth980 * (@gridColumns - 1)) / @gridColumns);
+@gridRowWidth980:         (@gridColumns * @gridColumnWidth980) + (@gridGutterWidth980 * (@gridColumns - 1));
+
+// Add: 768px-979px
+@vmGridWidth768:          740px;  //
+@gridGutterWidth768:      20px;
+@gridColumnWidth768:      floor((@vmGridWidth768 - @gridGutterWidth768 * (@gridColumns - 1)) / @gridColumns);
+@gridRowWidth768:         (@gridColumns * @gridColumnWidth768) + (@gridGutterWidth768 * (@gridColumns - 1));
+
+
+
+
+
+
+// Global Margin & Padding
+@vmGlobalMargin:            15px;
+@vmGlobalPadding:           15px;
+
+
+@vmLogoWidth:               132px;
+@vmLogoHeight:              23px;
+
+

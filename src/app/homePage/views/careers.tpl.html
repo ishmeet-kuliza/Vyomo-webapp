@@ -1,0 +1,24 @@
+<div class="row removeMargin vm-careers-row">
+    <div class="hidden-xs col-sm-4 col-md-6 careersImg">
+        <img alt="Vyomo Careers" src="{{imgPath}}HomeCareers.jpg"/>
+    </div>
+    <div class="col-xs-12 col-sm-8 col-md-6 careersFormContainer">
+        <section-header title = "CAREERS @ VYOMO" subtext ="Send us your details for an exciting opportunity to get professional training and be a top salon professional."></section-header>
+    <div class="careers-form-box">
+        <form role='form" name="careersForm" action="" class="careers-form">
+            <div class="form-group" ng-class="{ 'has-error': careersForm.name.$invalid }" >
+                <input type="text" class="form-control" name="name" ng-model="careers.name" required />
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': careersForm.phoneNo.$invalid }" >
+                <input type="text" class="form-control" name="phoneNo" ng-model="careers.phoneNo" required />
+            </div>
+            <div class="form-group" ng-class="{ 'has-error': careersForm.email.$invalid }" >
+                <input type="email" class="form-control" name="email" ng-model="careers.email" required />
+            </div>
+
+        <button class="vm-secondary-btn" ng-click="submitForm()">Submit</button>
+        </form>
+    </div>
+    </div>
+
+</div>

@@ -1,0 +1,16 @@
+<section-header title = "SERVICES" ng-show="citySelected" subtext =""></section-header>
+
+<div class="mt-25 flexBox vm-services-row">
+    <div class="flexItem vm-service-box" ng-repeat="service in services | orderBy :'service.group_name'">
+        <div class="vm-service-box-inner">
+            <div class="pull-left imgBox">
+                <img alt="Vyomo Services {{service.group_name}}" src="{{imgPath}}HomeServices-bodyPolish.jpg"/>
+            </div>
+            <div class="pull-left vm-service-title">
+                {{service.group_name}}
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+

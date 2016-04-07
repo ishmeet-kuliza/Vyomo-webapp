@@ -1,0 +1,25 @@
+
+<section-header title = "FEATURED PACKAGES" subtext ="Here is our selected packages of this month"></section-header>
+
+<div class="flexBox vm-package-row">
+    <div class="flexItem vm-package-box " ng-repeat="package  in packageList | orderBy:'-cost'">
+        <div class="box-inner vm-package-box-inner">
+            <div class="vm-package-box-image">
+                <img alt="{{package.name}}" src="{{imgPath}}HomePackages-{{package.imgName}}.jpg" width="100%" height="50%">
+            </div>
+            <div class="box-head vm-package-box-head p15">
+               <span class="pull-left vm-hf-package-name">{{package.name}} </span>
+                <span class="pull-right vm-hf-package-cost">&#8377{{package.cost}} </span>
+                <span class="clearfix"></span>
+            </div>
+            <div class="box-detail vm-package-box-detail p15">
+                <span>{{package.detail}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class = "mt-20 row removeMarginLeft removeMarginRight text-center" style="min-height:50px;">
+    <a class="vm-secondary-btn vm-home-view-packages-btn">VIEW ALL PACKAGES</a>
+</div>
+

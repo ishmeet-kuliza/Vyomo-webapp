@@ -1,0 +1,243 @@
+/**
+ * This is the main application stylesheet. It should include or import all
+ * stylesheets used throughout the application as this is the only stylesheet in
+ * the Grunt configuration that is automatically processed.
+ */
+
+
+/**
+ * First, we include the Twitter Bootstrap LESS files. Only the ones used in the
+ * project should be imported as the rest are just wasting space.
+ */
+
+@import '../../vendor/bootstrap/less/bootstrap.less';
+
+
+/**
+ * This is our main variables file. We must include it last so we can overwrite any variable
+ * definitions in our imported stylesheets.
+ */
+
+@import 'commons/variables.less';
+@import 'commons/mixins.less';
+@import 'commons/margins.less';
+@import 'commons/paddings.less';
+
+/**
+ * Typography
+ */
+@font-face {
+  font-family: SourceSansPro;
+  src: url('../assets/fonts/SourceSansPro-Regular.ttf');
+}
+@font-face {
+  font-family: SourceSansPro-Bold;
+  src: url('../assets/fonts/SourceSansPro-Bold.ttf');
+  font-weight: bold;
+}
+@font-face {
+  font-family: SourceSansPro-Italic;
+  src: url('../assets/fonts/SourceSansPro-Italic.ttf');
+  font-style: italic;
+}
+@font-face {
+  font-family: SourceSansPro-BoldItalic;
+  src: url('../assets/fonts/SourceSansPro-BoldItalic.ttf');
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: SourceSansPro-Light;
+  src: url('../assets/fonts/SourceSansPro-Light.ttf');
+  font-weight: 300;
+}
+@font-face {
+  font-family: SourceSansPro-LightItalic;
+  src: url('../assets/fonts/SourceSansPro-LightItalic.ttf');
+  font-style: italic;
+  font-weight: 300;
+}
+
+html {
+  font-size: 62.5%;/* 62.5% of default font 16px = 10px */
+}
+body {
+  font-size: 1.6rem; /* 1.6 * 10ps  = 16px */
+  font-family: SourceSansPro-Light, SourceSansPro, sans-serif;
+  background-color: @white;
+
+}
+body::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+.font-bold{
+  font-weight: 600;
+}
+
+.vyomo-home-page-above-the-fold,.banner-image,.vyomo-home-page-how-it-works-section, .vyomo-home-page-feature-packages{
+
+  position:relative;
+}
+/* --------------------------------
+
+Main  Content
+
+-------------------------------- */
+
+.vm-main-content .content-wrapper {
+
+ padding-top:@headerHeight;
+}
+.vm-main-content::before {
+  /* never visible - used to check MQ method in jQuery */
+  display: none;
+  content: 'mobile';
+}
+
+@media only screen and (min-width: 768px) {
+  .vm-main-content .content-wrapper {
+    margin-left: @sidebarWidthCollapsed;
+    padding-top: 0;
+  }
+
+  .vm-main-content::before {
+    content: 'tablet';
+  }
+}
+@media only screen and (min-width: 1170px) {
+  .vm-main-content .content-wrapper {
+    margin-left: @sidebarWidth; //Space for nav
+  }
+  .vm-main-content::before {
+    content: 'desktop';
+  }
+}
+
+/**
+ * Footer
+ */
+
+.footer {
+
+  background : @pink;
+  color: white;
+  font-size: 1.2rem;
+  .footer-inner {
+    padding: 10px ;
+    border-top: 1px solid #DDD;
+  }
+
+  .social {
+    float: right;
+    margin: 0;
+    list-style: none;
+
+    li {
+      float: left;
+      margin-left: 20px;
+
+      a, a:visited {
+        color: @gray-light;
+        text-decoration: none;
+        font-size: 40px;
+        .transition( 250ms ease-in-out );
+
+        &:hover {
+          color: @gray;
+        }
+      }
+    }
+  }
+}
+@media only screen and (min-width: 768px) {
+  .footer {
+    margin-left: @sidebarWidthCollapsed;
+  }
+
+}
+@media only screen and (min-width: 1170px) {
+  .footer {
+    margin-left: @sidebarWidth;
+  }
+}
+/****************
+Flexbox grid
+****************/
+.flexBox {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+
+}
+/****************
+Buttons
+****************/
+.vm-btn(@border-radius:0px){
+  cursor: pointer;
+  height: auto;
+  .text-center;
+  text-decoration: none;
+  font-size: 14px; //@baseFontSize/16
+  .border-radius(@border-radius);
+  &.disabled,
+  &[disabled] {
+    background-color: @btnBackgroundDisable;
+    cursor: not-allowed !important;
+  }
+}
+.vm-secondary-btn{
+  .vm-btn(8px);
+  border: 1px solid @cyan;
+  color:@cyan;
+  font-family: SourceSansPro-Light;
+  font-weight: 700;
+  padding:10px 15px;
+
+  &:hover{
+    background: @cyan;
+    text-decoration: none !important;
+    color:@white;
+  }
+}
+.disable-link, .disable-link:hover {
+  color: #aeaeae;
+  cursor: not-allowed ;
+  text-decoration: none;
+}
+
+@media only screen and (min-width: 768px){
+  .flexBox{
+    flex-direction: row;
+  }
+}
+
+/****************
+Carousel
+****************/
+a.carousel-control{
+  background : none !important;
+  color: #ddd !important;
+    span{
+      font-size: 14px !important;
+    }
+  }
+
+.carousel-indicators{
+  display: none;
+}
+/**
+ * Now that all app-wide styles have been applied, we can load the styles for
+ * all the submodules and components we are using. 
+ *
+ */
+@import 'components/navbar.less';
+@import 'components/home.less';
+@import 'components/services.less';

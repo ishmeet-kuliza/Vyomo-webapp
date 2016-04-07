@@ -1,0 +1,77 @@
+@font-face {
+    font-family: 'VyomoIcons';
+    src:    url('../fonts/VyomoIcons.eot?czdhyz');
+    src:    url('../fonts/VyomoIcons.eot?czdhyz#iefix') format('embedded-opentype'),
+    url('../fonts/VyomoIcons.ttf?czdhyz') format('truetype'),
+    url('../fonts/VyomoIcons.woff?czdhyz') format('woff'),
+    url('../fonts/VyomoIcons.svg?czdhyz#VyomoIcons') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.icon {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'VyomoIcons' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-arrow-left:before {
+    content: "\e900";
+}
+.icon-arrow-right:before {
+    content: "\e901";
+}
+.icon-vid-play:before {
+    content: "\e902";
+}
+.icon-topRight-profile-act:before {
+    content: "\e903";
+}
+.icon-topRight-chat-act:before {
+    content: "\e904";
+}
+.icon-topRight-chat-inact:before {
+    content: "\e905";
+}
+.icon-topRight-profile-inact:before {
+    content: "\e906";
+}
+.icon-menu-home-act:before {
+    content: "\e907";
+}
+.icon-menu-offers-inact:before {
+    content: "\e908";
+}
+.icon-menu-offers-act:before {
+    content: "\e909";
+}
+.icon-menu-blog-inact:before {
+    content: "\e90a";
+}
+.icon-menu-blog-act:before {
+    content: "\e90b";
+}
+.icon-menu-serv-inact:before {
+    content: "\e90c";
+}
+.icon-menu-serv-act:before {
+    content: "\e90d";
+}
+.icon-menu-home-inact:before {
+    content: "\e90e";
+}
+.icon-menu-tips-inact:before {
+    content: "\e90f";
+}
+.icon-menu-tips-act:before {
+    content: "\e910";
+}

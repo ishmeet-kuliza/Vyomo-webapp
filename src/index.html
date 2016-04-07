@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" ng-app="Vyomo" ng-controller="AppCtrl">
+<!--<![endif]-->
+  <head>
+    <title ng-bind="pageTitle"></title>
+
+    <!-- social media tags -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="Vyomo">
+    <meta name="twitter:title" content="Vyomo website">
+    <meta name="twitter:description" content="Vyomo is a mobile app based beauty and wellness platform. We provide “Head-to-toe” doorstep beauty services at home to women of all ages in India.">
+    <meta name="twitter:creator" content="@joshdmiller">
+    <meta name="twitter:image:src" content="https://a248.e.akamai.net/assets.github.com/images/modules/logos_page/Octocat.png?1366128846">
+    <meta property="og:title" content="Vyomo website" />
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Vyomo is a mobile app based beauty and wellness platform. We provide “Head-to-toe” doorstep beauty services at home to women of all ages in India.">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!----------------------- Favicon ---------------------------->
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+
+    <!-- font awesome from BootstrapCDN -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <!-- Icon Set -->
+    <link rel="stylesheet" type="text/css" href="assets/css/icon-set.css">
+    <!-- compiled CSS --><% styles.forEach( function ( file ) { %>
+    <link rel="stylesheet" type="text/css" href="<%= file %>" /><% }); %>
+
+    <script type="text/javascript" src="vendor/jquery/dist/jquery.min.js"></script>
+
+    <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>
+    <script type="text/javascript" src="<%= file %>"></script><% }); %>
+
+  </head>
+  <body initialize-page>
+  <!--[if lt IE 7]>
+  <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+  <!-- Our Website Content Goes Here -->
+   <header class="vm-main-header" ng-controller="headerController">
+     <div class="vm-logo">
+       <a href="/" ><img src="{{imgPath}}VyomoLogo.svg" alt=" Logo"></a>
+     </div>
+
+    <!-- <div class="cd-search is-hidden">
+       <form action="#0">
+         <input type="search" placeholder="Search...">
+       </form>
+     </div>  cd-search -->
+
+      <a href="#0" class="vm-nav-trigger" ng-click="$root.toggleNavMenuMobile = !$root.toggleNavMenuMobile" ng-class="{'nav-is-visible': $root.toggleNavMenuMobile}"><span></span></a>
+
+      <nav class="vm-nav hidden" >
+        <ul class="vm-top-nav">
+          <li class="vm-top-nav-li" ng-class='{open: open}'>
+            <a id="profile-menu" href="#0" class="dropdown-toggle" data-toggle="dropdown" ng-click='open=!open'>
+              <span class="iconHeader has-children icon icon-topRight-profile-inact"></span>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="profile-dropdown">
+              <p class="arrow-right-outer"></p>
+              <p class="arrow-right"></p>
+              <li>Hi,<br>Customer Name<br>Bangalore</li>
+              <li><a href="#0">Edit Account</a></li>
+              <li><a href="#0">Appointment List</a></li>
+              <li><a href="#0">Sign out/ Sign In</a></li>
+            </ul>
+          </li>
+          <li class="vm-top-nav-li"><a href="#0"><span class="iconHeader icon icon-topRight-chat-inact "></span></a></li>
+          <li class="callIcon vm-top-nav-li">
+            <span class="fa fa-phone"></span>
+          </li>
+        </ul>
+      </nav>
+   </header> <!-- .cd-main-header -->
+   <main class="vm-main-content">
+      <nav class="vm-side-nav is-fixed" ng-class="{'nav-is-visible': $root.toggleNavMenuMobile}">
+        <ul>
+          <li class="has-children vm-link-nav">
+            <ul>
+              <li class="vm-home-nav" ng-class="{active: routeIs('/')}">
+                <a ui-sref="home">
+                  <span class="icon icon-nav icon-menu-home-inact"></span>
+                  <span class="nav-menu-text"> Home </span>
+                </a>
+              </li>
+              <li class="vm-service-nav" ng-class="{active: routeIs('/services')}">
+                <a ui-sref="services">
+                  <span class="icon icon-nav icon-menu-serv-inact"></span>
+                  <span class="nav-menu-text"> Services </span>
+                </a>
+              </li>
+              <li class="vm-offers-nav">
+                <span class="icon icon-nav icon-menu-offers-inact" ng-class="{active: routeIs('/offers')}"></span>
+                <span class="nav-menu-text"> Offers </span>
+              </li>
+              <li class="vm-aboutus-nav">
+                <span class="icon icon-nav icon-menu-tips-inact"></span>
+                <span class="nav-menu-text"> About Us </span>
+              </li>
+              <li class="vm-blogs-nav" style="visibility: hidden;">
+                <span class="icon icon-nav icon-menu-blog-inact"></span>
+                <span class="nav-menu-text"> Blog </span>
+              </li>
+
+            </ul>
+          </li>
+
+
+          <li class="has-children vm-support-nav">
+
+            <ul>
+              <li class="callIcon hidden-xs visible-sm hidden-md">
+                <span class="fa fa-phone"></span>
+              </li>
+              <li class="hidden-xs hidden-sm visible-md visible-lg">Call us at <strong>{{vyomoContactNo}}</strong></li>
+              <li>
+               <span class="visible-xs hidden-sm visible-md visible-lg">Download Our App</span>
+                <div class="mt-15 images-inline"><img width="50px" src="{{imgPath}}play-store.png"> <img width="50px" src="{{imgPath}}app-store.png"></div>
+
+              </li>
+            </ul>
+          </li>
+
+          <li class="action-btn"><a href="#0">BOOK NOW</a></li>
+        </ul>
+      </nav>
+      <div class="content-wrapper" ui-view="main"></div>
+
+     <!-------------------- Footer ---------------------->
+
+     <footer class="footer">
+       <div class="row removeMargin">
+         <div class="footer-inner">
+           <ul class="social">
+             <li><a target="_blank" href="http://gplus.to/joshdmiller"><i class="fa fa-google-plus-sign"></i></a></li>
+             <li><a target="_blank" href="http://twitter.com/joshdmiller"><i class="fa fa-twitter-sign"></i></a></li>
+             <li><a target="_blank" href="http://linkedin.com/in/joshdmiller"><i class="fa fa-linkedin-sign"></i></a></li>
+             <li><a target="_blank" href="http://github.com/ngbp/ngbp"><i class="fa fa-github-sign"></i></a></li>
+           </ul>
+
+
+           <p>
+            <span class="pull-left"> CopyRight (c) 2016 Vyomo. All Rights Reserved. </span>
+            <span class="pull-right" >
+              <a href="#">Terms & Conditions</a>
+              <a href="#">Privacy Rules</a>
+            </span>
+           </p>
+         </div>
+       </div>
+     </footer>
+   </main>
+
+
+  </body>
+</html>
