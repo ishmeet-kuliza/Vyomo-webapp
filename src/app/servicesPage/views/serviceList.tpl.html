@@ -1,15 +1,39 @@
 <section-header title = "SERVICES" ng-show="citySelected" subtext =""></section-header>
 
 <div class="mt-25 flexBox vm-services-row">
-    <div class="flexItem vm-service-box" ng-repeat="service in services | orderBy :'service.group_name'">
-        <div class="vm-service-box-inner">
-            <div class="pull-left imgBox">
-                <img alt="Vyomo Services {{service.group_name}}" src="{{imgPath}}HomeServices-bodyPolish.jpg"/>
+    <div class="serviceContainerBox" ng-repeat="service in services | orderBy :'service.group_name'">
+        <div class="flexItem vm-service-box" >
+            <div class="vm-service-box-inner" ng-click="isCollapsed = !isCollapsed">
+                <div class="pull-left imgBox">
+                    <img alt="Vyomo Services {{service.group_name}}" src="{{imgPath}}HomeServices-bodyPolish.jpg"/>
+                </div>
+                <div class="pull-left vm-service-title">
+                    {{service.group_name}}
+                    <span class="displayBlock viewServiceDetails" ng-hide="isCollapsed"> View Details</span>
+                </div>
+                <span id="openServiceListIcon" class= "fa" ng-class="isCollapsed ? ['fa-angle-down'] : ['fa-angle-up']"></span>
+                <div class="clearfix"></div>
+
             </div>
-            <div class="pull-left vm-service-title">
-                {{service.group_name}}
+        </div>
+        <!---- Collapsibe service type List ---------------->
+        <div uib-collapse="isCollapsed" class="serviceCollapseList">
+            <div class="vm-expanded-service-list">
+                <ul class="service-type-list">
+                    <li class="template service-list-element">
+                        <div class="list-inline-elems">
+                            <input type="checkbox" value="" name="serviceType"/>
+                        </div>
+                        <div class="list-inline-elems serviceTypeName">
+                            Neck Length Hair-Cut
+                        </div>
+                        <div class="list-inline-elems serviceTypeCostElem">
+                            <span class="rupeeSymbol">&#8377</span>
+                            <span class="serviceTypeCost">800</span>
+                        </div>
+                    </li>
+                </ul>
             </div>
-            <div class="clearfix"></div>
         </div>
     </div>
 </div>
