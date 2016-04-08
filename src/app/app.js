@@ -8,9 +8,9 @@ var app = angular.module( 'Vyomo', [
   'navBarCtrl'
 ])
 
-.config( function myAppConfig ( $stateProvider, $urlRouterProvider ) {
+.config(['$stateProvider', '$urlRouterProvider', function myAppConfig ( $stateProvider, $urlRouterProvider ) {
   $urlRouterProvider.otherwise( '/' );
-})
+}])
 
 .run( function run () {
 })
