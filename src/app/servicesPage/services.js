@@ -54,6 +54,7 @@ angular.module( 'vyomo.servicesPage', [
                 vyomoAPIservice.getAllPackagesServices(city).success(function (response) {
                     $scope.packages = [];
                     $scope.services = [];
+                    window.console.log(response);
                     if(response.hasOwnProperty("status_code")){
                         if(response.status_code == 200){
                             if (response.hasOwnProperty("message")) {
@@ -62,6 +63,7 @@ angular.module( 'vyomo.servicesPage', [
                                     if(servicesJson.hasOwnProperty("all")){
                                         var allServices = servicesJson.all;
                                         $scope.services = allServices;
+                                        window.console.log($scope.services);
                                         //for (var i = 0 ; i< allServices.length; i++){
                                         //    var tempObj = {};
                                         //
