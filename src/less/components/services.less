@@ -13,6 +13,7 @@ span.label-selected-city{
   .vyomo-home-page-feature-packages;
 }
 .vyomo-feature-services{
+  //In home.less reusing it
   .vyomo-home-page-feature-services;
 }
 @media only screen and (min-width: 768px)  {
@@ -78,8 +79,40 @@ span.label-selected-city{
     }
   }
   .vyomo-feature-services{
-    .vm-service-box{
+    .serviceCollapseList{
+      padding: 10px;
+      padding-top: 0px;
+      background: white;
+    }
+    .serviceContainerBox{
       width : 32.33% ; //The remaining width of 4% (i.e. 32 x 3 = 96%) will be used to create the space between the boxes and simulate margins
+      margin-bottom: 1%;
+    }
+    .vm-service-box{
+      margin-bottom: 0 ;
+    }
+    #openServiceListIcon{
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      font-size: 18px;
+      color: #939393;
+    }
+
+    .viewServiceDetails{
+      .vm-link;
+    }
+
+    .vm-expanded-service-list{
+
+      ul{
+        padding: 10px;
+        border-top: 1px solid #ccc;
+      }
+      div.list-inline-elems{
+          display: inline-block;
+      }
     }
   }
+
 }
