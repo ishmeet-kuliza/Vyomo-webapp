@@ -207,6 +207,15 @@ Buttons
     color:@white;
   }
 }
+.vm-link{
+  color:@linkColor;
+  text-decoration: none !important;
+
+  &:hover{
+    color:@linkColorHover;
+    text-decoration: none !important;
+  }
+}
 .disable-link, .disable-link:hover {
   color: #aeaeae;
   cursor: not-allowed ;
@@ -232,6 +241,13 @@ a.carousel-control{
 
 .carousel-indicators{
   display: none;
+}
+
+/*******************
+Common classes
+****************/
+.displayBlock{
+  display : block !important;
 }
 /**
  * Now that all app-wide styles have been applied, we can load the styles for
