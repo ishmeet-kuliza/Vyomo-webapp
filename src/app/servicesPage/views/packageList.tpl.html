@@ -7,8 +7,17 @@
                 <img alt="{{package.service_name}}" src="{{imgPath}}HomePackages-headToToe.jpg" width="100%" height="50%">
             </div>
             <div class="box-head vm-package-box-head p15">
+                <div class="list-inline-elems squaredOne" ng-class="{'checked' : isCheckPackage}">
+                    <input type="checkbox" ng-model="isCheckPackage" class="squaredOneCheckbox value="{{package.service_id}}" name="packageType" id="package_{{package.service_id}}"/>
+                    <label for="package_{{package.service_id}}">
+                    </label>
+                </div>
+                <div class="list-inline-elems ml-15 v-align-bottom ">
                 <span class="pull-left vm-hf-package-name">{{package.service_name}} </span>
-                <span class="pull-right vm-hf-package-cost">&#8377{{package.cost}} </span>
+                </div>
+                <div class="list-inline-elems pull-right font-bold">
+                <span class="pull-right vm-hf-package-cost ">&#8377{{package.cost}} </span>
+                </div>
                 <span class="clearfix"></span>
             </div>
             <div class="box-detail vm-package-box-detail p15">
