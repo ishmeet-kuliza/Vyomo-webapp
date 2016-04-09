@@ -32,8 +32,8 @@ angular.module( 'vyomo.servicesPage', [
 
         function _sortAccordingtoPrice(packagesList) {
             return packagesList.sort(function (a, b) {
-                                a = parseInt(a.services[0].cost_including_discount, 10);
-                                b = parseInt(b.services[0].cost_including_discount, 10);
+                                a = parseInt(a.cost, 10);
+                                b = parseInt(b.cost, 10);
                                 return (a - b);
                             });
         }
@@ -56,13 +56,24 @@ angular.module( 'vyomo.servicesPage', [
                     $scope.services = [];
                     window.console.log(response);
                     if(response.hasOwnProperty("status_code")){
-                        if(response.status_code == 200){
+                        if(response.status_code === 200){
                             if (response.hasOwnProperty("message")) {
+                                if (response.message.hasOwnProperty('packages')) {
+                                    var packagesJson = response.message.packages;
+                                    if(packagesJson.hasOwnProperty("all")){
+                                        var allPackages = packagesJson.all;
+                                        $scope.packages = _sortAccordingtoPrice(allPackages);
+                                        window.console.log($scope.packages);
+
+                                    }
+                                }
+
                                 if (response.message.hasOwnProperty('services')) {
                                     var servicesJson = response.message.services;
                                     if(servicesJson.hasOwnProperty("all")){
                                         var allServices = servicesJson.all;
                                         $scope.services = allServices;
+
                                         window.console.log($scope.services);
                                         //for (var i = 0 ; i< allServices.length; i++){
                                         //    var tempObj = {};
@@ -71,6 +82,7 @@ angular.module( 'vyomo.servicesPage', [
                                         //}
                                     }
                                 }
+
                             }
                         }
                     }
