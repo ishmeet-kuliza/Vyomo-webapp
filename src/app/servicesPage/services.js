@@ -100,4 +100,7 @@ angular.module( 'vyomo.servicesPage', [
     .controller( 'ServiceListCtrl',['$scope', function ServiceController( $scope) {
         //For each service sub list of its types, collapsed flag
         $scope.isCollapsed = true;
+
+        //Function Call Attach on change event of service list checkbox
+
     }]);
