@@ -8,12 +8,53 @@ var app = angular.module( 'Vyomo', [
   'navBarCtrl'
 ])
 
-.config(['$stateProvider', '$urlRouterProvider', function myAppConfig ( $stateProvider, $urlRouterProvider ) {
+.config(['$httpProvider', function($httpProvider) {
+  //Enable cross domain calls
+  $httpProvider.defaults.useXDomain = true;
+
+  //Remove the header used to identify ajax call  that would prevent CORS from working
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+}])
+
+.config(['$stateProvider', '$urlRouterProvider',
+        function myAppConfig ( $stateProvider, $urlRouterProvider ) {
+
+  // $locationProvider.html5Mode({ //Remove the hashtag in our URL's //Enable it later
+  //   enabled: true,
+  //   requireBase: false
+  // });
+
   $urlRouterProvider.otherwise( '/' );
 }])
 
-.run( function run () {
-})
+.run(['$rootScope', 'auth',
+  function($rootScope, auth) {
+    $rootScope.$on('$stateChangeStart', function(event, toState) {
+      window.console.log('This is the state', toState);
+      window.console.log('This is the auth', auth.hello);
+
+    //   var user = auth.getUser();
+
+    //   if (auth.isAuthenticated()) {
+    //     if (user.forgotPassword) {
+    //       // CHANGE PASSWORD FLAG SET
+    //       event.preventDefault();
+    //     } else {  
+    //       $state.go("/");
+    //     }
+    //   } else if (toState.name !== 'login' && toState.name.indexOf('signup') < 0) {
+    //     // auth.setEntryURL(window.location.pathname + window.location.search);
+    //     // event.preventDefault();
+    //     // $state.go('login');
+    //     //Handle this.
+    //     window.console.log('This user is not authenticated');
+    //   }
+    });
+
+    // $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
+    //   $state.previous = fromState;
+    // });
+}])
 
 .controller( 'AppCtrl', ['$window', '$scope', '$location', function AppCtrl ( $window, $scope, $location ) {
   $window.console.debug('This is our app', app);
