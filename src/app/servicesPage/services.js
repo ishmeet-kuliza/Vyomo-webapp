@@ -45,27 +45,34 @@ angular.module( 'vyomo.servicesPage', [
 
                 //API calling to get packages and services
                 //var cityName = $scope.data.selectedCity;
-                var latLong = angular.element('.vm-select-city option:selected').attr('latLong');
-                vyomoAPIservice.getPackages(latLong).success(function (response) {
+                //var city = angular.element('.vm-select-city option:selected').attr('latLong');
+
+                var cityElem = document.querySelector(".vm-select-city");
+                var city = cityElem.options[cityElem.selectedIndex].value;
+
+                //API Call success method block
+                vyomoAPIservice.getAllPackagesServices(city).success(function (response) {
                     $scope.packages = [];
                     $scope.services = [];
-                    if (response.hasOwnProperty("message")) {
-                        if (response.message.hasOwnProperty('categories')) {
-                            for (var i in response.message.categories) {
-                                var categories = response.message.categories;
-                                if (categories[i].label === "Packages") {
-                                    $scope.packages = _sortAccordingtoPrice(categories[i].services_by_group);
-                                    
-                                    ////Function to fill in packages list
-                                    //fillPackagesList(packagesList);
-                                }
-                                if (categories[i].label === "Menu") {
-                                    $scope.services = categories[i].services_by_group;
+                    if(response.hasOwnProperty("status_code")){
+                        if(response.status_code == 200){
+                            if (response.hasOwnProperty("message")) {
+                                if (response.message.hasOwnProperty('services')) {
+                                    var servicesJson = response.message.services;
+                                    if(servicesJson.hasOwnProperty("all")){
+                                        var allServices = servicesJson.all;
+                                        $scope.services = allServices;
+                                        //for (var i = 0 ; i< allServices.length; i++){
+                                        //    var tempObj = {};
+                                        //
+                                        //    //$scope.services =
+                                        //}
+                                    }
                                 }
                             }
-
                         }
                     }
+
                 });
                 $state.go('servicesPage.list');
             }

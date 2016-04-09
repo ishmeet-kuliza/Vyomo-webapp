@@ -1,14 +1,15 @@
 <section-header title = "SERVICES" ng-show="citySelected" subtext =""></section-header>
 
 <div class="mt-25 flexBox vm-services-row">
-    <div class="serviceContainerBox" ng-repeat="service in services | orderBy :'service.group_name'">
+    <div class="serviceContainerBox" ng-repeat="service in services | orderBy :'service.category_name'">
         <div class="flexItem vm-service-box" >
             <div class="vm-service-box-inner" ng-click="isCollapsed = !isCollapsed">
                 <div class="pull-left imgBox">
-                    <img alt="Vyomo Services {{service.group_name}}" src="{{imgPath}}HomeServices-bodyPolish.jpg"/>
+                    <! -- -
+                    <img alt="Vyomo Services {{service.category_name}}" src="{{imgPath}}HomeServices-bodyPolish.jpg"/>
                 </div>
                 <div class="pull-left vm-service-title">
-                    {{service.group_name}}
+                    {{service.category_name}}
                     <span class="displayBlock viewServiceDetails" ng-hide="isCollapsed"> View Details</span>
                 </div>
                 <span id="openServiceListIcon" class= "fa" ng-class="isCollapsed ? ['fa-angle-down'] : ['fa-angle-up']"></span>
