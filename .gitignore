@@ -3,3 +3,7 @@ node_modules
 build
 app-build.js
 **/app-build.js
+/.idea
+/*.iml
+/out
+/.idea_modules
