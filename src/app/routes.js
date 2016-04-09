@@ -47,19 +47,30 @@ angular.module('Vyomo')
               templateUrl: 'servicesPage/views/services.tpl.html'
           }
       },
-      data:{ pageTitle: 'Beauty Services' }
+      data:{ pageTitle: 'Beauty Services'}
     }).state('servicesPage.list',{
-          url : "/list",
-          views : {
-              "packagesView":{
-                  controller : 'ServicePackageCtrl',
-                  templateUrl : 'servicesPage/views/packageList.tpl.html'
-              },
-              "servicesView":{
-                  controller : 'ServiceListCtrl',
-                  templateUrl : 'servicesPage/views/serviceList.tpl.html'
-              }
+        url : "/list",
+        views : {
+            "packagesView":{
+                controller : 'ServicePackageCtrl',
+                templateUrl : 'servicesPage/views/packageList.tpl.html'
+            },
+            "servicesView":{
+                controller : 'ServiceListCtrl',
+                templateUrl : 'servicesPage/views/serviceList.tpl.html'
+            }
+        }
+    });
+
+    $stateProvider.state( 'login', {
+      url: '/login',
+      views: {
+          "main": {
+              controller: 'loginCtrl',
+              templateUrl: 'login/login.tpl.html'
           }
-      });
+      },
+      data:{ pageTitle: 'Login'}
+    });
 
 }]);

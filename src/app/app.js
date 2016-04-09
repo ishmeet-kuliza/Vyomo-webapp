@@ -27,8 +27,7 @@ var app = angular.module( 'Vyomo', [
   $urlRouterProvider.otherwise( '/' );
 }])
 
-.run(['$rootScope', 'auth',
-  function($rootScope, auth) {
+.run(['$rootScope', 'auth', '$state', function($rootScope, auth, $state) {
     $rootScope.$on('$stateChangeStart', function(event, toState) {
       window.console.log('This is the state', toState);
       window.console.log('This is the auth', auth.hello);
@@ -51,9 +50,10 @@ var app = angular.module( 'Vyomo', [
     //   }
     });
 
-    // $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
-    //   $state.previous = fromState;
-    // });
+    //keep track of previous states
+    $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
+      $state.previous = fromState;
+    });
 }])
 
 .controller( 'AppCtrl', ['$window', '$scope', '$location', function AppCtrl ( $window, $scope, $location ) {

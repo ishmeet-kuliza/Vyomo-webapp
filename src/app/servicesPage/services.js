@@ -10,25 +10,10 @@ angular.module( 'vyomo.servicesPage', [
     /**
      * And of course we define a controller for our route.
      */
-    .controller( 'ServiceCtrl', ['$scope', '$state', 'vyomoAPIservice', function ServiceController( $scope,$state, vyomoAPIservice ) {
+    .controller( 'ServiceCtrl', ['$scope', '$state', 'vyomoAPIservice', 'globals', 
+        function ServiceController( $scope,$state, vyomoAPIservice, globals ) {
         $scope.citySelected = false;
-        $scope.data = {
-            selectedCity : null,
-            cities:[
-                {
-                    name : "Bangalore",
-                    lat_long : "12.9667,77.566"
-                },
-                {
-                    name : "Delhi/NCR",
-                    lat_long : "28.613,77.209"
-                },
-                {
-                    name : "Mumbai",
-                    lat_long : "18.975,72.825"
-                }
-            ]
-        }; 
+        $scope.data = globals.getCities();
 
         function _sortAccordingtoPrice(packagesList) {
             return packagesList.sort(function (a, b) {

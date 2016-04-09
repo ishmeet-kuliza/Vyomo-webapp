@@ -5,7 +5,8 @@
 angular.module('Vyomo')
 .factory('auth', ['$http', '$q', 'env', function($http, $q, env) {
 
-	/**
+  var userObj;
+  /**
   * Set common request headers
   */
   function setDefaultHeaders () {
@@ -18,10 +19,48 @@ angular.module('Vyomo')
 
   setDefaultHeaders();
 
-	return {
-    // getUser: getUser,
+  function _generateUserObj(data) {
+    return {
+      userName: data.user.userName,
+      sessionToken: data.sessionToken,
+      expiry: data.expiration
+    };
+  }
+
+  function authenticate(userName, password) {
+    var deferred = $q.defer();
+    // login call to server.
+    var authUrl = ''; //FIX_ME, enter API url
+
+    $http.post(authUrl, { userName: userName, password: password }).then(function(response) {
+      if (response && response.data){
+        setDefaultHeaders();
+        userObj = _generateUserObj(response.data);
+        // persist in session storage so this is available for page refreshes.
+        window.sessionStorage.userObj = JSON.stringify(userObj);
+        deferred.resolve(userObj);
+      } else {
+        deferred.reject('Something went wrong with your login, please try again.');
+      }
+    }, function(err) {
+      if (err.status === 401) {
+        deferred.reject('Incorrect login, please try again.');
+      } else {
+       deferred.reject('Something went wrong with your login, please try again.');
+      }
+    });
+    return deferred.promise;
+  }
+
+  function getUser() {
+    return userObj ? userObj : {};
+  }
+
+  return {
+    authenticate: authenticate,
+    getUser: getUser,
     // isAuthenticated: isAuthenticated,
-    // authenticate: authenticate,
+    
     // switchLogin: switchLogin,
     // updateSession: updateSession,
     // deleteSession: deleteSession,
