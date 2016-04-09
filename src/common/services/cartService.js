@@ -1,70 +1,74 @@
 /**
  *  Services/ Factory for cart
+ *  author/ Ekluv-Dev
  */
 angular.module('Vyomo')
-	.factory('Cart', ['$cookies', function($cookies){
+	.factory('cart', ['$cookies', function($cookies){
 		var cart = {
-			itemCookie: ''
+			itemCookie: '',
+			totalPrice: 0
 		};
-		cart.init = function (itemCookie) {
-			this.itemCookie = itemCookie;
 
-			if(!($cookies.get(this.itemCookie) instanceof Array )){
-				$cookies.put(this.itemCookie, []);
+		cart._updateCookie = function(key, value){
+			// setting cookies with expiry date
+			var expireDate = new Date();
+			expireDate.setDate(expireDate.getDate() + 1);
+			$cookies.putObject(key, value, {expires: expireDate});
+		};
+
+		cart.init = function (itemCookie) {
+			// intialize cart with itemCookie as name
+			this.itemCookie = itemCookie;
+			// if cookie is empty or not array then set to array
+			if(!Array.isArray($cookies.getObject(this.itemCookie))){
+				this._updateCookie(this.itemCookie, []);
 			}
 		};
-		cart.addItem = function (item, quantity){
-			if(quantity === undefined){
-				quantity = 1;
+
+		cart.addItem = function (item){
+			if(item.quantity === undefined){
+				item.quantity = 1;
 			}
-			var items = $cookies.get(this.itemCookie);
-			var product = {
-				id: item.id,
-				quantity: quantity,
-				price: item.price
-			};
-			items.push(product);
-			$cookies.put(this.itemCookie, items);
+			var items = $cookies.getObject(this.itemCookie);
+			window.console.log(item);
+			items.push(item.service_id	);
+			this.totalPrice += item.cost;
+			window.console.log(items);
+			window.console.log('total price', this.totalPrice);
+			this._updateCookie(this.itemCookie, items);
 		};
 
 		cart.getItem = function(index){
-			var items = $cookies.get(this.itemCookie);
+			var items = $cookies.getObject(this.itemCookie);
 			return items[index];
 		};
-
-		cart.updateQuantity = function(index, quantity){
-			var items = $cookies.get(this.itemCookie);
-			items[index].quantity = quantity;
-			$cookies.put(this.itemCookie, items);
+		// removes item from cart
+		cart.removeItem = function(item){
+			var items = $cookies.getObject(this.itemCookie);
+			var index = items.indexOf(item.service_id);
+			// if product found in cart 
+			if (index > -1) {
+				items.splice(index, 1);
+				this.totalPrice -= item.cost;
+			}
+			this._updateCookie(this.itemCookie, items);
 		};
 
-		cart.removeItem = function(index){
-			var items = $cookies.get(this.itemCookie);
-			items.splice(index, 1);
-			$cookies.put(this.itemCookie, items);
-		};
-
+		// return total products in cart
 		cart.getTotalItems = function(){
-			var items = $cookies.get(this.itemCookie);
-			var itemsCount = 0;
-			items.forEach(function(item) {
-				itemsCount += item.quantity;
-			});
-			return itemsCount;
+			var items = $cookies.getObject(this.itemCookie);
+			return items.length;
 		};
-
-		cart.getProductPrice = function(index){
-			var item = this.getItem(index);
-			return item.price * item.quantity;
-		};
-
-		cart.getCartPrice = function(){
-			var items = $cookies.get(this.itemCookie);
-			var totalPrice = 0;
-			items.forEach(function(item) {
-				totalPrice += item.price * item.quantity;
-			});
-			return totalPrice;
+		// check whether item is in cart
+		cart.hasItem = function(item){
+			var items = $cookies.getObject(this.itemCookie);
+			var index = items.indexOf(item.service_id);
+			if (index > -1){
+				return true;
+			}
+			else {
+				return false;
+			}
 		};
 		return cart;
 	}]);

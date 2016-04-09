@@ -10,7 +10,9 @@ angular.module( 'vyomo.servicesPage', [
     /**
      * And of course we define a controller for our route.
      */
-    .controller( 'ServiceCtrl', ['$scope', '$state', 'vyomoAPIservice', function ServiceController( $scope,$state, vyomoAPIservice ) {
+    .controller( 'ServiceCtrl', ['$scope', '$state', 'vyomoAPIservice','cart', function ServiceController( $scope,$state, vyomoAPIservice ,cart) {
+        cart.init('products');
+        $scope.cartProducts = [];
         $scope.citySelected = false;
         $scope.data = {
             selectedCity : null,
@@ -39,6 +41,26 @@ angular.module( 'vyomo.servicesPage', [
         }
 
 
+        function addToCart(){
+            this.quantity += 1;
+            cart.addItem(this);
+        }
+
+        function removeFromCart(){
+            if(this.quantity !== 0){
+                this.quantity -= 1;
+            }
+            cart.removeItem(this);
+        }    
+
+        function addQuantityProperty(productInstance) {
+            // default product quantity
+            // productinstance can be package or service
+            productInstance.quantity= 0;
+            productInstance.addToCart = addToCart;
+            productInstance.removeFromCart = removeFromCart;
+        }
+
         $scope.getServicesPackages = function() {
             if ($scope.data.selectedCity != null) {
                 $scope.citySelected = true;
@@ -64,22 +86,36 @@ angular.module( 'vyomo.servicesPage', [
                                         var allPackages = packagesJson.all;
                                         $scope.packages = _sortAccordingtoPrice(allPackages);
                                         window.console.log($scope.packages);
+                                        // adding properties to package objs
+                                        $scope.packages.forEach(function(package){
+                                            addQuantityProperty(package);
+                                            // if package is in cart update cart price
+                                            if(cart.hasItem(package)){
+                                                cart.totalPrice += package.cost;
+                                            }
+                                        });
 
                                     }
+
                                 }
 
                                 if (response.message.hasOwnProperty('services')) {
                                     var servicesJson = response.message.services;
                                     if(servicesJson.hasOwnProperty("all")){
                                         var allServices = servicesJson.all;
-                                        $scope.services = allServices;
-
-                                        window.console.log($scope.services);
-                                        //for (var i = 0 ; i< allServices.length; i++){
-                                        //    var tempObj = {};
-                                        //
-                                        //    //$scope.services =
-                                        //}
+                                        $scope.categories = allServices;
+                                        // adding properties to service objs
+                                        $scope.categories.forEach(function(category){
+                                            category.list.forEach(function(service){
+                                                addQuantityProperty(service);
+                                                // if service is in cart update cart price
+                                                if(cart.hasItem(service)){
+                                                    cart.totalPrice += service.cost;
+                                                }
+                                            });
+                                        });
+                                        window.console.log($scope.categories);
+                                       
                                     }
                                 }
 

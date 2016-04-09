@@ -1,7 +1,7 @@
 <section-header title = "SERVICES" ng-show="citySelected" subtext =""></section-header>
 
 <div class="mt-25 flexBox vm-services-row">
-    <div class="serviceContainerBox" ng-repeat="service in services | orderBy :'service.category_name'">
+    <div class="serviceContainerBox" ng-repeat="service in categories | orderBy :'service.category_name'">
         <div class="flexItem vm-service-box" >
             <div class="vm-service-box-inner" ng-click="isCollapsed = !isCollapsed">
                 <div class="pull-left imgBox">

@@ -14,7 +14,14 @@
             <div class="box-detail vm-package-box-detail p15">
                 <span>{{package.description}}</span>
             </div>
+            <div>
+                <div ng-click="package.addToCart()">+</div>
+                <div>{{package.quantity}}</div>
+                <div ng-click="package.removeFromCart()">-</div>
+            </div>
         </div>
+
     </div>
+
 </div>
 
