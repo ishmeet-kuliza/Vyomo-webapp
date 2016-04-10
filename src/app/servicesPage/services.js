@@ -40,7 +40,6 @@ angular.module( 'vyomo.servicesPage', [
                             });
         }
 
-
         function addToCart(){
             if(this.quantity !== undefined){
                 this.quantity += 1;
@@ -49,17 +48,27 @@ angular.module( 'vyomo.servicesPage', [
         }
 
         function removeFromCart(){
-            if(this.quantity !== undefined && this.quantity !== 0){
+            if(this.quantity){
                 this.quantity -= 1;
             }
             cart.removeItem(this);
         }    
+        // method for service objs to clear its occurences from cart
+        function clearFromCart(){
+            var quantity = this.quantity;
+            if(quantity){
+                for(var counter = 1; counter <= quantity; counter++){
+                    this.removeFromCart();
+                }
+            }
+        }
 
         function addQuantityProperty(service) {
             // default service quantity
             service.quantity = 0;
             service.addToCart = addToCart;
             service.removeFromCart = removeFromCart;
+            service.clearFromCart = clearFromCart;
         }
         // fn to add a property isAddedToCart in package
         function addIsAddedToCartProperty(package){
@@ -68,14 +77,14 @@ angular.module( 'vyomo.servicesPage', [
             package.removeFromCart = removeFromCart;
         }
         // if product is in cart update cart price on reload
-        function updateCartPrice(productinstance){
-            if(cart.hasItem(productinstance)){
-                cart.totalPrice += productinstance.cost;
+        function updateCartPrice(productInstance){
+            if(cart.hasItem(productInstance)){
+                cart.totalPrice += productInstance.cost;
             }
         }
 
         $scope.getServicesPackages = function() {
-            if ($scope.data.selectedCity != null) {
+            if ($scope.data.selectedCity !== null) {
                 $scope.citySelected = true;
 
                 //API calling to get packages and services

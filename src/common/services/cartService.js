@@ -16,7 +16,7 @@ angular.module('Vyomo')
 			$cookies.putObject(key, value, {expires: expireDate});
 		};
 
-		cart.init = function (itemCookie) {
+		cart.init = function(itemCookie) {
 			// intialize cart with itemCookie as name
 			this.itemCookie = itemCookie;
 			// if cookie is empty or not array then set to array
@@ -25,12 +25,11 @@ angular.module('Vyomo')
 			}
 		};
 
-		cart.addItem = function (item){
+		cart.addItem = function(item){
 			if(item.quantity === undefined){
 				item.quantity = 1;
 			}
 			var items = $cookies.getObject(this.itemCookie);
-			window.console.log(item);
 			items.push(item.service_id);
 			this.totalPrice += item.cost;
 			window.console.log(items);
@@ -57,7 +56,7 @@ angular.module('Vyomo')
 		// return total products in cart
 		cart.getCount = function(){
 			var items = $cookies.getObject(this.itemCookie);
-			return items.length;
+			return items ? items.length: 0;
 		};
 		// check whether item is in cart
 		cart.hasItem = function(item){
@@ -70,5 +69,10 @@ angular.module('Vyomo')
 				return false;
 			}
 		};
+		// method to delete cart
+		cart.destroyCart = function(){
+			$cookies.remove(this.itemCookie);
+		};
+
 		return cart;
 	}]);

@@ -34,7 +34,6 @@ angular.module('Vyomo')
             $scope.cartCount = newCount;
         });
 
-         window.console.log(cart);
         }
     };
 }]);

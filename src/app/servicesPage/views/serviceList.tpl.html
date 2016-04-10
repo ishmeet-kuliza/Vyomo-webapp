@@ -1,7 +1,7 @@
 <section-header title = "SERVICES" ng-show="citySelected" subtext =""></section-header>
 
 <div class="mt-25 flexBox vm-services-row">
-    <div class="serviceContainerBox" ng-repeat="service in categories | orderBy :'service.category_name'">
+    <div class="serviceContainerBox" ng-repeat="service in categories track by $index | orderBy :'service.category_name'">
         <div class="flexItem vm-service-box" >
             <div class="vm-service-box-inner" ng-click="isCollapsed = !isCollapsed">
                 <div class="pull-left imgBox">
@@ -21,9 +21,9 @@
         <div uib-collapse="isCollapsed" class="serviceCollapseList">
             <div class="vm-expanded-service-list">
                 <ul class="service-type-list">
-                    <li class="service-list-element" ng-repeat="serviceType in service.list | orderBy :'serviceType.cost'">
+                    <li class="service-list-element" ng-repeat="serviceType in service.list track by $index | orderBy :'serviceType.cost'">
                         <div class="list-inline-elems squaredOne" ng-class="{'checked' : isCheckService}">
-                            <input type="checkbox" ng-model="isCheckService" class="squaredOneCheckbox" value="{{serviceType.service_id}}" name="serviceType" id="service_{{serviceType.service_id}}"/>
+                            <input type="checkbox" ng-model="isCheckService" ng-click="serviceType.clearFromCart()" class="squaredOneCheckbox" value="{{serviceType.service_id}}" name="serviceType" id="service_{{serviceType.service_id}}"/>
                             <label for="service_{{serviceType.service_id}}">
                             </label>
                         </div>

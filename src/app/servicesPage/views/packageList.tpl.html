@@ -1,7 +1,7 @@
 <section-header title = "PACKAGES" ng-show="citySelected" subtext =""></section-header>
 
 <div class=" mt-25 flexBox vm-package-row">
-    <div class="flexItem vm-package-box " ng-repeat="package in packages" serviceId="package.service_id">
+    <div class="flexItem vm-package-box " ng-repeat="package in packages track by $index" serviceId="package.service_id">
         <div class="box-inner vm-package-box-inner">
             <div class="vm-package-box-image">
                 <img alt="{{package.service_name}}" src="{{imgPath}}HomePackages-headToToe.jpg" width="100%" height="50%">
