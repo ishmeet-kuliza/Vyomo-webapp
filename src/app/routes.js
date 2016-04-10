@@ -71,6 +71,14 @@ angular.module('Vyomo')
           }
       },
       data:{ pageTitle: 'Login'}
+    }).state('login.signup',{
+        url : "/signup",
+        views : {
+            "signUp":{
+                controller : 'signUpCtrl',
+                templateUrl : 'login/signUp.tpl.html'
+            }
+        }
     });
 
 }]);

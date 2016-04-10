@@ -1,28 +1,22 @@
-<div class="login-section-wrapper">
+<div class="login-section-wrapper no-signup">
   <div class="login-info">
-    <span>SHARE YOUR DETAILS </span>
-    <span class="service-info">Once validate you can use our services from anywhere anytime. </span>
+    <span>LOGIN INTO YOUR ACCOUNT </span>
+    <span class="service-info login-pointer" ng-click="registerNow()">Register Now</span>
   </div>
   <form role="form" ng-submit="sendForm()" autocomplete="on" form-auto-fill-fix>
-    <select class="vm-select-city form-control" placeholder="Select your city" ng-model="formData.selectedCity" required>
-      <option value="" class="placeholder">Select your city</option>
-      <option ng-repeat="city in  data.cities" value="{{city.name}}" latLong="{{city.lat_long}}">{{city.name}}</option>
-    </select>
     <div class="input-wrapper">
-      <input type="text" placeholder="Name" required autofocus ng-model="formData.custName" name="custName" value="custName">
-      <input type="email" placeholder="Email" required ng-model="formData.userName" name="userName" value="userName"/>
-      <input type="number" placeholder="Mobile Number" required ng-model="formData.mobNumber" name="mobNumber" value="mobNumber"/>
-      <input type="password" placeholder="Set Password" required ng-model="formData.password" name="password" value="password"/>
+      <input type="number" placeholder="Enter Mobile Number" required ng-model="formData.mobileNumber" name="mobNumber" value="mobNumber"/>
+      <input type="password" ng-if="getPassword" placeholder="Set Password" required ng-model="formData.password" name="password" value="password"/>
       <div class="action-block">
-          <div class="error-div" ng-if="errorMsg">
+          <div class="error-div no-signup" ng-if="errorMsg">
             *{{errorMsg}}
           </div>
           <!-- Commenting out Forgot Password until the functionality exists -->
           <!-- <a style="font-size:12px;color:#46A3C8;text-decoration:underline">Forgot Password</a> -->
 
 
-          <button class="login" type="submit" ng-if="!otpSent">SEND VALIDATION CODE</button>
-          <button class="login" type="submit" ng-if="otpSent">VALIDATE ME</button>
+          <button class="login no-signup-button" type="button" ng-if="!getPassword" ng-click="showPasswordInput()">NEXT</button>
+          <button class="login no-signup-button" type="submit" ng-if="getPassword">LOGIN</button>
  
       </div>
     </div>

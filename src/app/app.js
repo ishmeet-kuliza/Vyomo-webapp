@@ -29,9 +29,7 @@ var app = angular.module( 'Vyomo', [
 
 .run(['$rootScope', 'auth', '$state', function($rootScope, auth, $state) {
     $rootScope.$on('$stateChangeStart', function(event, toState) {
-      window.console.log('This is the state', toState);
-      window.console.log('This is the auth', auth.hello);
-
+      window.console.log('This is the toState', toState);
     //   var user = auth.getUser();
 
     //   if (auth.isAuthenticated()) {

@@ -1,5 +1,5 @@
 angular.module('Vyomo')
-.controller("loginCtrl", ['$scope', 'auth', 'globals', function($scope, auth, globals) {
+.controller("signUpCtrl", ['$scope', 'auth', 'globals', function($scope, auth, globals) {
   var sessionUser = auth.getUser();
   $scope.formData = {};
   $scope.formData.selectedCity = sessionUser.selectedCity ? sessionUser.selectedCity : '';
@@ -15,14 +15,5 @@ angular.module('Vyomo')
     }, function(error) {
       $scope.errorMsg = error;
     });
-  };
-
-  $scope.showPasswordInput = function() {
-    if($scope.formData.mobileNumber) {
-      $scope.errorMsg = '';
-      $scope.getPassword = true;
-    } else {
-      $scope.errorMsg = 'Please enter mobile number';
-    }
   };
 }]);//controller
