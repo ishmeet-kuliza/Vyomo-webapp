@@ -11,7 +11,7 @@ angular.module( 'vyomo.servicesPage', [
      * And of course we define a controller for our route.
      */
     .controller( 'ServiceCtrl', ['$scope', '$state', 'vyomoAPIservice','cart', function ServiceController( $scope,$state, vyomoAPIservice ,cart) {
-        cart.init('products');
+        // cart.init('products');
         $scope.cartProducts = [];
         $scope.citySelected = false;
         $scope.data = {
@@ -70,16 +70,21 @@ angular.module( 'vyomo.servicesPage', [
             service.removeFromCart = removeFromCart;
             service.clearFromCart = clearFromCart;
         }
+
         // fn to add a property isAddedToCart in package
         function addIsAddedToCartProperty(package){
             package.isAddedToCart = false;
             package.addToCart = addToCart;
             package.removeFromCart = removeFromCart;
         }
+
         // if product is in cart update cart price on reload
         function updateCartPrice(productInstance){
             if(cart.hasItem(productInstance)){
-                cart.totalPrice += productInstance.cost;
+                // get item count from cart
+                var quantity = cart.getItemCount(productInstance);
+                cart.totalPrice += productInstance.cost * quantity;
+                window.console.log(productInstance.service_id, cart.totalPrice);
             }
         }
 
@@ -93,7 +98,8 @@ angular.module( 'vyomo.servicesPage', [
 
                 var cityElem = document.querySelector(".vm-select-city");
                 var city = cityElem.options[cityElem.selectedIndex].value;
-
+                // initiating cart for selected city
+                cart.init(city);
                 //API Call success method block
                 vyomoAPIservice.getAllPackagesServices(city).success(function (response) {
                     $scope.packages = [];
