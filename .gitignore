@@ -1,5 +1,9 @@
 bower_components
 node_modules
 build
+/.idea
+/*.iml
+/out
+/.idea_modules
 app-build.js
 **/app-build.js

@@ -5,7 +5,8 @@ var app = angular.module( 'Vyomo', [
   'vyomo.servicesPage',
   'ui.router',
   'ui.bootstrap',
-  'navBarCtrl'
+  'navBarCtrl',
+  'ngCookies'
 ])
 
 .config(['$httpProvider', function($httpProvider) {

@@ -1,9 +1,21 @@
 /**
 * Service Stylesheet
 */
+//Custom checkbox labbeling
+input[type=checkbox] {
+  visibility: hidden;
+}
+
 .inlineElem{
   display: inline-block;
   width:75%;
+}
+
+div.list-inline-elems{
+  display: inline-block;
+}
+.v-align-bottom{
+  vertical-align: bottom;
 }
 span.label-selected-city{
   font-weight: 600;
@@ -13,6 +25,7 @@ span.label-selected-city{
   .vyomo-home-page-feature-packages;
 }
 .vyomo-feature-services{
+  //In home.less reusing it
   .vyomo-home-page-feature-services;
 }
 @media only screen and (min-width: 768px)  {
@@ -78,8 +91,50 @@ span.label-selected-city{
     }
   }
   .vyomo-feature-services{
-    .vm-service-box{
+    .serviceCollapseList{
+      padding: 10px;
+      padding-top: 0px;
+      background: white;
+    }
+    .serviceContainerBox{
       width : 32.33% ; //The remaining width of 4% (i.e. 32 x 3 = 96%) will be used to create the space between the boxes and simulate margins
+      margin-bottom: 1%;
+    }
+    .vm-service-box{
+      margin-bottom: 0 ;
+    }
+    #openServiceListIcon{
+      position: absolute;
+      top: 5px;
+      right: 10px;
+      font-size: 18px;
+      color: #939393;
+    }
+
+    .viewServiceDetails{
+      .vm-link;
+    }
+
+    .vm-expanded-service-list{
+
+      ul{
+        padding: 10px;
+        border-top: 1px solid #ccc;
+
+        li{
+          margin-bottom : 1rem;
+        }
+      }
+
+    }
+    //In Package sect
+    .personSelectionDiv{
+      div{
+        background-color: #D8F5F3;
+        padding: 6px 10px;
+        border-right:1px solid #f7f7f7
+      }
     }
   }
+
 }
