@@ -12,7 +12,7 @@ angular.module('Vyomo')
         // scope: {}, // {} = isolate, true = child, false/undefined = no change
         // controller: function($scope, $element, $attrs, $transclude) {},
         // require: 'ngModel', // Array = multiple requires, ? = optional, ^ = check parent elements
-        // restrict: 'A', // E = Element, A = Attribute, C = Class, M = Comment
+        restrict: 'AE', // E = Element, A = Attribute, C = Class, M = Comment
         template: '<div>Directive--Price={{totalPrice}}<span>Count={{cartCount}}</span></div>',
         // templateUrl: 'directiveViews/cart-price.html',
         replace: true,
