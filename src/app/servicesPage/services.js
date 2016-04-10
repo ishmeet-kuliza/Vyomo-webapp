@@ -42,23 +42,36 @@ angular.module( 'vyomo.servicesPage', [
 
 
         function addToCart(){
-            this.quantity += 1;
+            if(this.quantity !== undefined){
+                this.quantity += 1;
+            }
             cart.addItem(this);
         }
 
         function removeFromCart(){
-            if(this.quantity !== 0){
+            if(this.quantity !== undefined && this.quantity !== 0){
                 this.quantity -= 1;
             }
             cart.removeItem(this);
         }    
 
-        function addQuantityProperty(productInstance) {
-            // default product quantity
-            // productinstance can be package or service
-            productInstance.quantity= 0;
-            productInstance.addToCart = addToCart;
-            productInstance.removeFromCart = removeFromCart;
+        function addQuantityProperty(service) {
+            // default service quantity
+            service.quantity = 0;
+            service.addToCart = addToCart;
+            service.removeFromCart = removeFromCart;
+        }
+        // fn to add a property isAddedToCart in package
+        function addIsAddedToCartProperty(package){
+            package.isAddedToCart = false;
+            package.addToCart = addToCart;
+            package.removeFromCart = removeFromCart;
+        }
+        // if product is in cart update cart price on reload
+        function updateCartPrice(productinstance){
+            if(cart.hasItem(productinstance)){
+                cart.totalPrice += productinstance.cost;
+            }
         }
 
         $scope.getServicesPackages = function() {
@@ -88,11 +101,9 @@ angular.module( 'vyomo.servicesPage', [
                                         window.console.log($scope.packages);
                                         // adding properties to package objs
                                         $scope.packages.forEach(function(package){
-                                            addQuantityProperty(package);
+                                            addIsAddedToCartProperty(package);
                                             // if package is in cart update cart price
-                                            if(cart.hasItem(package)){
-                                                cart.totalPrice += package.cost;
-                                            }
+                                            updateCartPrice(package);
                                         });
 
                                     }
@@ -109,9 +120,7 @@ angular.module( 'vyomo.servicesPage', [
                                             category.list.forEach(function(service){
                                                 addQuantityProperty(service);
                                                 // if service is in cart update cart price
-                                                if(cart.hasItem(service)){
-                                                    cart.totalPrice += service.cost;
-                                                }
+                                                updateCartPrice(service);
                                             });
                                         });
                                         window.console.log($scope.categories);
@@ -131,12 +140,10 @@ angular.module( 'vyomo.servicesPage', [
     }])
 
     .controller( 'ServicePackageCtrl',['$scope', function ServiceController($scope) {
-        
-        $scope.isCheckPackage = true;
-        
+
         $scope.addOrRemovePackage = function(package){
-            window.console.log(package);
-            if($scope.isCheckPackage){
+            // add package to cart if it is not
+            if(!package.isAddedToCart){
                 package.addToCart();
             }
             else{

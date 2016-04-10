@@ -31,7 +31,7 @@ angular.module('Vyomo')
 			}
 			var items = $cookies.getObject(this.itemCookie);
 			window.console.log(item);
-			items.push(item.service_id	);
+			items.push(item.service_id);
 			this.totalPrice += item.cost;
 			window.console.log(items);
 			window.console.log('total price', this.totalPrice);
@@ -55,7 +55,7 @@ angular.module('Vyomo')
 		};
 
 		// return total products in cart
-		cart.getTotalItems = function(){
+		cart.getCount = function(){
 			var items = $cookies.getObject(this.itemCookie);
 			return items.length;
 		};
