@@ -6,7 +6,8 @@
     "angular-mocks": "~1.4.8",
     "bootstrap": "~3.1",
     "angular-bootstrap": "~1.1.2",
-    "angular-ui-router": "~0.2"
+    "angular-ui-router": "~0.2",
+    "angular-cookies": "*"
   },
   "dependencies": {
     "angular-animate": "^1.5.0"
