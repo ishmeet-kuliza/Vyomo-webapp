@@ -9,6 +9,7 @@
               <option ng-repeat="city in  data.cities" value="{{city.name}}" latLong="{{city.lat_long}}">{{city.name}}</option>
           </select>
         </div>
+        <cart-price></cart-price>
     </div>
     <div class="vm-choose-city-helptext-row stepHead row removeMargin" ng-hide="citySelected">
         <section-header title = "Choose Location to View Services" subtext ="">

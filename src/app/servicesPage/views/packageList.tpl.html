@@ -1,20 +1,31 @@
 <section-header title = "PACKAGES" ng-show="citySelected" subtext =""></section-header>
 
 <div class=" mt-25 flexBox vm-package-row">
-    <div class="flexItem vm-package-box " ng-repeat="package in packages">
+    <div class="flexItem vm-package-box " ng-repeat="package in packages track by $index" serviceId="package.service_id">
         <div class="box-inner vm-package-box-inner">
             <div class="vm-package-box-image">
-                <img alt="{{package.group_name}}" src="{{imgPath}}HomePackages-headToToe.jpg" width="100%" height="50%">
+                <img alt="{{package.service_name}}" src="{{imgPath}}HomePackages-headToToe.jpg" width="100%" height="50%">
             </div>
             <div class="box-head vm-package-box-head p15">
-                <span class="pull-left vm-hf-package-name">{{package.group_name}} </span>
-                <span class="pull-right vm-hf-package-cost">&#8377{{package.services[0].cost_including_discount}} </span>
+                <div class="list-inline-elems squaredOne" ng-class="{'checked' : package.isAddedToCart}">
+                    <input type="checkbox" ng-model="package.isAddedToCart" class="squaredOneCheckbox" value="{{package.service_id}}" name="packageType" id="package_{{package.service_id}}"/>
+                    <label for="package_{{package.service_id}}" ng-click="addOrRemovePackage(package)">
+                    </label>
+                </div>
+                <div class="list-inline-elems ml-15 v-align-bottom ">
+                <span class="pull-left vm-hf-package-name">{{package.service_name}} </span>
+                </div>
+                <div class="list-inline-elems pull-right font-bold">
+                <span class="pull-right vm-hf-package-cost ">&#8377{{package.cost}} </span>
+                </div>
                 <span class="clearfix"></span>
             </div>
             <div class="box-detail vm-package-box-detail p15">
-                <span>{{package.services[0].package_name}}</span>
+                <span>{{package.description}}</span>
             </div>
         </div>
+
     </div>
+
 </div>
 

@@ -7,14 +7,15 @@ angular.module( 'Vyomo')
     .factory('vyomoAPIservice', ['$http', function($http) {
         var vyomoAPI = {};
 
-        vyomoAPI.getPackages = function(latLong) {
+        vyomoAPI.getAllPackagesServices = function(city) {
             var postData = {
-                            "lat_long":latLong
+                            "city":city,
+                            "what" : 2
                             };
             return $http({
                 method: 'POST',
                 data:postData,
-                url: 'http://booking.vyomo.com:3001/get_nearby_stylists'
+                url: 'http://54.165.181.161:3001/web/get_all_services'
             });
         };
 

@@ -207,6 +207,15 @@ Buttons
     color:@white;
   }
 }
+.vm-link{
+  color:@linkColor;
+  text-decoration: none !important;
+
+  &:hover{
+    color:@linkColorHover;
+    text-decoration: none !important;
+  }
+}
 .disable-link, .disable-link:hover {
   color: #aeaeae;
   cursor: not-allowed ;
@@ -233,6 +242,61 @@ a.carousel-control{
 .carousel-indicators{
   display: none;
 }
+
+/*******************
+Common classes
+****************/
+.displayBlock{
+  display : block !important;
+}
+
+/*************Custom Checkbox *************/
+
+/* SQUARED ONE */
+.squaredOne {
+  width: 16px;
+  height: 16px;
+  border:1px solid #ccc;
+  background: white;
+  vertical-align: middle;
+  position: relative;
+
+  &.checked{
+    border-color :  #3FC3F8;
+  }
+}
+
+.squaredOne label {
+  cursor: pointer;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  left: 0px;
+  top: 0px;
+  //background: red;
+}
+
+.squaredOne label:after {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  opacity: 0;
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #3FC3F8;
+  top: 3px;
+  left: 3px;
+}
+
+.squaredOne label:hover::after {
+  opacity: 0.3;
+}
+
+.squaredOne input[type=checkbox]:checked + label:after {
+  opacity: 1;
+}
+
 /**
  * Now that all app-wide styles have been applied, we can load the styles for
  * all the submodules and components we are using. 

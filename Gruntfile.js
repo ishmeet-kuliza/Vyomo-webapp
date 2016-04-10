@@ -285,6 +285,7 @@ module.exports = function ( grunt ) {
         globals : {
           angular: true,
           document: true,
+          window: true,
           app: true //TO_DO: investigate this
         }
       },
