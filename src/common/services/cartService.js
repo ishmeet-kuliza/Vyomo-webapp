@@ -101,5 +101,16 @@ angular.module('Vyomo')
 			$cookies.remove(this.itemCookie);
 		};
 
+		// return all items
+		cart.getAllItems = function(){
+			var items = $cookies.getObject(this.itemCookie);
+			return items;
+		};
+
+		// return city
+		cart.getCity = function(){
+			return this.itemCookie;
+		};
+
 		return cart;
 	}]);
