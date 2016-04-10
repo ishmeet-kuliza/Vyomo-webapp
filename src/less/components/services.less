@@ -1,9 +1,21 @@
 /**
 * Service Stylesheet
 */
+//Custom checkbox labbeling
+input[type=checkbox] {
+  visibility: hidden;
+}
+
 .inlineElem{
   display: inline-block;
   width:75%;
+}
+
+div.list-inline-elems{
+  display: inline-block;
+}
+.v-align-bottom{
+  vertical-align: bottom;
 }
 span.label-selected-city{
   font-weight: 600;
@@ -108,9 +120,19 @@ span.label-selected-city{
       ul{
         padding: 10px;
         border-top: 1px solid #ccc;
+
+        li{
+          margin-bottom : 1rem;
+        }
       }
-      div.list-inline-elems{
-          display: inline-block;
+
+    }
+    //In Package sect
+    .personSelectionDiv{
+      div{
+        background-color: #D8F5F3;
+        padding: 6px 10px;
+        border-right:1px solid #f7f7f7
       }
     }
   }

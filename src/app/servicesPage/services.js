@@ -127,13 +127,28 @@ angular.module( 'vyomo.servicesPage', [
                 $state.go('servicesPage.list');
             }
         };
+    
     }])
 
-    .controller( 'ServicePackageCtrl', function ServiceController() {
-
-    })
+    .controller( 'ServicePackageCtrl',['$scope', function ServiceController($scope) {
+        
+        $scope.isCheckPackage = true;
+        
+        $scope.addOrRemovePackage = function(package){
+            window.console.log(package);
+            if($scope.isCheckPackage){
+                package.addToCart();
+            }
+            else{
+                package.removeFromCart();
+            }
+        };
+    }])
 
     .controller( 'ServiceListCtrl',['$scope', function ServiceController( $scope) {
         //For each service sub list of its types, collapsed flag
         $scope.isCollapsed = true;
+
+        //Function Call Attach on change event of service list checkbox
+
     }]);
