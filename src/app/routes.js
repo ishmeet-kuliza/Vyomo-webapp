@@ -71,13 +71,19 @@ angular.module('Vyomo')
           }
       },
       data:{ pageTitle: 'Login'}
-    }).state('login.signup',{
+    });
+
+    $stateProvider.state('signup',{
         url : "/signup",
         views : {
-            "signUp":{
+            "main":{
                 controller : 'signUpCtrl',
                 templateUrl : 'login/signUp.tpl.html'
             }
+        },
+        data:{ 
+          pageTitle: 'Signup', 
+          otp: ''
         }
     });
 

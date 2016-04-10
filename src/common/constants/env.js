@@ -6,6 +6,6 @@ angular.module('Vyomo')
 
 .factory('env', [ function() {
   return {
-    hello: 'Some keys/paramas'
+    BASE_URL: 'http://54.165.181.161:3001/web'
   };
 }]);

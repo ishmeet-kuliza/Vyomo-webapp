@@ -12,7 +12,13 @@
       <input type="text" placeholder="Name" required autofocus ng-model="formData.custName" name="custName" value="custName">
       <input type="email" placeholder="Email" required ng-model="formData.userName" name="userName" value="userName"/>
       <input type="number" placeholder="Mobile Number" required ng-model="formData.mobNumber" name="mobNumber" value="mobNumber"/>
+      <select class="vm-select-city" placeholder="Gender" ng-model="formData.gender" required>
+        <option value="" class="placeholder">Gender</option>
+        <option value="M">M</option>
+        <option value="F">F</option>
+      </select>
       <input type="password" placeholder="Set Password" required ng-model="formData.password" name="password" value="password"/>
+      <input type="text" ng-if="otpSent" placeholder="Enter Validation Code" required ng-model="formData.otp" name="otp" value="otp"/>
       <div class="action-block">
           <div class="error-div" ng-if="errorMsg">
             *{{errorMsg}}
@@ -23,7 +29,7 @@
 
           <button class="login" type="submit" ng-if="!otpSent">SEND VALIDATION CODE</button>
           <button class="login" type="submit" ng-if="otpSent">VALIDATE ME</button>
- 
+          <span class="resend-sms-button" ng-if="otpSent" ng-click="sendForm(true)"> Resend SMS</span>
       </div>
     </div>
   </form>

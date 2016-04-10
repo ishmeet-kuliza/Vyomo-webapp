@@ -5,7 +5,8 @@
 angular.module('Vyomo')
 .factory('auth', ['$http', '$q', 'env', function($http, $q, env) {
 
-  var userObj;
+  var userObj,
+      BASE_URL = env.BASE_URL;
   /**
   * Set common request headers
   */
@@ -21,33 +22,29 @@ angular.module('Vyomo')
 
   function _generateUserObj(data) {
     return {
-      userName: data.user.userName,
       sessionToken: data.sessionToken,
-      expiry: data.expiration
+      'otpVerified': data.otp_verified,
+      'otp': data.otp //For testing purposes
     };
   }
 
-  function authenticate(userName, password) {
+  function authenticate(number, password) {
     var deferred = $q.defer();
     // login call to server.
-    var authUrl = ''; //FIX_ME, enter API url
+    var authUrl = BASE_URL + '/signin';
 
-    $http.post(authUrl, { userName: userName, password: password }).then(function(response) {
-      if (response && response.data){
+    $http.post(authUrl, { number: number, password: password }).then(function(response) {
+      if (response && response.data && response.data.status_code === 200){
         setDefaultHeaders();
-        userObj = _generateUserObj(response.data);
+        userObj = _generateUserObj(response.data.message);
         // persist in session storage so this is available for page refreshes.
         window.sessionStorage.userObj = JSON.stringify(userObj);
         deferred.resolve(userObj);
       } else {
-        deferred.reject('Something went wrong with your login, please try again.');
+        deferred.reject(response.data.error_message);
       }
-    }, function(err) {
-      if (err.status === 401) {
-        deferred.reject('Incorrect login, please try again.');
-      } else {
-       deferred.reject('Something went wrong with your login, please try again.');
-      }
+    }, function(error){
+      deferred.reject(error);
     });
     return deferred.promise;
   }
@@ -56,23 +53,56 @@ angular.module('Vyomo')
     return userObj ? userObj : {};
   }
 
+  function signup(data) {
+    var deferred = $q.defer();
+    // login call to server.
+    var authUrl = BASE_URL + '/signup';
+
+    var params = {
+      name: data.custName,
+      phone_no: data.mobNumber,
+      gender: data.gender,
+      email: data.email,
+      password: data.password,
+      city: data.selectedCity.toLowerCase()
+    };
+
+    $http.post(authUrl, params).then(function(response) {
+      if (response && response.data && response.data.status_code === 200){
+        setDefaultHeaders();
+        userObj = _generateUserObj(response.data.message);
+        // persist in session storage so this is available for page refreshes.
+        window.sessionStorage.userObj = JSON.stringify(userObj);
+        deferred.resolve(userObj);
+      } else {
+        deferred.reject(response.data.error_message);
+      }
+    }, function(error){
+      deferred.reject(error);
+    });
+    return deferred.promise;
+  }
+
+  function verifyOtp(sessionToken, otp) {
+    var deferred = $q.defer();
+    // login call to server.
+    var authUrl = BASE_URL + '/validate_otp';
+
+    $http.post(authUrl, { access_token: sessionToken, otp: otp }).then(function(response) {
+      if (response && response.data && response.data.status_code === 200){
+        deferred.resolve(userObj);
+      } else {
+        deferred.reject(response.data.error_message);
+      }
+    });
+    return deferred.promise;
+  }
+
   return {
     authenticate: authenticate,
     getUser: getUser,
-    // isAuthenticated: isAuthenticated,
-    
-    // switchLogin: switchLogin,
-    // updateSession: updateSession,
-    // deleteSession: deleteSession,
-    // isDemoUser: isDemoUser,
-    // isUserInUse: isUserInUse,
-    // isDemo2UserInUse: isDemo2UserInUse,
-    // isSuperUser: isSuperUser,
-    // isOpsifyUser: isOpsifyUser,
-    // isKnownDemoUser: isKnownDemoUser,
-    // setEntryURL: setEntryURL,
-    // getEntryURL: getEntryURL
-    hello: 'HI this is ishmeet'
+    signup: signup,
+    verifyOtp: verifyOtp
   };
 
 }]);

@@ -6,7 +6,8 @@
   <form role="form" ng-submit="sendForm()" autocomplete="on" form-auto-fill-fix>
     <div class="input-wrapper">
       <input type="number" placeholder="Enter Mobile Number" required ng-model="formData.mobileNumber" name="mobNumber" value="mobNumber"/>
-      <input type="password" ng-if="getPassword" placeholder="Set Password" required ng-model="formData.password" name="password" value="password"/>
+      <input type="password" ng-if="getPassword" placeholder="Enter password" required ng-model="formData.password" name="password" value="password"/>
+      <input type="text" ng-if="otpNeeded" placeholder="Enter Validation Code" required ng-model="formData.otp" name="otp" value="otp"/>
       <div class="action-block">
           <div class="error-div no-signup" ng-if="errorMsg">
             *{{errorMsg}}
@@ -16,7 +17,8 @@
 
 
           <button class="login no-signup-button" type="button" ng-if="!getPassword" ng-click="showPasswordInput()">NEXT</button>
-          <button class="login no-signup-button" type="submit" ng-if="getPassword">LOGIN</button>
+          <button class="login no-signup-button" type="submit" ng-if="getPassword && !otpNeeded">LOGIN</button>
+          <button class="login no-signup-button" type="submit" ng-if="otpNeeded">VALIDATE</button>
  
       </div>
     </div>
