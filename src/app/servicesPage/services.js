@@ -56,7 +56,10 @@ angular.module( 'vyomo.servicesPage', [
         // method for service objs to clear its occurences from cart
         function clearFromCart(){
             var quantity = this.quantity;
-            if(quantity){
+            if(quantity === 0){
+                this.addToCart();
+            }
+            else if(quantity){
                 for(var counter = 1; counter <= quantity; counter++){
                     this.removeFromCart();
                 }
