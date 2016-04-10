@@ -274,7 +274,6 @@ module.exports = function ( grunt ) {
         immed: true,
         eqeqeq: true,
         newcap: true,
-        maxparams: 4,
         noempty: true,
         undef: true,
         unused: true,
