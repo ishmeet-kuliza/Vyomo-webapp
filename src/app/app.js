@@ -38,7 +38,7 @@ var app = angular.module( 'Vyomo', [
     //     if (user.forgotPassword) {
     //       // CHANGE PASSWORD FLAG SET
     //       event.preventDefault();
-    //     } else {  
+    //     } else {
     //       $state.go("/");
     //     }
     //   } else if (toState.name !== 'login' && toState.name.indexOf('signup') < 0) {
