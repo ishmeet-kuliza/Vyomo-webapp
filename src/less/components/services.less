@@ -87,21 +87,29 @@ span.label-selected-city{
   }
   .vyomo-feature-packages{
     .vm-package-box{
-      width : 32.33% ; //The remaining width of 4% (i.e. 32 x 3 = 96%) will be used to create the space between the boxes and simulate margins
+      width : 32.33% ; //The remaining width of 3% (i.e. 32.33 x 3 = 97%) will be used to create the space between the boxes and simulate margins
+      margin-left: 1.5%;
+      &:first-of-type{
+        margin-left: 0;
+      }
     }
   }
-  .vyomo-feature-services{
+
     .serviceCollapseList{
       padding: 10px;
       padding-top: 0px;
       background: white;
     }
     .serviceContainerBox{
-      width : 32.33% ; //The remaining width of 4% (i.e. 32 x 3 = 96%) will be used to create the space between the boxes and simulate margins
+      width : 32.33% ; //The remaining width of 3% (i.e. 32.33 x 3 = 97%) will be used to create the space between the boxes and simulate margins
+      margin-left: 1.5%;
+      &:first-of-type{
+        margin-left: 0;
+      }
       margin-bottom: 1%;
     }
     .vm-service-box{
-      margin-bottom: 0 ;
+      margin-bottom: 0 !important;
     }
     #openServiceListIcon{
       position: absolute;
@@ -135,6 +143,5 @@ span.label-selected-city{
         border-right:1px solid #f7f7f7
       }
     }
-  }
 
 }

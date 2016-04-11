@@ -1,0 +1,42 @@
+<div class="vm-cart-page" ng-controller="CartCtrl">
+
+    <div class="vm-login-message" >
+        <span class="isLogin-msg font-bold">YOU ARE LOGGED IN </span>
+        <span class = "vm-username"></span>
+    </div>
+
+    <div class="vm-checkout-step1" uib-collapse="isStep1Complete">
+        <section-header title = "YOUR CART"  subtext =""></section-header>
+
+        <div class="vm-cart-list " >
+            <div ui-view="packageListCart" class="vyomo-feature-packages"></div>
+            <div ui-view="serviceListCart" class="vyomo-feature-services"></div>
+        </div>
+
+        <div class="vm-cart-bill-row">
+            <div class="vm-offer-code-box list-inline-elems">
+                Enter Offer Code
+            </div>
+
+            <div class="list-inline-elems pull-right totalField fields">
+                Total Cost
+                <span class="totalVal font-bold">&#8377 1000</span>
+            </div>
+
+            <div class="list-inline-elems pull-right disountField fields">
+                Discount
+                <span class="discountVal font-bold">&#8377 240</span>
+            </div>
+
+            <div class="list-inline-elems pull-right subTotalField fields">
+                Sub Total
+                <span class="subTotalVal font-bold">&#8377 1234</span>
+            </div>
+
+        </div>
+
+        <div class="row removeMargin p25">
+            <a class="vm-primary-btn" id="vm-savecart"> SAVE & CONTINUE</a>
+        </div>
+    </div>
+</div>

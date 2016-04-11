@@ -3,6 +3,7 @@ var app = angular.module( 'Vyomo', [
   'templates-common',
   'vyomo.homePage',
   'vyomo.servicesPage',
+  'vyomo.cart',
   'ui.router',
   'ui.bootstrap',
   'navBarCtrl',
@@ -18,7 +19,6 @@ var app = angular.module( 'Vyomo', [
 
 .controller( 'AppCtrl', ['$window', '$scope', '$location', function AppCtrl ( $window, $scope, $location ) {
   $window.console.debug('This is our app', app);
-  $scope.imgPath = "assets/img/";
   $scope.vyomoContactNo = "1800-102-8454";
   $scope.toggleNavMenuMobile = false;
 

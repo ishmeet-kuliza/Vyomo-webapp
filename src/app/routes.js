@@ -62,4 +62,31 @@ angular.module('Vyomo')
           }
       });
 
+  //Cart checkout Page
+    $stateProvider.state('checkoutCart',{
+        url : '/viewCart',
+        views: {
+            "main": {
+                controller: 'CartCtrl',
+                templateUrl: 'cart/views/viewCart.tpl.html'
+            },
+            "packageListCart@checkoutCart" : {
+
+                templateUrl: 'servicesPage/views/packageList.tpl.html'
+            },
+            "serviceListCart@checkoutCart" : {
+                templateUrl: 'servicesPage/views/serviceList.tpl.html'
+            }
+        },
+        data:{ pageTitle: 'Cart' }
+    }).state('checkoutCart.checkoutStep2',{
+        url : "/checkout",
+        views : {
+            "addressView" : {
+                controller : 'CartAddressCtrl',
+                templateUrl : 'servicesPage/views/packageList.tpl.html'
+            }
+        }
+    });
+
 }]);

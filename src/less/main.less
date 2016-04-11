@@ -46,6 +46,7 @@
   font-weight: bold;
   font-style: italic;
 }
+//Default
 @font-face {
   font-family: SourceSansPro-Light;
   src: url('../assets/fonts/SourceSansPro-Light.ttf');
@@ -174,7 +175,6 @@ Flexbox grid
   flex-wrap: wrap;
   flex-direction: column;
   align-items: stretch;
-  justify-content: space-between;
 
 }
 /****************
@@ -191,6 +191,20 @@ Buttons
   &[disabled] {
     background-color: @btnBackgroundDisable;
     cursor: not-allowed !important;
+  }
+}
+.vm-primary-btn{
+  .vm-btn(8px);
+
+  background: @btnBackground;
+  color:@white;
+  font-family: SourceSansPro;
+  font-weight: 700;
+  padding:10px 25px;
+  &:hover{
+    background: @btnBackgroundHover;
+    text-decoration: none !important;
+    color:@white;
   }
 }
 .vm-secondary-btn{
@@ -250,6 +264,9 @@ Common classes
   display : block !important;
 }
 
+.cursorPointer{
+  cursor: pointer !important;
+}
 /*************Custom Checkbox *************/
 
 /* SQUARED ONE */
@@ -304,4 +321,5 @@ Common classes
  */
 @import 'components/navbar.less';
 @import 'components/home.less';
+@import 'components/cart.less';
 @import 'components/services.less';
