@@ -1,0 +1,36 @@
+<div class="login-section-wrapper">
+  <div class="login-info">
+    <span>SHARE YOUR DETAILS </span>
+    <span class="service-info">Once validate you can use our services from anywhere anytime. </span>
+  </div>
+  <form role="form" ng-submit="sendForm()" autocomplete="on" form-auto-fill-fix>
+    <select class="vm-select-city form-control" placeholder="Select your city" ng-model="formData.selectedCity" required>
+      <option value="" class="placeholder">Select your city</option>
+      <option ng-repeat="city in  data.cities" value="{{city.name}}" latLong="{{city.lat_long}}">{{city.name}}</option>
+    </select>
+    <div class="input-wrapper">
+      <input type="text" placeholder="Name" required autofocus ng-model="formData.custName" name="custName" value="custName">
+      <input type="email" placeholder="Email" required ng-model="formData.userName" name="userName" value="userName"/>
+      <input type="number" placeholder="Mobile Number" required ng-model="formData.mobNumber" name="mobNumber" value="mobNumber"/>
+      <select class="vm-select-city" placeholder="Gender" ng-model="formData.gender" required>
+        <option value="" class="placeholder">Gender</option>
+        <option value="M">M</option>
+        <option value="F">F</option>
+      </select>
+      <input type="password" placeholder="Set Password" required ng-model="formData.password" name="password" value="password"/>
+      <input type="text" ng-if="otpSent" placeholder="Enter Validation Code" required ng-model="formData.otp" name="otp" value="otp"/>
+      <div class="action-block">
+          <div class="error-div" ng-if="errorMsg">
+            *{{errorMsg}}
+          </div>
+          <!-- Commenting out Forgot Password until the functionality exists -->
+          <!-- <a style="font-size:12px;color:#46A3C8;text-decoration:underline">Forgot Password</a> -->
+
+
+          <button class="login" type="submit" ng-if="!otpSent">SEND VALIDATION CODE</button>
+          <button class="login" type="submit" ng-if="otpSent">VALIDATE ME</button>
+          <span class="resend-sms-button" ng-if="otpSent" ng-click="sendForm(true)"> Resend SMS</span>
+      </div>
+    </div>
+  </form>
+</div>

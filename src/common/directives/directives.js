@@ -68,7 +68,7 @@ angular.module('Vyomo').directive('initializePage',['$window', '$state', functio
 
                 if (!resizing) {
                     if(!window.requestAnimationFrame) {
-                        window.setTimeout(scope.moveNavigation, 300);
+                        window[0].setTimeout(scope.moveNavigation, 300);
                     } else {
                         window.requestAnimationFrame(scope.moveNavigation);
                     }
