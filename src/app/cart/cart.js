@@ -11,16 +11,12 @@
  * The dependencies block here is also where component dependencies should be
  * specified, as shown below.
  */
-angular.module( 'vyomo.cart', [
-        'ui.router',
-        'ui.bootstrap'
-    ])
+angular.module('Vyomo')
 
     /**
      * And of course we define a controller for our route.
      */
     .controller( 'CartCtrl',['$scope','cartProduct','cart' , function CartController( $scope, cartProduct,cart) {
-
         $scope.isStep1Complete = "false";
         //Boolean used for hiding headers for packages  and service template used in view cart
         $scope.viewCart = true;

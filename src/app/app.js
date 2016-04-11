@@ -2,8 +2,6 @@ var app = angular.module( 'Vyomo', [
   'templates-app',
   'templates-common',
   'vyomo.homePage',
-  'vyomo.servicesPage',
-  'vyomo.cart',
   'ui.router',
   'ui.bootstrap',
   'navBarCtrl',

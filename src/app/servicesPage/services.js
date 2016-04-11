@@ -2,10 +2,7 @@
  * Services Module
  */
 
-angular.module( 'vyomo.servicesPage', [
-    'ui.router',
-    'ui.bootstrap'
-])
+angular.module( 'Vyomo')
 
     /**
      * And of course we define a controller for our route.
