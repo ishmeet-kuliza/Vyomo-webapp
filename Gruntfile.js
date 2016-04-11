@@ -274,7 +274,6 @@ module.exports = function ( grunt ) {
         immed: true,
         eqeqeq: true,
         newcap: true,
-        maxparams: 4,
         noempty: true,
         undef: true,
         unused: true,
@@ -401,7 +400,7 @@ module.exports = function ( grunt ) {
        */
       gruntfile: {
         files: 'Gruntfile.js',
-        tasks: [ 'jshint:gruntfile' ],
+        tasks: [ 'jshint:gruntfile'],
         options: {
           livereload: false
         }
@@ -415,7 +414,7 @@ module.exports = function ( grunt ) {
         files: [ 
           '<%= app_files.js %>'
         ],
-        tasks: [ 'jshint:src', 'copy:build_appjs' ]
+        tasks: [ 'jshint:src', 'neuter', 'copy:build_appjs' ]
       },
 
       /**

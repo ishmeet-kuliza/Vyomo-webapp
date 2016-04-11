@@ -1,0 +1,133 @@
+
+::-webkit-input-placeholder { color:@white; }
+::-moz-placeholder { color:@white; }
+:-ms-input-placeholder { color:@white; }
+input:-moz-placeholder { color:@white; }
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px @pink inset; //hack for autocomplete css-override
+    -webkit-text-fill-color: @white;
+}
+
+.login-section-wrapper {
+  background: @pink;
+  padding: 10px 34px 50px;
+  font-family: SourceSansPro;
+
+  &.no-signup {
+    padding-bottom: 25px;
+
+    input {
+      display: block;
+    }
+  }
+
+  .login-info {
+    padding: 15px 0px;
+    font-size: 1.5 rem;
+    color: @white;
+
+    .service-info {
+      font-size: 1.2rem;
+      padding-left: 15px;
+
+      &.login-pointer {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .resend-sms-button {
+    padding-left: 10px;
+    vertical-align: super;
+    font-size: 1.2rem;
+    color: @white;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .input-wrapper {
+    display: inline-block;
+    padding: 0;
+    margin: 13px 0;
+    vertical-align: baseline;
+
+    input {
+      margin-right: 23px;
+      margin-bottom: 23px;
+      background: transparent;
+      border: 0;
+      text-decoration: none;
+      border-bottom: 1px solid white;
+      outline: none;
+      color: @white;
+    }
+
+    input[type=number]::-webkit-inner-spin-button, 
+    input[type=number]::-webkit-outer-spin-button { 
+      -webkit-appearance: none; 
+    }
+  }
+
+  .action-block {
+    position: relative;
+
+    .error-div {
+      position: absolute;
+      top: 16%;
+      left: 23%;
+      color: @red;
+      font-size: 1.2rem;
+      width: 100%;
+      white-space: nowrap;
+
+      &.no-signup {
+        top: 5%;
+        left: 40%;
+      }
+    }
+
+     .login {
+      text-decoration: none;
+      background: white;
+      border: 0;
+      color: green;
+      outline: none;
+      margin-top: 13px;
+      font-size: 1.3rem;
+      border-radius: 5px;
+      padding: 5px 14px;
+
+      &.no-signup-button {
+        margin-top: 5px;
+      }
+    }
+  }
+
+  select.vm-select-city { //Duplicated in services.less 
+    background: transparent;
+    background: url('../assets/img/down-arrow.png') no-repeat right transparent;
+    background-size: contain;
+    -webkit-appearance: none;
+    background-position-x: 100%;
+    border: none;
+    border-bottom: 1px solid #fff;
+    border-radius: 0;
+    width: 25%;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: white;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    padding-left: 0;
+
+    option{
+      background: rgba(51, 54, 63, 0.84);
+
+      &.placeholder{
+        display:none;
+      }
+    }
+  }
+}
+
