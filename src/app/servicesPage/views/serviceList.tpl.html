@@ -1,4 +1,4 @@
-<section-header title = "SERVICES" ng-show="citySelected" subtext =""></section-header>
+<section-header title = "SERVICES" ng-show="citySelected" ng-hide="viewCart" subtext =""></section-header>
 
 <div class="mt-25 flexBox vm-services-row">
     <div class="serviceContainerBox" ng-repeat="service in categories track by $index | orderBy :'service.category_name'">
@@ -6,13 +6,13 @@
             <div class="vm-service-box-inner" ng-click="isCollapsed = !isCollapsed">
                 <div class="pull-left imgBox">
                     <! --{{img to be changed to api image key}} -->
-                    <img alt="Vyomo Services {{service.category_name}}" src="{{imgPath}}HomeServices-bodyPolish.jpg"/>
+                    <img alt="Vyomo Services {{service.category_name}}" src="assets/img/HomeServices-bodyPolish.jpg"/>
                 </div>
                 <div class="pull-left vm-service-title">
                     {{service.category_name}}
-                    <span class="displayBlock viewServiceDetails" ng-hide="isCollapsed"> View Details</span>
+                    <span class="displayBlock viewServiceDetails" ng-hide="isCollapsed || viewCart"> View Details</span>
                 </div>
-                <span id="openServiceListIcon" class= "fa" ng-class="isCollapsed ? ['fa-angle-down'] : ['fa-angle-up']"></span>
+                <span id="openServiceListIcon" class= "fa"  ng-hide="viewCart" ng-class="isCollapsed ? ['fa-angle-down'] : ['fa-angle-up']"></span>
                 <div class="clearfix"></div>
 
             </div>
@@ -22,8 +22,8 @@
             <div class="vm-expanded-service-list">
                 <ul class="service-type-list">
                     <li class="service-list-element" ng-repeat="serviceType in service.list track by $index | orderBy :'serviceType.cost'">
-                        <div class="list-inline-elems squaredOne" ng-class="{'checked' : isCheckService}">
-                            <input type="checkbox" ng-model="isCheckService" ng-click="serviceType.clearFromCart()" class="squaredOneCheckbox" value="{{serviceType.service_id}}" name="serviceType" id="service_{{serviceType.service_id}}"/>
+                        <div class="list-inline-elems squaredOne" ng-class="{'checked' : isCheckService || viewCart}">
+                            <input type="checkbox" ng-model="isCheckService" ng-click="serviceType.clearFromCart()" ng-checked="viewCart" class="squaredOneCheckbox" value="{{serviceType.service_id}}" name="serviceType" id="service_{{serviceType.service_id}}"/>
                             <label for="service_{{serviceType.service_id}}">
                             </label>
                         </div>
@@ -34,15 +34,15 @@
                             <span class="rupeeSymbol">&#8377</span>
                             <span class="serviceTypeCost">{{serviceType.cost}}</span>
                         </div>
-                        <div class="row removeMargin personSelectionDiv" ng-show="isCheckService">
+                        <div class="row removeMarginLeftRight mt-10 personSelectionDiv" ng-show="isCheckService || viewCart">
                             <div class="col-sm-3 text-center ">
-                                <span class="fa fa-plus addPerson" ng-click="serviceType.addToCart()"></span>
+                                <span class=" cursorPointer fa fa-plus addPerson" ng-click="serviceType.addToCart()"></span>
                             </div>
-                            <div class="col-sm-6 mt-10 ">
+                            <div class="col-sm-6 ">
                                 <span class="countOfPersons"></span>
                                 <span class="name"> {{serviceType.quantity}} Person(s)</span>
                             </div>
-                            <div class="col-sm-3 text-center ">
+                            <div class="cursorPointer col-sm-3 text-center ">
                                 <span class="fa fa-minus removePerson" ng-click="serviceType.removeFromCart()"></span>
                             </div>
                         </div>
@@ -50,6 +50,8 @@
                 </ul>
             </div>
         </div>
+        <div class="vm-remove-from-cart vm-link" ng-show="viewCart">Remove</div>
     </div>
+    <div class="vm-cart-addmore" ng-show="viewCart"> <span class = "fa fa-plus mr-15"></span> <span class="vm-link">Add another service</span></div>
 </div>
 

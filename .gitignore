@@ -2,6 +2,7 @@ bower_components
 node_modules
 build
 /.idea
+.idea/
 /*.iml
 /out
 /.idea_modules

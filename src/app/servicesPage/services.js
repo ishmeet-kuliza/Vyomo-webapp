@@ -74,6 +74,12 @@ angular.module( 'vyomo.servicesPage', [
             }
         }
 
+        $scope.setCollapseFlag = function() {
+            if(!($scope.viewCart)){
+                $scope.isCollapsed = !($scope.isCollapsed);
+            }
+        };
+
         $scope.getServicesPackages = function() {
             if ($scope.data.selectedCity !== null) {
                 $scope.citySelected = true;
@@ -90,7 +96,6 @@ angular.module( 'vyomo.servicesPage', [
                 vyomoAPIservice.getAllPackagesServices(city).success(function (response) {
                     $scope.packages = [];
                     $scope.services = [];
-                    window.console.log(response);
                     if(response.hasOwnProperty("status_code")){
                         if(response.status_code === 200){
                             if (response.hasOwnProperty("message")) {
@@ -99,7 +104,7 @@ angular.module( 'vyomo.servicesPage', [
                                     if(packagesJson.hasOwnProperty("all")){
                                         var allPackages = packagesJson.all;
                                         $scope.packages = _sortAccordingtoPrice(allPackages);
-                                        window.console.log($scope.packages);
+                                        //window.console.log($scope.packages);
                                         // adding properties to package objs
                                         $scope.packages.forEach(function(package){
                                             addIsAddedToCartProperty(package);
@@ -114,6 +119,7 @@ angular.module( 'vyomo.servicesPage', [
                                 if (response.message.hasOwnProperty('services')) {
                                     var servicesJson = response.message.services;
                                     if(servicesJson.hasOwnProperty("all")){
+                                        //categories ==== services provided by vyomo
                                         var allServices = servicesJson.all;
                                         $scope.categories = allServices;
                                         // adding properties to service objs
@@ -124,7 +130,7 @@ angular.module( 'vyomo.servicesPage', [
                                                 updateCartPrice(service);
                                             });
                                         });
-                                        window.console.log($scope.categories);
+                                        //window.console.log($scope.categories);
                                        
                                     }
                                 }
@@ -153,10 +159,10 @@ angular.module( 'vyomo.servicesPage', [
         };
     }])
 
-    .controller( 'ServiceListCtrl',['$scope', function ServiceController( $scope) {
+    .controller( 'ServiceListCtrl',['$scope', function ServiceController($scope) {
         //For each service sub list of its types, collapsed flag
-        $scope.isCollapsed = true;
 
+        $scope.isCollapsed = true;
         //Function Call Attach on change event of service list checkbox
 
     }]);
