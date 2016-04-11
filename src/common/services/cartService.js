@@ -27,12 +27,17 @@ angular.module('Vyomo')
 			}
 		};
 
+		// return all items
+		cart.getAllItems = function(){
+			var items = $cookies.getObject(this.itemCookie);
+			return items;
+		};
+
 		cart.addItem = function(item){
 			if(item.quantity === undefined){
 				item.quantity = 1;
 			}
-			var items = $cookies.getObject(this.itemCookie);
-			window.console.log(item);
+			var items = this.getAllItems();
 			items.push(item.service_id);
 			this.totalPrice += item.cost;
 			window.console.log(items);
@@ -41,13 +46,13 @@ angular.module('Vyomo')
 		};
 
 		cart.getItem = function(index){
-			var items = $cookies.getObject(this.itemCookie);
+			var items = this.getAllItems();
 			return items[index];
 		};
 
 		// removes item from cart
 		cart.removeItem = function(item){
-			var items = $cookies.getObject(this.itemCookie);
+			var items = this.getAllItems();
 			var index = items.indexOf(item.service_id);
 			// if product found in cart 
 			if (index > -1) {
@@ -59,13 +64,13 @@ angular.module('Vyomo')
 
 		// return total products in cart
 		cart.getCount = function(){
-			var items = $cookies.getObject(this.itemCookie);
+			var items = this.getAllItems();
 			return items ? items.length : 0;
 		};
 
 		// check whether item is in cart
 		cart.hasItem = function(item){
-			var items = $cookies.getObject(this.itemCookie);
+			var items = this.getAllItems();
 			var index = items.indexOf(item.service_id);
 			if (index > -1){
 				return true;
@@ -77,7 +82,7 @@ angular.module('Vyomo')
 
 		// clear all occurences of item form cart
 		cart.clearItem = function(item){
-			var items = $cookies.getObject(this.itemCookie);
+			var items = this.getAllItems();
 			var filtered_items = items.filter(function(itemId){
 				return itemId !== item.service_id;
 			});
@@ -86,7 +91,7 @@ angular.module('Vyomo')
 
 		// return no of item count in cart
 		cart.getItemCount = function(item){
-			var items = $cookies.getObject(this.itemCookie);
+			var items = this.getAllItems();
 			var itemCount = 0;
 			items.forEach(function(item_id){
 				if(item_id === item.service_id){
@@ -99,12 +104,6 @@ angular.module('Vyomo')
 		// to destroy cart
 		cart.destroyCart = function(){
 			$cookies.remove(this.itemCookie);
-		};
-
-		// return all items
-		cart.getAllItems = function(){
-			var items = $cookies.getObject(this.itemCookie);
-			return items;
 		};
 
 		// return city
