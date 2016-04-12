@@ -109,7 +109,7 @@ angular.module('Vyomo')
 
 		// return city
 		cart.getCity = function(){
-			return this.itemCookie;
+			return $cookies.getObject('city');
 		};
 
 		return cart;

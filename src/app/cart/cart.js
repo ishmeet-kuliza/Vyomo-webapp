@@ -8,7 +8,8 @@ angular.module('Vyomo')
         $scope.categories = [];
         //API Call success method block
         //When in cookies any item/cart is not present
-        if(cart.getAllItems()){
+        cart.init(cart.getCity());
+        if(cart.getCount()){
             cartProduct.getCartProducts().success(function (response) {
                 if(response.hasOwnProperty("message")){
                     if(response.message.hasOwnProperty("packages") && response.message.packages.all.length > 0){

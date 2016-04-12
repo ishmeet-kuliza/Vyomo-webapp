@@ -46,6 +46,8 @@ angular.module( 'Vyomo')
                 var city = cityElem.options[cityElem.selectedIndex].value;
                 // initiating cart for selected city
                 cart.init(city);
+                // creating another cookie with stores selected city
+                cart._updateCookie('city', city);
                 //API Call success method block
                 vyomoAPIservice.getAllPackagesServices(city).success(function (response) {
                     $scope.packages = [];
