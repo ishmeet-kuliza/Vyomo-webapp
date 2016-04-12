@@ -24,6 +24,9 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-clock:before {
+    content: "\e911";
+}
 .icon-arrow-left:before {
     content: "\e900";
 }
