@@ -1,22 +1,6 @@
-/**
- * Each section of the site has its own module. It probably also has
- * submodules. Within `src/app/home`, however, could exist several additional folders representing
- * additional modules that would then be listed as dependencies of this one.
- * For example, a `note` section could have the submodules `note.create`,
- * `note.delete`, `note.edit`, etc.
- *
- * Regardless, so long as dependencies are managed correctly, the build process
- * will automatically take take of the rest.
- *
- * The dependencies block here is also where component dependencies should be
- * specified, as shown below.
- */
-angular.module('Vyomo')
 
-    /**
-     * And of course we define a controller for our route.
-     */
-    .controller( 'CartCtrl',['$scope','cartProduct','cart' , function CartController( $scope, cartProduct,cart) {
+angular.module('Vyomo')
+    .controller( 'CartCtrl',['$scope','cartProduct','cart', 'productObjects' , function CartController( $scope, cartProduct,cart, productObjects) {
         $scope.isStep1Complete = "false";
         //Boolean used for hiding headers for packages  and service template used in view cart
         $scope.viewCart = true;
@@ -28,11 +12,20 @@ angular.module('Vyomo')
             cartProduct.getCartProducts().success(function (response) {
                 if(response.hasOwnProperty("message")){
                     if(response.message.hasOwnProperty("packages") && response.message.packages.all.length > 0){
-                        $scope.packages =  response.message.packages.all;
+                        $scope.packages = response.message.packages.all;
+                        $scope.packages.forEach(function(package){
+                            productObjects.setProductObject(package);
+                        });
+                        window.console.log($scope.packages);
                     }
                     if(response.message.hasOwnProperty("services") && response.message.services.all.length > 0){
                         //categories === services
                         $scope.categories =  response.message.services.all;
+                       $scope.categories.forEach(function(category){
+                            category.list.forEach(function(service){
+                                productObjects.setProductObject(service);
+                            });
+                        });
                     }
                 }
             });

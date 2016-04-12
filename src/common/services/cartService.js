@@ -60,6 +60,7 @@ angular.module('Vyomo')
 				this.totalPrice -= item.cost;
 			}
 			this._updateCookie(this.itemCookie, items);
+			window.console.log(this.totalPrice);
 		};
 
 		// return total products in cart
