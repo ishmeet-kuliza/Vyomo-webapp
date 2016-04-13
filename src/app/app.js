@@ -4,7 +4,6 @@ var app = angular.module( 'Vyomo', [
   'vyomo.homePage',
   'ui.router',
   'ui.bootstrap',
-  'navBarCtrl',
   'ngCookies'
 ])
 
@@ -45,12 +44,14 @@ var app = angular.module( 'Vyomo', [
     });
 }])
 
-.controller( 'AppCtrl', ['$window', '$scope', '$location', function AppCtrl ( $window, $scope, $location ) {
+.controller( 'AppCtrl', ['$window', '$scope', '$location', 'auth', function AppCtrl ( $window, $scope, $location, auth) {
   $window.console.debug('This is our app', app);
   $scope.vyomoContactNo = "1800-102-8454";
   $scope.toggleNavMenuMobile = false;
+  $scope.number = '';
 
   $scope.$on('$stateChangeSuccess', function(event, toState){
+    $scope.number = auth.getUser().number;
     if ( angular.isDefined( toState.data.pageTitle ) ) {
       $scope.pageTitle = 'Vyomo |' + toState.data.pageTitle ;
     }

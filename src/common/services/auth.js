@@ -77,7 +77,7 @@ angular.module('Vyomo')
     $http.post(authUrl, params).then(function(response) {
       if (response && response.data && response.data.status_code === 200){
         setDefaultHeaders();
-        userObj = _generateUserObj(response.data.message, phone_no);
+        userObj = _generateUserObj(response.data.message, params.phone_no);
         storeInCookie(userObj);
         deferred.resolve(userObj);
       } else {
