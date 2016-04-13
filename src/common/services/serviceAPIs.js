@@ -5,9 +5,9 @@
 
 angular.module( 'Vyomo')
 
-    .factory('vyomoAPIservice', ['$http', function($http) {
+    .factory('vyomoAPIservice', ['$http', 'env', function($http, env) {
         var vyomoAPI = {};
-
+        var BASE_URL = env.BASE_URL;
         vyomoAPI.getAllPackagesServices = function(city) {
             var postData = {
                             "city":city,

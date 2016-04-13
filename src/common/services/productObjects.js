@@ -1,3 +1,7 @@
+/**
+ *  Services/ Factory for products
+ *  author/ Ekluv-Dev
+ */
 angular.module('Vyomo')
 	.factory('productObjects', ['cart', function(cart){
         var productObjects = {};
