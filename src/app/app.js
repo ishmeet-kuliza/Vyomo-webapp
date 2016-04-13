@@ -29,23 +29,14 @@ var app = angular.module( 'Vyomo', [
 
 .run(['$rootScope', 'auth', '$state', function($rootScope, auth, $state) {
     $rootScope.$on('$stateChangeStart', function(event, toState) {
-      window.console.log('This is the toState', toState);
-    //   var user = auth.getUser();
-
-    //   if (auth.isAuthenticated()) {
-    //     if (user.forgotPassword) {
-    //       // CHANGE PASSWORD FLAG SET
-    //       event.preventDefault();
-    //     } else {
-    //       $state.go("/");
-    //     }
-    //   } else if (toState.name !== 'login' && toState.name.indexOf('signup') < 0) {
-    //     // auth.setEntryURL(window.location.pathname + window.location.search);
-    //     // event.preventDefault();
-    //     // $state.go('login');
-    //     //Handle this.
-    //     window.console.log('This user is not authenticated');
-    //   }
+      if(auth.isAuthenticated()) {
+        return;
+      } else if(toState.name === 'checkoutCart') {  //redirect to login //Handle appointment
+        event.preventDefault();
+        $state.go('login');
+      } else {
+        return;
+      }
     });
 
     //keep track of previous states

@@ -3,7 +3,7 @@
 ** author: @ishmeet-kuliza
 */
 angular.module('Vyomo')
-.factory('auth', ['$http', '$q', 'env', function($http, $q, env) {
+.factory('auth', ['$http', '$q', 'env', '$cookies', function($http, $q, env, $cookies) {
 
   var userObj,
       BASE_URL = env.BASE_URL;
@@ -20,11 +20,12 @@ angular.module('Vyomo')
 
   setDefaultHeaders();
 
-  function _generateUserObj(data) {
+  function _generateUserObj(data, mobNumber) {
     return {
       sessionToken: data.access_token,
       otpVerified: data.otp_verified,
-      otp: data.otp //For testing purposes
+      otp: data.otp, //For testing purposes
+      number: mobNumber
     };
   }
 
@@ -36,9 +37,8 @@ angular.module('Vyomo')
     $http.post(authUrl, { number: number, password: password }).then(function(response) {
       if (response && response.data && response.data.status_code === 200){
         setDefaultHeaders();
-        userObj = _generateUserObj(response.data.message);
-        // persist in session storage so this is available for page refreshes.
-        window.sessionStorage.userObj = JSON.stringify(userObj);
+        userObj = _generateUserObj(response.data.message, number);
+        storeInCookie(userObj);
         deferred.resolve(userObj);
       } else {
         deferred.reject(response.data.error_message);
@@ -49,8 +49,15 @@ angular.module('Vyomo')
     return deferred.promise;
   }
 
+  function storeInCookie(userObj) {
+    var expireDate = new Date();
+    expireDate.setDate(expireDate.getDate() + 7);
+    $cookies.putObject('userObj', userObj, {expires: expireDate});
+  }
+
   function getUser() {
-    return userObj ? userObj : {};
+    var sessionUser = $cookies.getObject('userObj');
+    return sessionUser ? sessionUser : {};
   }
 
   function signup(data) {
@@ -70,9 +77,8 @@ angular.module('Vyomo')
     $http.post(authUrl, params).then(function(response) {
       if (response && response.data && response.data.status_code === 200){
         setDefaultHeaders();
-        userObj = _generateUserObj(response.data.message);
-        // persist in session storage so this is available for page refreshes.
-        window.sessionStorage.userObj = JSON.stringify(userObj);
+        userObj = _generateUserObj(response.data.message, phone_no);
+        storeInCookie(userObj);
         deferred.resolve(userObj);
       } else {
         deferred.reject(response.data.error_message);
@@ -98,11 +104,16 @@ angular.module('Vyomo')
     return deferred.promise;
   }
 
+  function isAuthenticated() {
+    return !!Object.keys(getUser()).length;
+  }
+
   return {
     authenticate: authenticate,
     getUser: getUser,
     signup: signup,
-    verifyOtp: verifyOtp
+    verifyOtp: verifyOtp,
+    isAuthenticated: isAuthenticated
   };
 
 }]);

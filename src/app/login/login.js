@@ -33,7 +33,7 @@ angular.module('Vyomo')
   };
 
   function goToCart() {
-    $state.go('cart');
+    $state.go('checkoutCart');
   }
 
   $scope.showPasswordInput = function() {

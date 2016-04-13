@@ -48,7 +48,7 @@ angular.module('Vyomo')
   }
 
   function goToCart() {
-    $state.go('cart');
+    $state.go('checkoutCart');
   }
 
 }]);//controller
