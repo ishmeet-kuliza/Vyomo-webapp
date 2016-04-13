@@ -7,7 +7,7 @@ angular.module( 'Vyomo')
 
     .factory('vyomoAPIservice', ['$http', 'env', function($http, env) {
         var vyomoAPI = {};
-        var BASE_URL = env.BASE_URL;
+        var url = env.BASE_URL + '/get_all_services';
         vyomoAPI.getAllPackagesServices = function(city) {
             var postData = {
                             "city":city,
@@ -16,7 +16,7 @@ angular.module( 'Vyomo')
             return $http({
                 method: 'POST',
                 data:postData,
-                url: 'http://52.5.1.82:3001/web/get_all_services'
+                url: url
             });
         };
 
