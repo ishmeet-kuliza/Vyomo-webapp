@@ -1,6 +1,6 @@
 
 angular.module('Vyomo')
-    .controller( 'CartCtrl',['$scope','cartProduct','cart', 'productObjects' , function CartController( $scope, cartProduct,cart, productObjects) {
+    .controller( 'CartCtrl',['$scope','cartProduct','cart', 'productObjects','globals' , function CartController( $scope, cartProduct,cart, productObjects, globals) {
         $scope.isStep1Complete = "false";
         //Boolean used for hiding headers for packages  and service template used in view cart
         $scope.viewCart = true;
@@ -34,4 +34,7 @@ angular.module('Vyomo')
             window.console.log("cart is empty");
         }
         //Function for save & continue and state change to checkoutStep2
+        $scope.dataCities = globals.getCities();
+
+
     }]);
