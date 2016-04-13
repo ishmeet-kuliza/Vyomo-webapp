@@ -50,29 +50,18 @@
 
       <a href="#0" class="vm-nav-trigger" ng-click="$root.toggleNavMenuMobile = !$root.toggleNavMenuMobile" ng-class="{'nav-is-visible': $root.toggleNavMenuMobile}"><span></span></a>
 
-      <nav class="vm-nav hidden" >
-        <ul class="vm-top-nav">
-          <li class="vm-top-nav-li" ng-class='{open: open}'>
-            <a id="profile-menu" href="#0" class="dropdown-toggle" data-toggle="dropdown" ng-click='open=!open'>
-              <span class="iconHeader has-children icon icon-topRight-profile-inact"></span>
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="profile-dropdown">
-              <p class="arrow-right-outer"></p>
-              <p class="arrow-right"></p>
-              <li>Hi,<br>Customer Name<br>Bangalore</li>
-              <li><a href="#0">Edit Account</a></li>
-              <li><a href="#0">Appointment List</a></li>
-              <li><a href="#0">Sign out/ Sign In</a></li>
-            </ul>
-          </li>
-          <li class="vm-top-nav-li"><a href="#0"><span class="iconHeader icon icon-topRight-chat-inact "></span></a></li>
-          <li class="callIcon vm-top-nav-li">
-            <span class="fa fa-phone"></span>
-          </li>
-        </ul>
+      <nav class="vm-nav login-header" >
+        <div class="vm-login-message" ng-if="number">
+          <span class="isLogin-msg font-bold login-color">YOU ARE LOGGED IN </span>
+          <span class = "vm-username">{{number}}</span>
+          <span class="logout login-color" ng-click="logout()">Logout</span>
+        </div>
+        <div class="vm-login-message" ng-if="!number">
+          <span class="isLogin-msg font-bold login-color" ng-click="goToLogin()">Log In </span>
+        </div>
       </nav>
    </header> <!-- .cd-main-header -->
-   <main class="vm-main-content">
+   <main class="vm-main-content padded-content">
       <nav class="vm-side-nav is-fixed" ng-class="{'nav-is-visible': $root.toggleNavMenuMobile}">
         <ul>
           <li class="has-children vm-link-nav">

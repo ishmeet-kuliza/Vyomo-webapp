@@ -11,7 +11,7 @@ angular.module('Vyomo')
     var data = $scope.formData;
     auth.authenticate(data.mobileNumber, data.password).then(function(resp) {
       if(resp.otpVerified) {
-        goToCart();
+        goToHomePage();
       } else {  //Need to verify OTP
         $scope.otpNeeded = true;
         $scope.formData.otp = resp.otp;
@@ -26,14 +26,14 @@ angular.module('Vyomo')
     var user = auth.getUser();
     auth.verifyOtp(user.sessionToken, $scope.formData.otp).then(function() {
       $scope.errorMsg = '';
-      goToCart();
+      goToHomePage();
     },function(error){
       $scope.errorMsg = error;
     });
   };
 
-  function goToCart() {
-    $state.go('checkoutCart');
+  function goToHomePage() {
+    $state.go('homePage');
   }
 
   $scope.showPasswordInput = function() {

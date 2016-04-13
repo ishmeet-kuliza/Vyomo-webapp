@@ -5,7 +5,7 @@
 angular.module('Vyomo')
 .factory('auth', ['$http', '$q', 'env', '$cookies', function($http, $q, env, $cookies) {
 
-  var userObj,
+  var userObj = $cookies.getObject('userObj') ? $cookies.getObject('userObj') : {},
       BASE_URL = env.BASE_URL;
   /**
   * Set common request headers

@@ -158,6 +158,14 @@ Top Navigation
   /* top nav - not visible on mobile devices */
   float: right;
   margin-right:30px;
+  height: calc(100% - 50px);
+  font-size: 13px;
+  z-index: 999;
+
+  .login-color {
+    color: @pink;
+    cursor: pointer;
+  }
 
   .vm-top-nav-li{
     display: inline-block;
@@ -186,8 +194,9 @@ Top Navigation
   .vm-nav {
     display: block;
     float: right;
-    height: 100%;
-
+    height: calc(100% - 50px);
+    font-size: 13px;
+    z-index: 999;
   }
 
   .vm-top-nav a {

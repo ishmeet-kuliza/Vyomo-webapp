@@ -27,7 +27,7 @@ angular.module('Vyomo')
     auth.signup(data).then(function(resp) {
       $scope.errorMsg = '';
       if(resp.otpVerified) {
-        goToCart();
+        goToHomePage();
       } else {
         $scope.otpSent = true;
         $scope.formData.otp = resp.otp;
@@ -41,14 +41,14 @@ angular.module('Vyomo')
     var user = auth.getUser();
     auth.verifyOtp(user.sessionToken, data.otp).then(function() {
       $scope.errorMsg = '';
-      goToCart();
+      goToHomePage();
     },function(error){
       $scope.errorMsg = error;
     });
   }
 
-  function goToCart() {
-    $state.go('checkoutCart');
+  function goToHomePage() {
+    $state.go('homePage');
   }
 
 }]);//controller

@@ -1,10 +1,13 @@
 
 
-angular.module('Vyomo').controller('headerController', ['$scope', '$log', function($scope, $log){
+angular.module('Vyomo').controller('headerController', ['$scope', '$log', 'auth', '$cookies', '$state',
+                                function($scope, $log, auth, $cookies, $state){
 
     $scope.status = {
         isopen: false
     };
+
+    $scope.number = false;
 
     $scope.toggled = function(open) {
         $log.log('Dropdown is now: ', open);
@@ -14,6 +17,19 @@ angular.module('Vyomo').controller('headerController', ['$scope', '$log', functi
         $event.preventDefault();
         $event.stopPropagation();
         $scope.status.isopen = !$scope.status.isopen;
+    };
+
+    $scope.$on('$stateChangeSuccess', function(){
+        $scope.number = auth.getUser().number;
+    });
+
+    $scope.logout = function() {
+        $cookies.remove('userObj');
+        $state.go('homePage');
+    };
+
+    $scope.goToLogin = function() {
+        $state.go('login');
     };
 
     $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));

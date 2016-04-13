@@ -5,9 +5,9 @@
   </div>
   <form role="form" ng-submit="sendForm()" autocomplete="on" form-auto-fill-fix>
     <div class="input-wrapper">
-      <input type="number" placeholder="Enter Mobile Number" required ng-model="formData.mobileNumber" name="mobNumber" value="mobNumber"/>
-      <input type="password" ng-if="getPassword" placeholder="Enter password" required ng-model="formData.password" name="password" value="password"/>
-      <input type="text" ng-if="otpNeeded" placeholder="Enter Validation Code" required ng-model="formData.otp" name="otp" value="otp"/>
+      <input type="number" placeholder="Enter Mobile Number" required ng-model="formData.mobileNumber" name="mobNumber" value=""/>
+      <input type="password" ng-if="getPassword" placeholder="" required ng-model="formData.password" name="password" value=""/>
+      <input type="text" ng-if="otpNeeded" placeholder="Enter Validation Code" required ng-model="formData.otp" name="otp" value=""/>
       <div class="action-block">
           <div class="error-div no-signup" ng-if="errorMsg">
             *{{errorMsg}}
