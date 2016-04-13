@@ -3,13 +3,15 @@
  *  author/ Ekluv-Dev
  */
 angular.module('Vyomo')
-    .factory('addressService', ['$http', 'env', function($http, env){
+    .factory('addressService', ['$http', 'env', 'auth', function($http, env, auth){
 	
         var address = {};
         var BASE_URL = env.BASE_URL;
-
+        var user = auth.get_user();
+        var access_token = user.sessionToken ;
         // method to call api for fetching all user addresses
-        address.getAllUserAddress = function(access_token){
+        address.getAllUserAddress = function(){
+
             var postData = {access_token: access_token};
             var url = BASE_URL + '/get_all_address';
             return $http({
@@ -20,7 +22,7 @@ angular.module('Vyomo')
         };
 
         // method to call api for submitting user address
-        address.addUserAddress = function(access_token, address, landmark, latitude, longitude, city) {
+        address.addUserAddress = function(address, landmark, latitude, longitude, city) {
             var postData = {
                 access_token: access_token,
                 address: address,
@@ -38,7 +40,7 @@ angular.module('Vyomo')
         };
 
         // method to call api to delete user address
-        address.deleteUserAddress = function(access_token, address_id){
+        address.deleteUserAddress = function(address_id){
             var postData = {
                 access_token: access_token,
                 address_id: address_id
