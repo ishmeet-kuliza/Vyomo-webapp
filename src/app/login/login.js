@@ -15,9 +15,19 @@ angular.module('Vyomo')
       } else {  //Need to verify OTP
         $scope.otpNeeded = true;
         $scope.formData.otp = resp.otp;
-        verifyOtp(resp);
+        // verifyOtp(resp);
       } 
     }, function(error) {
+      $scope.errorMsg = error;
+    });
+  };
+
+  $scope.verifyOtp = function() {
+    var user = auth.getUser();
+    auth.verifyOtp(user.sessionToken, $scope.formData.otp).then(function() {
+      $scope.errorMsg = '';
+      goToCart();
+    },function(error){
       $scope.errorMsg = error;
     });
   };
@@ -25,17 +35,6 @@ angular.module('Vyomo')
   function goToCart() {
     $state.go('cart');
   }
-
-  function verifyOtp(data) {
-    var user = auth.getUser();
-    auth.verifyOtp(user.sessionToken, data.otp).then(function() {
-      $scope.errorMsg = '';
-      goToCart();
-    },function(error){
-      $scope.errorMsg = error;
-    });
-  }
-
 
   $scope.showPasswordInput = function() {
     if($scope.formData.mobileNumber) {

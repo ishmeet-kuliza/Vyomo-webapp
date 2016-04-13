@@ -22,9 +22,9 @@ angular.module('Vyomo')
 
   function _generateUserObj(data) {
     return {
-      sessionToken: data.sessionToken,
-      'otpVerified': data.otp_verified,
-      'otp': data.otp //For testing purposes
+      sessionToken: data.access_token,
+      otpVerified: data.otp_verified,
+      otp: data.otp //For testing purposes
     };
   }
 

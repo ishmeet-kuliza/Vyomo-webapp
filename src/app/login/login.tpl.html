@@ -18,7 +18,7 @@
 
           <button class="login no-signup-button" type="button" ng-if="!getPassword" ng-click="showPasswordInput()">NEXT</button>
           <button class="login no-signup-button" type="submit" ng-if="getPassword && !otpNeeded">LOGIN</button>
-          <button class="login no-signup-button" type="submit" ng-if="otpNeeded">VALIDATE</button>
+          <button class="login no-signup-button" ng-click="verifyOtp()" ng-if="otpNeeded">VALIDATE</button>
  
       </div>
     </div>

@@ -16,7 +16,7 @@ angular.module( 'Vyomo')
             return $http({
                 method: 'POST',
                 data:postData,
-                url: 'http://52.5.1.82:3001/web/get_all_services'
+                url: BASE_URL + '/get_all_services'
             });
         };
 
