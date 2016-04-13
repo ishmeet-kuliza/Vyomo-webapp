@@ -23,6 +23,19 @@
             <div class="box-detail vm-package-box-detail p15">
                 <span>{{package.description}}</span>
             </div>
+            <!--- Person Count --->
+            <div class="row removeRowMargin mt-10 personSelectionDiv" ng-show="package.isAddedToCart || viewCart">
+                <div class="col-sm-3 text-center ">
+                    <span class=" cursorPointer fa fa-plus addPerson" ng-click="serviceType.addToCart()"></span>
+                </div>
+                <div class="col-sm-6 ">
+                    <span class="countOfPersons"></span>
+                    <span class="name"> {{serviceType.count}} Person(s)</span>
+                </div>
+                <div class="cursorPointer col-sm-3 text-center ">
+                    <span class="fa fa-minus removePerson" ng-click="serviceType.removeFromCart()"></span>
+                </div>
+            </div>
         </div>
 
     </div>
