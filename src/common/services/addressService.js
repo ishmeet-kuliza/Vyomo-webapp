@@ -45,7 +45,7 @@ angular.module('Vyomo')
                 access_token: accessToken,
                 address_id: address_id
             };
-            var url = BASE_URL + '/web/delete_address';
+            var url = BASE_URL + '/delete_address';
             return $http({
                 method: 'POST',
                 data: postData,
