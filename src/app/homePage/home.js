@@ -22,72 +22,29 @@ angular.module( 'vyomo.homePage', [
 .controller( 'HomeCtrl', function HomeController() {
 })
 // Include service to fetch packages
-.controller('HomePackageCtrl',['$scope', function HomePackageController($scope){
-  //Dummy data for now, to be popuated by the packages retrieved from back end
-  $scope.packageList = [
-    {
-      name : "Head to Toe",
-      cost: 8600,
-      imgName : 'headToToe',
-      detail:"Hair Spa + Fruit Facial + Face threading + Normal Wax(full arms, legs and underarms) + Back Massage + Wine Pedicure + Wine manicure "
-    },
-    {
-      name : "Relax Plus",
-      cost : 2020,
-      imgName : "relaxPlus",
-      detail :"Get a real Fruit Facial with full body polish and full body massage"
-    },
-    {
-      name : "Happy Hands & Feet",
-      cost : 750,
-      imgName : "handsFeet",
-      detail :"Full Arms and full legs Normal Waxing, Manicure and Pedicure"
-    }
-  ];
+.controller('HomePackageCtrl',['$scope', 'servicesPackagesCacheService', function HomePackageController($scope, servicesPackagesCacheService){
+  var cache = servicesPackagesCacheService.getCache();
+  if(!Object.keys(cache).length) { //if cache is not set
+    servicesPackagesCacheService.setCache().then(function(response){
+      $scope.packageList = response['packages']['featured'];
+    });
+  } else {
+    $scope.packageList = cache['packages']['featured'];
+  }
   $scope.viewMorePackagesUrl = "/abc";
 }])
 
 // Include service to fetch Vyom Services
-.controller('HomeServiceCtrl', ['$scope', function HomeServiceController($scope){
-  //Dummy data for now, to be popuated by the packages retrieved from back end
-  $scope.servicesList = [
-    {
-      name : "CRYSTEINE HAIR TREATMENT",
-      imgName : "crystHairTreatMent"
-    },
-    {
-      name : "REAL FRUIT FACIAL",
-      imgName : "fruitFacial"
-    },
-    {
-      name : "BODY POLISH",
-      imgName : "bodyPolish"
-    },
-    {
-      name : "CHOCOLATE WAXING",
-      imgName : "chocWaxing"
-    },
-    {
-      name : "DE-TAN",
-      imgName : "deTan"
-    },
-    {
-      name : "HAIR-SPA",
-      imgName : "hairSpa"
-    },
-    {
-      name : "PEDICURE",
-      imgName : "pedicure"
-    },
-    {
-      name : "HAIR COLORING",
-      imgName : "haircolor"
-    },
-    {
-      name : "MEHENDI",
-      imgName : "mehendi"
-    }
-  ];
+.controller('HomeServiceCtrl', ['$scope', 'servicesPackagesCacheService', 
+                                function HomeServiceController($scope, servicesPackagesCacheService){
+  var cache = servicesPackagesCacheService.getCache();
+  if(!Object.keys(cache).length) { //if cache is not set
+    servicesPackagesCacheService.setCache().then(function(response){
+      $scope.servicesList = response['services']['featured'];
+    });
+  } else {
+    $scope.servicesList = cache['services']['featured'];
+  }
   $scope.viewMoreServicesUrl = "/abc";
 }])
 //Offers section controller

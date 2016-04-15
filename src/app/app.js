@@ -42,10 +42,13 @@ var app = angular.module( 'Vyomo', [
     });
 }])
 
-.controller( 'AppCtrl', ['$window', '$scope', '$location', function AppCtrl ( $window, $scope, $location ) {
+.controller( 'AppCtrl', ['$window', '$scope', '$location', 'servicesPackagesCacheService',
+                      function AppCtrl ( $window, $scope, $location, servicesPackagesCacheService ) {
   $window.console.debug('This is our app', app);
   $scope.vyomoContactNo = "1800-102-8454";
   $scope.toggleNavMenuMobile = false;
+
+  getAllServices();
 
   $scope.$on('$stateChangeSuccess', function(event, toState){
     if ( angular.isDefined( toState.data.pageTitle ) ) {
@@ -59,6 +62,11 @@ var app = angular.module( 'Vyomo', [
       return $location.path() === routeName ;
     }
   };
+
+  //Function to get all services and packages and then store that in a cache 
+  function getAllServices() {
+    servicesPackagesCacheService.setCache();
+  }
 
 }]);
 

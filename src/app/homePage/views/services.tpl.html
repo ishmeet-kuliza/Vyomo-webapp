@@ -1,13 +1,13 @@
 <section-header title = "FEATURED SERVICES" subtext ="Pamper yourself with our choice selection of services this month"></section-header>
 
 <div class="flexBox vm-services-row">
-    <div class="flexItem vm-service-box" ng-repeat="service in servicesList | orderBy :'name'">
+    <div class="flexItem vm-service-box" ng-repeat="service in servicesList track by $index">
         <div class="vm-service-box-inner">
             <div class="pull-left imgBox">
-                <img alt="Vyomo Services {{service.name}}" src="assets/img/HomeServices-{{service.imgName}}.jpg"/>
+                <img alt="Vyomo Services {{service.category_name}}" src="{{service.img}}"/>
             </div>
             <div class="pull-left vm-service-title">
-                {{service.name}}
+                {{service.category_name}}
             </div>
             <div class="clearfix"></div>
         </div>
