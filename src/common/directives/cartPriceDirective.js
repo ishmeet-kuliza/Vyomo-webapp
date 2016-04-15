@@ -3,7 +3,7 @@
  *  author/ Ekluv-Dev
  */
 angular.module('Vyomo')
-    .directive('cartPrice', ['cart', function(cart){
+    .directive('cartPrice', ['cart', '$state', function(cart, $state){
     // Runs during compile
     return {
         // name: '',
@@ -20,20 +20,21 @@ angular.module('Vyomo')
         // transclude: true,
         // compile: function(tElement, tAttrs, function transclude(function(scope, cloneLinkingFn){ return function linking(scope, elm, attrs){}})),
         link: function($scope) {
+            $scope.$watchCollection(function(){
+                return cart.totalPrice;
+            }, function(newPrice){
+                $scope.totalPrice = newPrice;
+            });
 
+            $scope.$watchCollection(function(){
+                return cart.getCount();
+            }, function(newCount){
+                $scope.cartCount = newCount;
+            });
 
-
-        $scope.$watchCollection(function(){
-            return cart.totalPrice;
-        }, function(newPrice){
-            $scope.totalPrice = newPrice;
-        });
-
-        $scope.$watchCollection(function(){
-            return cart.getCount();
-        }, function(newCount){
-            $scope.cartCount = newCount;
-        });
+            $scope.goToCart = function(){
+              $state.go('checkoutCart');
+            };
 
         }
     };
