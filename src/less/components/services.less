@@ -2,6 +2,10 @@
 * Service Stylesheet
 */
 //Custom checkbox labbeling
+
+@cart-light-green: #5DC1BC;
+@cart-dark-green: #3BA5A0;
+
 input[type=checkbox] {
   visibility: hidden;
 }
@@ -28,6 +32,33 @@ span.label-selected-city{
   //In home.less reusing it
   .vyomo-home-page-feature-services;
 }
+
+.cart-info-container {
+  background: linear-gradient(90deg, @cart-light-green 50%, @cart-dark-green 50%);
+  padding: 1rem;
+  border-radius: 500px;
+  position: fixed;
+  bottom: 2rem;
+  right: 3rem;
+  display: inline;
+  z-index: 999;
+
+  span {
+    padding: 0 2rem;
+  }
+
+  .cart-count {
+    position: absolute;
+    top: 5%;
+    right: 10%;
+    font-family: 'SourceSansPro';
+    font-size: 12px;
+    background: #e84c8a;
+    border-radius: 50%;
+    padding: 0 5px;
+  }
+}
+
 @media only screen and (min-width: 768px)  {
   .vyomo-service-page{
     position: relative;
