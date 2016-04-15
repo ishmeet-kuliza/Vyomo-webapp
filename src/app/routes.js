@@ -107,9 +107,9 @@ angular.module('Vyomo')
     }).state('checkoutCart.checkoutStep2',{
         url : "/checkout",
         views : {
-            "checkoutView" : {
-                controller : 'CartCheckoutCtrl',
-                templateUrl : 'cart/views/checkout.tpl.html'
+            "addressView" : {
+                controller : 'CartAddressCtrl',
+                templateUrl : 'servicesPage/views/packageList.tpl.html'
             }
         }
     });

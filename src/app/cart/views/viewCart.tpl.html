@@ -1,21 +1,125 @@
 <div class="vm-cart-page">
 
     <div class="vm-checkout-step1">
-        <section-header ng-click='collapsePanels("step1")' title = "YOUR CART"  subtext ="" class="cart-head"></section-header>
-        <div class="step1-inner" uib-collapse="step1Collapse">
-            <div class="vm-cart-list">
-                <div ui-view="packageListCart" class="vyomo-feature-packages"></div>
-                <div ui-view="serviceListCart" class="vyomo-feature-services"></div>
+        <section-header title = "YOUR CART"  subtext ="" class="cart-head"></section-header>
+
+        <div class="vm-cart-list">
+            <div ui-view="packageListCart" class="vyomo-feature-packages"></div>
+            <div ui-view="serviceListCart" class="vyomo-feature-services"></div>
+        </div>
+
+        <total-price-header sub-total = "750" discount="NA" total="500"></total-price-header>
+
+        <div class="row removeMargin p25">
+            <a class="vm-primary-btn" id="vm-savecart"> SAVE & CONTINUE</a>
+        </div>
+    </div>
+
+        <div class="vm-checkout-step2">
+            <section-header title = "SELECT ADDRESS AND TIME"  subtext ="" ></section-header>
+
+            <div class="mt-25 flexBox selected-address-box">
+
+                <div class="vm-address-box">
+                    <!-- Rounded checkbox -->
+                    <div class="roundedOne pull-left" ng-class="{'checked' : selectAddress}">
+                        <input type="checkbox" ng-model="selectAddress" value="address_id" id="roundedOne" name="address" />
+                        <label for="roundedOne"></label>
+                    </div>
+                    <div class=" pull-left ml-10 address-text">
+                        <span> Select address</span>
+                        <br><br>
+                        <span> #1989,22b Main Road, sector-1, HSR-Layout </span>
+                        <br>
+                        <span> Bangalore 560102 </span>
+                        <br>
+                        <span>Landmark - Something </span>
+
+                    </div>
+
+                    <div class="mt-20 remove-address vm-link cursorPointer">Remove</div>
+                </div>
+
+                <div class="vm-address-box ">
+                    <!-- Rounded checkbox -->
+                    <div class="roundedOne  pull-left" ng-class="{'checked' : selectAddress}">
+                        <input type="checkbox" ng-model="selectAddress" value="address_id" id="roundedOne2" name="address" />
+                        <label for="roundedOne2"></label>
+                    </div>
+                    <div class=" pull-left ml-10 address-text">
+                        <span> Select address</span>
+                        <br><br>
+                        <span> #1989,22b Main Road, sector-1, HSR-Layout </span>
+                        <br>
+                        <span> Bangalore 560102 </span>
+                        <br>
+                        <span>Landmark - Something </span>
+
+                    </div>
+                    <div class="mt-20 remove-address vm-link cursorPointer">Remove</div>
+                </div>
+
+                <!--<div class="vm-add-new-address cursorPointer">-->
+                    <!--<span class = "fa fa-plus mr-15"></span> <span class="vm-link">Add a new address</span>-->
+                <!--</div>-->
+
+                <div class="vm-address-box ">
+                    <span> Add a new address</span>
+                    <form id="vm-address-form">
+                        <select class="vm-address-city form-control" placeholder="City" ng-model="data.selectedCity">
+                            <option value="" class="placeholder">Select your city</option>
+                            <option ng-repeat="city in  dataCities.cities" value="{{city.name}}" latLong="{{city.lat_long}}">{{city.name}}</option>
+                        </select>
+                    </form>
+                </div>
+
+
+            </div>
+
+            <!---Date and Time --->
+            <div class = "vm-select-date-time-link p10">
+                <a id="vm-select-date-time">
+                    <span class="icon icon-clock mr-10"></span>
+                    Select Date & Time
+                </a>
+            </div>
+
+            <!--- Payment Mode ---->
+            <section-header title = "SELECT PAYMENT MODE"  subtext ="" ></section-header>
+
+            <div class="row removeRowMargin mt-25">
+
+                    <div class="col-md-3  mr-15 payment-mode-cash">
+                        <div class="roundedOne  pull-left" ng-class="{'checked' : selectAddress}">
+                            <input type="checkbox" ng-model="selectAddress" value="address_id" id="roundedOne2" ng-checked="true" name="payByCash" />
+                            <label for="roundedOne2"></label>
+                        </div>
+                        <div class="pull-left ml-20">Pay by Cash</div>
+                    </div>
+
+                    <div class="col-md-3 mr-15 hidden payment-mode-cash">
+                        <div class="roundedOne  pull-left" ng-class="{'checked' : selectAddress}">
+                            <input type="checkbox" ng-model="selectAddress" value="address_id" id="roundedOne2"  name="payByPayTM" />
+                            <label for="roundedOne2"></label>
+                        </div>
+                        <div class="pull-left ml-20">Pay by PayTM</div>
+                    </div>
+
+                    <div class="col-md-3 hidden payment-mode-cash">
+                        <div class="roundedOne  pull-left" ng-class="{'checked' : selectAddress}">
+                            <input type="checkbox" ng-model="selectAddress" value="address_id" id="roundedOne2"  name="payByCard" />
+                            <label for="roundedOne2"></label>
+                        </div>
+                        <div class="pull-left ml-20">Pay by Card</div>
+                    </div>
+
             </div>
 
             <total-price-header sub-total = "750" discount="NA" total="500"></total-price-header>
 
-            <div class="row removeMargin p25">
-                <a class="vm-primary-btn" id="vm-savecart" ng-click="saveCart()"> SAVE & CONTINUE</a>
+            <div class="row removeRowMargin p25 ">
+                <a class="vm-primary-btn" id="vm-confirm-order"> CONFIRM ORDER</a>
             </div>
         </div>
-    </div>
 
-
-    <div class = "vm-checkout-step-2" ui-view="checkoutView" ng-show="step1Collapse"></div>
 </div>
