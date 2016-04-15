@@ -69,7 +69,7 @@ module.exports = {
         'vendor/jquery/dist/jquery.min.js'
     ],
     css: [
-      'vendor/css/reset.css'
+      'vendor/css/reset.css',
     ],
     assets: [
     ]

@@ -1,14 +1,11 @@
 
 angular.module('Vyomo')
-    .controller( 'CartCtrl',['$scope', '$state','cartProduct','cart', 'productObjects', function CartController( $scope,$state, cartProduct,cart, productObjects) {
+    .controller( 'CartCtrl',['$scope','cartProduct','cart', 'productObjects' , function CartController( $scope, cartProduct,cart, productObjects) {
         $scope.isStep1Complete = "false";
         //Boolean used for hiding headers for packages  and service template used in view cart
         $scope.viewCart = true;
         $scope.packages = [];
         $scope.categories = [];
-        $scope.step1Collapse = false;
-        $scope.step2Collapse = false;
-
         //API Call success method block
         //When in cookies any item/cart is not present
 
@@ -52,60 +49,4 @@ angular.module('Vyomo')
         }
         
         //Function for save & continue and state change to checkoutStep2
-        $scope.saveCart = function(){
-            //Check if cart items>0
-            if(cart.getCount() > 0 ){
-                $scope.step2Collapse = false;
-                $scope.step1Collapse = true;
-                $state.go("checkoutCart.checkoutStep2");
-            }
-        };
-
-        //Function to collapse steps
-        $scope.collapsePanels = function(step){
-
-            if(step === "step1") {
-                $scope.step2Collapse = false;
-                $scope.step1Collapse = true;
-            }else{
-                $scope.step2Collapse = true;
-                $scope.step1Collapse = false;
-            }
-        };
-        //Function to get previous addresses
-
-
-    }])
-
-    .controller( 'CartCheckoutCtrl',['$scope','globals', function CartController($scope,globals) {
-
-        $scope.showAddressAddBox = false;
-        //Date AND TIME STORe
-        $scope.dateTime = new Date();
-        $scope.dateOptions = '{format:"DD.MM.YYYY HH:mm"}';
-
-        $scope.dataCities = globals.getCities();
-        //Autocomplet address
-        //in $scope.address --all the values being stored
-        $scope.address = {
-            "city" : '',
-            "line1" :'',
-            "line2" : '',
-            "landmark":'',
-            "latitude" : '',
-            "longitude" : ''
-        };
-        var options = {
-            componentRestrictions: {country: "in"}
-        };
-
-        var inputFrom = document.getElementById('locality');
-        var autocompleteFrom = new google.maps.places.Autocomplete(inputFrom, options);
-        google.maps.event.addListener(autocompleteFrom, 'place_changed', function() {
-            var place = autocompleteFrom.getPlace();
-            $scope.address.latitude = place.geometry.location.lat();
-            $scope.address.longitude = place.geometry.location.lng();
-            $scope.address.line2 = place.formatted_address;
-            $scope.$apply();
-        });
     }]);

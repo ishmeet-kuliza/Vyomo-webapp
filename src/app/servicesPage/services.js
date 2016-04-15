@@ -101,8 +101,8 @@ angular.module( 'Vyomo')
     
     }])
 
-    .controller( 'ServicePackageCtrl',[ function ServiceController() {
-
+    .controller( 'ServicePackageCtrl',['$scope', function ServiceController($scope) {
+        window.console.log($scope);
     //     $scope.addOrRemovePackage = function(package){
     //         // add package to cart if it is not
     //         if(!package.isAddedToCart){

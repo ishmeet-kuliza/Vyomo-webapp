@@ -1,15 +1,8 @@
 angular.module('Vyomo')
 
-.factory('globals', ['$cookies', function($cookies) {
-    var selectedCityName;
-    if($cookies.getObject("city") !== undefined){
-        selectedCityName = $cookies.getObject("city");
-    }else{
-        selectedCityName = null;
-    }
+.factory('globals', [ function() {
   var cities = {
-
-      selectedCity : selectedCityName,
+      selectedCity : null,
       cities:[
           {
               name : "Bangalore",
