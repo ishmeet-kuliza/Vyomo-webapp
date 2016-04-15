@@ -1,0 +1,150 @@
+
+<div uib-collapse="step2Collapse">
+    <section-header title = "SELECT ADDRESS AND TIME"  subtext ="" ></section-header>
+
+        <div class="mt-25 flexBox selected-address-box">
+
+            <div class="vm-address-box">
+                <!-- Rounded checkbox -->
+                <div class="roundedOne pull-left" ng-class="{'checked' : selectAddress}">
+                    <input type="checkbox" ng-model="selectAddress" value="address_id" id="roundedOne" name="address" />
+                    <label for="roundedOne"></label>
+                </div>
+                <div class=" pull-left ml-10 address-text">
+                    <span> Select address</span>
+                    <br><br>
+                    <span> #1989,22b Main Road, sector-1, HSR-Layout </span>
+                    <br>
+                    <span> Bangalore 560102 </span>
+                    <br>
+                    <span>Landmark - Something </span>
+
+                </div>
+
+                <div class="mt-20 remove-address vm-link cursorPointer">Remove</div>
+            </div>
+
+            <div class="vm-address-box ">
+                <!-- Rounded checkbox -->
+                <div class="roundedOne  pull-left" ng-class="{'checked' : selectAddress}">
+                    <input type="checkbox" ng-model="selectAddress" value="address_id" id="roundedOne2" name="address" />
+                    <label for="roundedOne2"></label>
+                </div>
+                <div class=" pull-left ml-10 address-text">
+                    <span> Select address</span>
+                    <br><br>
+                    <span> #1989,22b Main Road, sector-1, HSR-Layout </span>
+                    <br>
+                    <span> Bangalore 560102 </span>
+                    <br>
+                    <span>Landmark - Something </span>
+
+                </div>
+                <div class="mt-20 remove-address vm-link cursorPointer">Remove</div>
+            </div>
+
+            <div class="vm-add-new-address cursorPointer" ng-click="showAddressAddBox = !showAddressAddBox" ng-hide="showAddressAddBox">
+                <span class = "fa fa-plus mr-15"></span> <span class="vm-link">Add a new address</span>
+            </div>
+
+            <div class="vm-address-box addAddressBox" ng-show="showAddressAddBox">
+                <h4> Add a new address</h4>
+                <form id="vm-address-form" name="addressForm">
+
+                    <div class = "form-group group">
+                        <select  placeholder = "Select yur city" name="city" ng-model="address.city" class="address-city selectMaterial" ng-init="address.city = dataCities.selectedCity" required>
+                            <option ng-repeat="city in  dataCities.cities" value="{{city.name}}">{{city.name}}</option>
+                        </select>
+                        <span class="bar"></span>
+
+                        <span ng-show="addressForm.city.$error.required" class="control-label">City is required</span>
+                    </div>
+
+                    <div class = "form-group group">
+                        <input type="text" name="addressLine1" ng-model="address.line1"  class="vm-address-line-1 inputMaterial" required>
+                        <span class="bar"></span>
+                        <label class="address-label">Address Line 1(Flat No,House No,Street No) *</label>
+                        <span ng-show="addressForm.addressLine1.$error.required"  class="control-label">Required</span>
+                    </div>
+                    <div class = "form-group group">
+                        <input type="text" name="addressLine2" ng-model="address.line2" id="locality" class="vm-address-line-2 inputMaterial" required>
+
+                        <span class="bar"></span>
+                        <label class="address-label">Address Line 2 (Apartment/Locality/Street) *</label>
+                        <span ng-show="addressForm.addressLine2.$error.required" class="control-label">Required</span>
+                    </div>
+
+                    <div class = "form-group group">
+                        <input type="text" name="landmark" ng-model="address.landmark" class="landmark inputMaterial" required>
+                        <span class="bar"></span>
+                        <label class="address-label">Landmark *</label>
+                        <span ng-show="addressForm.landmark.$error.required" class="control-label">Required</span>
+                    </div>
+
+                    <input name="address.latitude" type="hidden" ng-model="address.latitude">
+                    <input name="address.latitude" type="hidden" ng-model="address.longitude">
+
+                    <div class="buttons-row">
+                        <a class="vm-link cursorPointer" type="submit" id="saveAddress" >SAVE</a>
+
+                        <a class="vm-cancel-link cursorPointer ml-15" id="cancelAddress" ng-click="showAddressAddBox = !showAddressAddBox">CANCEL</a>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+
+        <!---Date and Time --->
+        <div class = "vm-select-date-time-link p10">
+            <div class="dropdown">
+            <a id="vm-select-date-time" class="dropdown-toggle" role="button" data-toggle="dropdown" data-target="#" >
+                <span class="icon icon-clock mr-10"></span>
+                Select Date & Time
+            </a>
+                <!--<div class="input-group input-group-sm date" options="zdateOptions" datetimepicker ng-model="dateTime">-->
+                    <!--<input type="text" class="form-control" />-->
+          <!--<span class="input-group-addon">-->
+              <!--<span class="fa fa-calendar"></span>-->
+          <!--</span>-->
+                <!--</div>-->
+        </div>
+
+        <!--- Payment Mode ---->
+        <section-header title = "SELECT PAYMENT MODE"  subtext ="" ></section-header>
+
+        <div class="row removeRowMargin mt-25">
+
+            <div class="col-md-3  mr-15 payment-mode-cash">
+                <div class="roundedOne  pull-left" ng-class="{'checked' : selectAddress}">
+                    <input type="checkbox" ng-model="selectAddress" value="address_id" id="roundedOne2" ng-checked="true" name="payByCash" />
+                    <label for="roundedOne2"></label>
+                </div>
+                <div class="pull-left ml-20">Pay by Cash</div>
+            </div>
+
+            <div class="col-md-3 mr-15 hidden payment-mode-cash">
+                <div class="roundedOne  pull-left" ng-class="{'checked' : selectAddress}">
+                    <input type="checkbox" ng-model="selectAddress" value="address_id" id="roundedOne2"  name="payByPayTM" />
+                    <label for="roundedOne2"></label>
+                </div>
+                <div class="pull-left ml-20">Pay by PayTM</div>
+            </div>
+
+            <div class="col-md-3 hidden payment-mode-cash">
+                <div class="roundedOne  pull-left" ng-class="{'checked' : selectAddress}">
+                    <input type="checkbox" ng-model="selectAddress" value="address_id" id="roundedOne2"  name="payByCard" />
+                    <label for="roundedOne2"></label>
+                </div>
+                <div class="pull-left ml-20">Pay by Card</div>
+            </div>
+
+        </div>
+
+        <total-price-header sub-total = "750" discount="NA" total="500"></total-price-header>
+
+        <div class="row removeRowMargin p25 ">
+            <a class="vm-primary-btn" id="vm-confirm-order"> CONFIRM ORDER</a>
+        </div>
+    </div>
+

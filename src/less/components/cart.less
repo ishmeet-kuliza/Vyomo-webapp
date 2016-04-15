@@ -50,14 +50,16 @@
 }
 .selected-address-box{
   margin-left:25px;
+  align-items: flex-start;
 }
 .address-text{
   width:90%;
 }
 .vm-address-box{
-  width: 33%;
+  width: 32.33%;
   background: white;
   margin-right: 1%;
+  margin-top:15px;
   padding: 15px;
 }
 
@@ -89,3 +91,123 @@
   margin-left: 25px;
 }
 
+//Address Form CSS
+.group{
+  position: relative;
+  margin-top:25px;
+  margin-left:25px;
+}
+// Input element ================================ */
+.inputMaterial{
+  font-size:18px;
+  padding:10px 10px 10px 5px;
+  display:block;
+  width:100%;
+  border:none;
+  border-bottom:1px solid @borderColor;
+
+  &:focus{
+    outline:none;
+  }
+}
+
+/* LABEL ======================================= */
+
+.address-label 				 {
+  color:#999;
+  font-size:14px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  left:5px;
+  top:10px;
+  transition:0.2s ease all;
+  -moz-transition:0.2s ease all;
+  -webkit-transition:0.2s ease all;
+}
+
+/* active state */
+.inputMaterial:focus ~ label, .inputMaterial:valid ~ label 		{
+  top:-20px;
+  font-size:1.4rem;
+  color: @textColor;
+}
+
+/* BOTTOM BARS ================================= */
+.bar {
+  position: relative;
+  display: block;
+  width:  100%;
+}
+
+.bar:before, .bar:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: @pink;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+.bar:before {
+  left: 50%;
+}
+
+.bar:after {
+  right: 50%;
+}
+
+/* active state */
+.inputMaterial:focus ~ .bar:before, .inputMaterial:focus ~ .bar:after {
+  width: 50%;
+}
+
+.control-label{
+  font-size:1.2em;
+  color:@red;
+}
+
+/* SelectMAterial ================================ */
+.selectMaterial{
+  background: transparent;
+  background: url('../assets/img/down-arrow.png') no-repeat right transparent;
+  background-size: contain;
+  -webkit-appearance: none;
+  background-position-x: 100%;
+  border: none;
+  padding:10px 10px 10px 5px;
+  border-bottom: 1px solid #ccc;
+  border-radius: 0;
+  width: 100%;
+  font-size: 1.6rem;
+  color: #999;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+
+  &:focus{
+    border:none;
+    outline:none;
+  }
+  &:focus ~ .bar:before {
+    width: 50%;
+  }
+  &:focus ~ .bar:after{
+    width: 50%;
+  }
+  option {
+    background: @pink;
+    color:@text-color;
+    &.placeholder{
+      font-size: 14px;
+    }
+  }
+}
+
+.buttons-row{
+  font-family: SourceSansPro;
+  margin-left:25px;
+
+}
