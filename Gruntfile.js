@@ -293,7 +293,9 @@ module.exports = function ( grunt ) {
           document: true,
           window: true,
           app: true, //TO_DO: investigate this
-          moment: true
+          moment: true,
+          $: true,
+          google: true
         }
       },
       globals: {}
