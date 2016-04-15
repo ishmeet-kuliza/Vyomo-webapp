@@ -12,27 +12,27 @@ angular.module('Vyomo')
     views: {
       "main": {
         controller: 'HomeCtrl',
-        templateUrl: 'homePage/views/home.tpl.html'
+        templateUrl: '/src/app/homePage/views/home.tpl.html'
       },
       "homeFeaturePackage@homePage" :{
         controller: 'HomePackageCtrl',
-        templateUrl: 'homePage/views/packages.tpl.html'
+        templateUrl: '/src/app/homePage/views/packages.tpl.html'
       },
       "homeFeatureService@homePage" :{
         controller: 'HomeServiceCtrl',
-        templateUrl: 'homePage/views/services.tpl.html'
+        templateUrl: '/src/app/homePage/views/services.tpl.html'
       },
       "homeOffers@homePage" :{
         controller: 'HomeOffersCtrl',
-        templateUrl: 'homePage/views/offers.tpl.html'
+        templateUrl: '/src/app/homePage/views/offers.tpl.html'
       },
       "homeCustomerReviews@homePage" : {
         controller: 'HomeReviewsCtrl',
-        templateUrl: 'homePage/views/reviews.tpl.html'
+        templateUrl: '/src/app/homePage/views/reviews.tpl.html'
       },
       "homeCareers@homePage" : {
         controller : 'HomeCareersCtrl',
-        templateUrl: 'homePage/views/careers.tpl.html'
+        templateUrl: '/src/app/homePage/views/careers.tpl.html'
       }
     },
     data:{ pageTitle: 'Home' }
@@ -44,7 +44,7 @@ angular.module('Vyomo')
       views: {
           "main": {
               controller: 'ServiceCtrl',
-              templateUrl: 'servicesPage/views/services.tpl.html'
+              templateUrl: '/src/app/servicesPage/views/services.tpl.html'
           }
       },
       data:{ pageTitle: 'Beauty Services'}
@@ -53,11 +53,11 @@ angular.module('Vyomo')
         views : {
             "packagesView":{
                 controller : 'ServicePackageCtrl',
-                templateUrl : 'servicesPage/views/packageList.tpl.html'
+                templateUrl : '/src/app/servicesPage/views/packageList.tpl.html'
             },
             "servicesView":{
                 controller : 'ServiceListCtrl',
-                templateUrl : 'servicesPage/views/serviceList.tpl.html'
+                templateUrl : '/src/app/servicesPage/views/serviceList.tpl.html'
             }
         }
     });
@@ -67,7 +67,7 @@ angular.module('Vyomo')
       views: {
           "main": {
               controller: 'loginCtrl',
-              templateUrl: 'login/login.tpl.html'
+              templateUrl: '/src/app/login/login.tpl.html'
           }
       },
       data:{ pageTitle: 'Login'}
@@ -78,7 +78,7 @@ angular.module('Vyomo')
         views : {
             "main":{
                 controller : 'signUpCtrl',
-                templateUrl : 'login/signUp.tpl.html'
+                templateUrl : '/src/app/login/signUp.tpl.html'
             }
         },
         data:{ 

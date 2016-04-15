@@ -111,7 +111,7 @@ module.exports = function ( grunt ) {
         expand: true,
         dot: true,
         cwd: 'src/',
-        dest: '<%= build_dir %>/templates',
+        dest: '<%= build_dir %>/src',
         src: ['**/*.html']
       },
       build_vendor_assets: {
