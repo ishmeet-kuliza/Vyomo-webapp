@@ -59,6 +59,7 @@ module.exports = {
    */
   vendor_files: {
     js: [
+      'bower_components/moment/min/moment.min.js',
       'vendor/angular/angular.js',
       'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
       'vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
@@ -66,10 +67,16 @@ module.exports = {
       'vendor/angular-ui-router/release/angular-ui-router.js',
       'vendor/angular-ui-utils/modules/route/route.js',
         'vendor/angular-animate/angular-animate.min.js',
-        'vendor/jquery/dist/jquery.min.js'
+        'vendor/jquery/dist/jquery.min.js',
+
+      'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
+
+
+
     ],
     css: [
-      'vendor/css/reset.css'
+      'vendor/css/reset.css',
+      'bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css'
     ],
     assets: [
     ]

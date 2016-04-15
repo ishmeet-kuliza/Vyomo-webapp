@@ -43,7 +43,7 @@
                 <div class="mt-20 remove-address vm-link cursorPointer">Remove</div>
             </div>
 
-            <div class="vm-add-new-address cursorPointer" ng-click="showAddressAddBox = !showAddressAddBox" ng-hide="showAddressAddBox">
+            <div class="vm-add-new-address cursorPointer mt-25" ng-click="showAddressAddBox = !showAddressAddBox" ng-hide="showAddressAddBox">
                 <span class = "fa fa-plus mr-15"></span> <span class="vm-link">Add a new address</span>
             </div>
 
@@ -97,11 +97,11 @@
 
         <!---Date and Time --->
         <div class = "vm-select-date-time-link p10">
-            <div class="dropdown">
-            <a id="vm-select-date-time" class="dropdown-toggle" role="button" data-toggle="dropdown" data-target="#" >
-                <span class="icon icon-clock mr-10"></span>
-                Select Date & Time
-            </a>
+                <span id="vm-select-date-time">
+                    <span class="icon icon-clock mr-10"></span>
+                        Select Date & Time
+                    </span>
+                <input type="text" ng-model="dueDate" vm-datetime-picker class="form-control">
                 <!--<div class="input-group input-group-sm date" options="zdateOptions" datetimepicker ng-model="dateTime">-->
                     <!--<input type="text" class="form-control" />-->
           <!--<span class="input-group-addon">-->
