@@ -15,7 +15,7 @@ module.exports = function ( grunt ) {
   grunt.loadNpmTasks('grunt-conventional-changelog');
   grunt.loadNpmTasks('grunt-bump');
   grunt.loadNpmTasks('grunt-ng-annotate');
-  grunt.loadNpmTasks('grunt-html2js');
+  // grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-neuter');
 
   /**
@@ -107,6 +107,13 @@ module.exports = function ( grunt ) {
           }
        ]   
       },
+      templates: {
+        expand: true,
+        dot: true,
+        cwd: 'src/',
+        dest: '<%= build_dir %>/templates',
+        src: ['**/*.html']
+      },
       build_vendor_assets: {
         files: [
           { 
@@ -193,8 +200,8 @@ module.exports = function ( grunt ) {
           '<%= vendor_files.js %>', 
           'module.prefix', 
           '<%= build_dir %>/src/**/*.js', 
-          '<%= html2js.app.dest %>', 
-          '<%= html2js.common.dest %>', 
+          // '<%= html2js.app.dest %>', 
+          // '<%= html2js.common.dest %>', 
           'module.suffix' 
         ],
         dest: '<%= compile_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.js'
@@ -291,35 +298,35 @@ module.exports = function ( grunt ) {
       globals: {}
     },
 
-    /**
-     * HTML2JS is a Grunt plugin that takes all of your template files and
-     * places them into JavaScript files as strings that are added to
-     * AngularJS's template cache. This means that the templates too become
-     * part of the initial payload as one JavaScript file. Neat!
-     */
-    html2js: {
-      /**
-       * These are the templates from `src/app`.
-       */
-      app: {
-        options: {
-          base: 'src/app'
-        },
-        src: [ '<%= app_files.atpl %>' ],
-        dest: '<%= build_dir %>/templates-app.js'
-      },
+    // /**
+    //  * HTML2JS is a Grunt plugin that takes all of your template files and
+    //  * places them into JavaScript files as strings that are added to
+    //  * AngularJS's template cache. This means that the templates too become
+    //  * part of the initial payload as one JavaScript file. Neat!
+    //  */
+    // html2js: {
+    //   /**
+    //    * These are the templates from `src/app`.
+    //    */
+    //   app: {
+    //     options: {
+    //       base: 'src/app'
+    //     },
+    //     src: [ '<%= app_files.atpl %>' ],
+    //     dest: '<%= build_dir %>/templates-app.js'
+    //   },
 
-      /**
-       * These are the templates from `src/common`.
-       */
-      common: {
-        options: {
-          base: 'src/common'
-        },
-        src: [ '<%= app_files.ctpl %>' ],
-        dest: '<%= build_dir %>/templates-common.js'
-      }
-    },
+    //   /**
+    //    * These are the templates from `src/common`.
+    //    */
+    //   common: {
+    //     options: {
+    //       base: 'src/common'
+    //     },
+    //     src: [ '<%= app_files.ctpl %>' ],
+    //     dest: '<%= build_dir %>/templates-common.js'
+    //   }
+    // },
 
     neuter: {
       options: {
@@ -349,8 +356,6 @@ module.exports = function ( grunt ) {
         dir: '<%= build_dir %>',
         src: [
           '<%= vendor_files.js %>',
-          '<%= html2js.common.dest %>',
-          '<%= html2js.app.dest %>',
           '<%= vendor_files.css %>',
           '<%= build_dir %>/app-build.js',
           '<%= build_dir %>/assets/<%= pkg.name %>-<%= pkg.version %>.css'
@@ -431,21 +436,29 @@ module.exports = function ( grunt ) {
       /**
        * When index.html changes, we need to compile it.
        */
-      html: {
+      index: {
         files: [ '<%= app_files.html %>' ],
         tasks: [ 'index:build' ]
       },
 
-      /**
-       * When our templates change, we only rewrite the template cache.
-       */
-      tpls: {
-        files: [ 
-          '<%= app_files.atpl %>', 
-          '<%= app_files.ctpl %>'
-        ],
-        tasks: [ 'html2js' ]
+      html: {
+        files: ['client/app/**/*.html'],
+        tasks: ['copy:templates'],
+        options: {
+          livereload: true
+        }
       },
+
+      // /**
+      //  * When our templates change, we only rewrite the template cache.
+      //  */
+      // tpls: {
+      //   files: [ 
+      //     '<%= app_files.atpl %>', 
+      //     '<%= app_files.ctpl %>'
+      //   ],
+      //   tasks: [ 'html2js' ]
+      // },
 
       /**
        * When the CSS files change, we need to compile and minify them.
@@ -492,9 +505,9 @@ module.exports = function ( grunt ) {
    * The `build` task gets your app ready to run for development and testing.
    */
   grunt.registerTask( 'build', [
-    'clean', 'html2js', 'neuter', 'jshint', 'less:build',
+    'clean', 'neuter', 'jshint', 'less:build',
     'concat:build_css', 'copy:build_app_assets', 'copy:build_vendor_assets',
-    'copy:build_appjs', 'copy:build_vendorjs', 'copy:build_vendorcss', 'index:build' 
+    'copy:build_appjs', 'copy:build_vendorjs', 'copy:build_vendorcss', 'copy:templates','index:build' 
   ]);
 
   /**
