@@ -4,10 +4,19 @@
 
 angular.module( 'Vyomo')
 
-    .controller( 'ServiceCtrl', ['$scope', '$state', 'vyomoAPIservice', 'globals', 'cart', 'productObjects', function ServiceController($scope, $state, vyomoAPIservice, globals, cart, productObjects) {
+    .controller( 'ServiceCtrl', ['$scope', '$state', 'vyomoAPIservice', 'globals', 'cart', 'productObjects', '$cookies', function ServiceController($scope, $state, vyomoAPIservice, globals, cart, productObjects, $cookies) {
         $scope.cartProducts = [];
         $scope.citySelected = false;
         $scope.data = globals.getCities();
+
+        var city = $cookies.getObject('city');
+        // if city is present in cookie, load it and getServices for that city
+        if(city){
+            $scope.data.selectedCity = city;
+            getServicesPackages(city);
+        }
+        
+        $scope.getServicesPackages = getServicesPackages;
 
         function _sortAccordingtoPrice(packagesList) {
             return packagesList.sort(function (a, b) {
@@ -34,20 +43,27 @@ angular.module( 'Vyomo')
             }
         };
 
-        $scope.getServicesPackages = function() {
+        function getServicesPackages(cityCookie) {
             if ($scope.data.selectedCity !== null) {
                 $scope.citySelected = true;
 
                 //API calling to get packages and services
                 //var cityName = $scope.data.selectedCity;
                 //var city = angular.element('.vm-select-city option:selected').attr('latLong');
-
-                var cityElem = document.querySelector(".vm-select-city");
-                var city = cityElem.options[cityElem.selectedIndex].value;
+                var city = null;
+                // if city is not present in cookie
+                if(!cityCookie){
+                    var cityElem = document.querySelector(".vm-select-city");
+                    city = cityElem.options[cityElem.selectedIndex].value;
+                    // creating another cookie with stores selected city
+                    $cookies.putObject('city',city);
+                }
+                else{ //if city is present
+                    city = cityCookie;
+                }
                 // initiating cart for selected city
                 cart.init(city);
-                // creating another cookie with stores selected city
-                cart._updateCookie('city', city);
+                
                 //API Call success method block
                 vyomoAPIservice.getAllPackagesServices(city).success(function (response) {
                     $scope.packages = [];
@@ -97,7 +113,7 @@ angular.module( 'Vyomo')
                 });
                 $state.go('servicesPage.list');
             }
-        };
+        }
     
     }])
 

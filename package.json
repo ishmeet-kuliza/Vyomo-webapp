@@ -12,7 +12,10 @@
     "type": "git",
     "url": "git@github.com:ngbp/ngbp.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "angular-bootstrap-datetimepicker": "^1.0.1",
+    "moment": "^2.11.1"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-bump": "0.0.6",
@@ -26,6 +29,6 @@
     "grunt-conventional-changelog": "^0.1.2",
     "grunt-html2js": "^0.1.9",
     "grunt-ng-annotate": "^0.8.0",
-    "grunt-neuter": "*" 
+    "grunt-neuter": "*"
   }
 }
