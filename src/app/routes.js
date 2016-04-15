@@ -93,14 +93,14 @@ angular.module('Vyomo')
         views: {
             "main": {
                 controller: 'CartCtrl',
-                templateUrl: 'cart/views/viewCart.tpl.html'
+                templateUrl: '/src/app/cart/views/viewCart.tpl.html'
             },
             "packageListCart@checkoutCart" : {
 
-                templateUrl: 'servicesPage/views/packageList.tpl.html'
+                templateUrl: '/src/app/servicesPage/views/packageList.tpl.html'
             },
             "serviceListCart@checkoutCart" : {
-                templateUrl: 'servicesPage/views/serviceList.tpl.html'
+                templateUrl: '/src/app/servicesPage/views/serviceList.tpl.html'
             }
         },
         data:{ pageTitle: 'Cart' }
@@ -109,7 +109,7 @@ angular.module('Vyomo')
         views : {
             "addressView" : {
                 controller : 'CartAddressCtrl',
-                templateUrl : 'servicesPage/views/packageList.tpl.html'
+                templateUrl : '/src/app/servicesPage/views/packageList.tpl.html'
             }
         }
     });

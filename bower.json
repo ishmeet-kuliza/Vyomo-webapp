@@ -7,7 +7,8 @@
     "bootstrap": "~3.1",
     "angular-bootstrap": "~1.1.2",
     "angular-ui-router": "~0.2",
-    "angular-cookies": "*"
+    "angular-cookies": "*",
+    "eonasdan-bootstrap-datetimepicker": "*"
   },
   "dependencies": {
     "angular-animate": "^1.5.0"
