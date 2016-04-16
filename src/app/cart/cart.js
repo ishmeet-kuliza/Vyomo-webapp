@@ -78,7 +78,7 @@ angular.module('Vyomo')
     }])
 
 
-    .controller( 'CartCheckoutCtrl',['$scope','globals', 'addressService', function CartController($scope,globals,addressService) {
+    .controller( 'CartCheckoutCtrl',['$scope','globals', 'addressService', 'submitBookingService', function CartController($scope,globals,addressService,submitBookingService) {
         $scope.showAddressAddBox = false;
         //Date AND TIME STORe
         $scope.dateTime = new Date();
@@ -98,12 +98,11 @@ angular.module('Vyomo')
         //Autocomplet address
         //in $scope.address --all the values being stored
         $scope.address = {
-            "city" : '',
-            "line1" :'',
-            "line2" : '',
-            "landmark":'',
-            "latitude" : '',
-            "longitude" : ''
+            city : '',
+            address :'',
+            landmark:'',
+            latitude : '',
+            longitude : ''
         };
 
         function addressAutocomplete(){
@@ -117,7 +116,7 @@ angular.module('Vyomo')
                 var place = autocompleteFrom.getPlace();
                 $scope.address.latitude = place.geometry.location.lat();
                 $scope.address.longitude = place.geometry.location.lng();
-                $scope.address.line2 = place.formatted_address;
+                $scope.address.landmark = place.formatted_address;
                 $scope.$apply();
             });
         }
@@ -131,9 +130,8 @@ angular.module('Vyomo')
         //Init functions
         addressAutocomplete();
         getSavedAddress();
-
+        $scope.errorMsg = '';
         $scope.addAddress = function(){
-            $scope.address.address = $scope.address.line1 + ',' + $scope.address.line2;
             addressService.addUserAddress($scope.address).then(function(address_id){
                 // shallow copy of object
                 var address = Object.assign({}, $scope.address);
@@ -142,9 +140,13 @@ angular.module('Vyomo')
                 for(var key in $scope.address){
                     $scope.address[key] = '';
                 }
-            },function(error){
-                window.console.log(error);
+                $scope.showAddressAddBox = false;
+                $scope.errorMsg = '';
+            },function(errorMsg){
+                window.console.log(errorMsg);
+                $scope.errorMsg = errorMsg;
             });
+            
         };
 
         $scope.deleteAddress = function(address){
@@ -158,6 +160,15 @@ angular.module('Vyomo')
                     window.console.log(error);
                 });
             }
+        };
+
+        $scope.confirmOrder = function(){
+            var addressId = 1;
+            submitBookingService.bookRequest(addressId).then(function(confirmMessage){
+                window.console.log(confirmMessage);
+            },function(error){
+                window.console.log(error);
+            });
         };
 
     }]);
