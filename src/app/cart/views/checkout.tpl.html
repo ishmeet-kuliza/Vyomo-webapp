@@ -71,14 +71,15 @@
 
         </div>
 
-        <!---Date and Time --->
+        <!-- Date and Time -->
         <div class = "vm-select-date-time-link p10">
                 <span id="vm-select-date-time">
                     <span class="icon icon-clock mr-10"></span>
                         Select Date & Time
                     </span>
-                <input type="text" ng-model="dueDate" vm-datetime-picker class="form-control">
-                <!--<div class="input-group input-group-sm date" options="zdateOptions" datetimepicker ng-model="dateTime">-->
+                <input type="text" ng-model="dueDate" id="date-time" vm-datetime-picker name='datetime' class="form-control">
+                <span ng-show="addressForm.datetime.$error.required" class="control-label">Required</span>
+                <!-- <div class="input-group input-group-sm date" options="zdateOptions" datetimepicker ng-model="dateTime"> -->
                     <!--<input type="text" class="form-control" />-->
           <!--<span class="input-group-addon">-->
               <!--<span class="fa fa-calendar"></span>-->
@@ -93,7 +94,7 @@
 
             <div class="col-md-3  mr-15 payment-mode-cash">
                 <div class="roundedOne  pull-left" ng-class="{'checked' : selectAddress}">
-                    <input type="radio" ng-model="paymentMode" ng-value="cash" id="paymentMode"  name="payByCash" />
+                    <input type="radio" ng-model="paymentMode" ng-value="cash" id="paymentMode" ng-checked="true" name="payByCash" />
                     <label for="roundedOne2"></label>
                 </div>
                 <div class="pull-left ml-20">Pay by Cash</div>
@@ -121,6 +122,7 @@
 
         <div class="row removeRowMargin p25 ">
             <a class="vm-primary-btn" id="vm-confirm-order" ng-click="confirmOrder()"> CONFIRM ORDER</a>
+            <span class='control-label ml-10'>{{bookingError}}</span>
         </div>
     </div>
 

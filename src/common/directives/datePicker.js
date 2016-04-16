@@ -1,7 +1,7 @@
 
 angular.module('Vyomo')
     .directive('vmDatetimePicker', function () {
-        var format = 'MM/DD/YYYY HH:mm ';
+        var format = 'YYYY-MM-DD HH:mm';
         var today = new Date();
         return {
             restrict: 'A',

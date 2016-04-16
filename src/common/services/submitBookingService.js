@@ -9,13 +9,13 @@ angular.module('Vyomo')
         var BASE_URL = env.BASE_URL;
         var user = auth.getUser();
         var accessToken = user ? user.sessionToken : '';
-        submitBooking.bookRequest = function(address_id){
+        submitBooking.bookRequest = function(address_id, when){
             var code = promoCodeService.code;
             var postData = {
                 access_token: accessToken,
                 service_ids: cart.getAllItems() ? cart.getAllItems().toString(): '',
                 address_id: address_id,
-                when: '2016-04-18 13:00',
+                when: when,//'2016-04-18 13:00',
                 promotional_code: code
             };
             var url = BASE_URL + '/submit_booking_request';
