@@ -130,7 +130,7 @@ angular.module('Vyomo')
         //Init functions
         addressAutocomplete();
         getSavedAddress();
-
+        $scope.errorMsg = '';
         $scope.addAddress = function(){
             addressService.addUserAddress($scope.address).then(function(address_id){
                 // shallow copy of object
@@ -140,10 +140,13 @@ angular.module('Vyomo')
                 for(var key in $scope.address){
                     $scope.address[key] = '';
                 }
-            },function(error){
-                window.console.log(error);
+                $scope.showAddressAddBox = false;
+                $scope.errorMsg = '';
+            },function(errorMsg){
+                window.console.log(errorMsg);
+                $scope.errorMsg = errorMsg;
             });
-            $scope.showAddressAddBox = false;
+            
         };
 
         $scope.deleteAddress = function(address){
