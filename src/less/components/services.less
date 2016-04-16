@@ -42,6 +42,7 @@ span.label-selected-city{
   right: 3rem;
   display: inline;
   z-index: 999;
+  font-family:SourceSansPro-Bold;
   cursor: default;
 
   span {
@@ -124,10 +125,10 @@ span.label-selected-city{
   .vyomo-feature-packages{
     .vm-package-box{
       width : 32.33% ; //The remaining width of 3% (i.e. 32.33 x 3 = 97%) will be used to create the space between the boxes and simulate margins
-      margin-left: 1.5%;
-      &:first-of-type{
-        margin-left: 0;
-      }
+    }
+    .squaredOne label:after{
+      top:2px;
+      left:3px;
     }
   }
 
@@ -136,14 +137,16 @@ span.label-selected-city{
       padding-top: 0px;
       background: white;
     }
-    .serviceContainerBox{
+    .containerBox{
       width : 32.33% ; //The remaining width of 3% (i.e. 32.33 x 3 = 97%) will be used to create the space between the boxes and simulate margins
-      margin-left: 1.5%;
-      &:first-of-type{
-        margin-left: 0;
-      }
       margin-bottom: 1%;
+      flex-direction: row;
+
+      .element-box{
+        width:100%;
+      }
     }
+
     .vm-service-box{
       margin-bottom: 0 !important;
     }

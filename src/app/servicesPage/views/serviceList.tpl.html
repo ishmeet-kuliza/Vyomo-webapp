@@ -1,8 +1,8 @@
 <section-header title = "SERVICES" ng-show="citySelected" ng-hide="viewCart" subtext =""></section-header>
 
 <div class="mt-25 flexBox vm-services-row">
-    <div class="serviceContainerBox" ng-repeat="service in categories track by $index | orderBy :'service.category_name'">
-        <div class="flexItem vm-service-box" >
+    <div class="serviceContainerBox containerBox" ng-repeat="service in categories track by $index | orderBy :'service.category_name'">
+        <div class="flexItem vm-service-box element-box" >
             <div class="vm-service-box-inner" ng-click="isCollapsed = !isCollapsed">
                 <div class="pull-left imgBox">
                     <! --{{img to be changed to api image key}} -->
@@ -53,7 +53,7 @@
         <!-- Tobe shown in viewCart section only ------->
         <div class="vm-remove-from-cart vm-link" ng-show="viewCart">Remove</div>
     </div>
-    <div class="vm-cart-addmore cursorPointer" ng-show="viewCart">
+    <div class="vm-cart-addmore cursorPointer" ng-show="viewCart" ng-click="goToState('servicesPage')">
         <span class = "fa fa-plus mr-15"></span> <span class="vm-link">Add another service</span>
     </div>
 </div>
