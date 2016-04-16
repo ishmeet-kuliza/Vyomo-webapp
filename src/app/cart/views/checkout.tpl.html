@@ -4,42 +4,23 @@
 
         <div class="mt-25 flexBox selected-address-box">
 
-            <div class="vm-address-box">
+            <div class="vm-address-box" ng-repeat="address in savedAddresses" latitude="address.latitude" id="address.id" longitude="address.longitude">
                 <!-- Rounded checkbox -->
                 <div class="roundedOne pull-left" ng-class="{'checked' : selectAddress}">
-                    <input type="checkbox" ng-model="selectAddress" value="address_id" id="roundedOne" name="address" />
-                    <label for="roundedOne"></label>
+                    <input type="checkbox" ng-model="selectAddress" value="address_id" id="roundedOne{{address.id}}" name="address"  />
+                    <label for="roundedOne{{address.id}}"></label>
                 </div>
                 <div class=" pull-left ml-10 address-text">
                     <span> Select address</span>
                     <br><br>
-                    <span> #1989,22b Main Road, sector-1, HSR-Layout </span>
+                    <span> {{address.address}} </span>
                     <br>
-                    <span> Bangalore 560102 </span>
+                    <span> {{address.landmark}} </span>
                     <br>
-                    <span>Landmark - Something </span>
-
+                    <span> {{address.city}} </span>
                 </div>
 
-                <div class="mt-20 remove-address vm-link cursorPointer">Remove</div>
-            </div>
 
-            <div class="vm-address-box ">
-                <!-- Rounded checkbox -->
-                <div class="roundedOne  pull-left" ng-class="{'checked' : selectAddress}">
-                    <input type="checkbox" ng-model="selectAddress" value="address_id" id="roundedOne2" name="address" />
-                    <label for="roundedOne2"></label>
-                </div>
-                <div class=" pull-left ml-10 address-text">
-                    <span> Select address</span>
-                    <br><br>
-                    <span> #1989,22b Main Road, sector-1, HSR-Layout </span>
-                    <br>
-                    <span> Bangalore 560102 </span>
-                    <br>
-                    <span>Landmark - Something </span>
-
-                </div>
                 <div class="mt-20 remove-address vm-link cursorPointer">Remove</div>
             </div>
 

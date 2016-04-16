@@ -7,14 +7,16 @@ angular.module('Vyomo')
             restrict: 'A',
             require: 'ngModel',
             link: function (scope, element, attributes, ctrl) {
-                $(element[0]).datetimepicker({
+                var inputElem = $(element[0]);
+
+                inputElem.datetimepicker({
                     format: format,
                     sideBySide : true,
                     showClear : true,
                     minDate : today
                 });
-                var picker = element.data("DateTimePicker");
-
+                var picker = inputElem.data("DateTimePicker");
+                window.console.log(picker);
                 ctrl.$formatters.push(function (value) {
                     var date = moment(value);
                     if (date.isValid()) {
@@ -23,12 +25,17 @@ angular.module('Vyomo')
                     return '';
                 });
 
-                element.on('change', function () {
-                    scope.$apply(function() {
-                        var date = picker.getDate();
-                        ctrl.$setViewValue(date.valueOf());
-                    });
-                });
+                //inputElem.on('change', function () {
+                //    window.console.log(inputElem.val());
+                //    scope.$apply(function() {
+                //        window.console.log("htlto");
+                //        var date = picker.getDate();
+                //        ctrl.$setViewValue(date.valueOf());
+                //    });
+                //});
+
+
+                window.console.log(scope.dueDate);
             }
         };
     });
