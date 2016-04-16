@@ -77,8 +77,8 @@ angular.module('Vyomo')
 
     }])
 
-    .controller( 'CartCheckoutCtrl',['$scope','globals','addressService', function CartController($scope,globals,addressService) {
 
+    .controller( 'CartCheckoutCtrl',['$scope','globals', 'addressService', function CartController($scope,globals,addressService) {
         $scope.showAddressAddBox = false;
         //Date AND TIME STORe
         $scope.dateTime = new Date();
@@ -88,14 +88,12 @@ angular.module('Vyomo')
 
        function getSavedAddress(){
             //API Call success method block
-            addressService.getAllUserAddress().success(function (response) {
-                window.console.log(response);
-                if(response.hasOwnProperty('status_code') && response['status_code'] === 200){
-                    if(response.hasOwnProperty('message')){
-                        $scope.savedAddresses = response.message;
-                    }
-                }
+            addressService.getAllUserAddress().then(function(userAddresses){
+                $scope.savedAddresses = userAddresses;
+            },function(error){
+                window.console.log(error);
             });
+
         }
         //Autocomplet address
         //in $scope.address --all the values being stored
@@ -134,5 +132,32 @@ angular.module('Vyomo')
         addressAutocomplete();
         getSavedAddress();
 
+        $scope.addAddress = function(){
+            $scope.address.address = $scope.address.line1 + ',' + $scope.address.line2;
+            addressService.addUserAddress($scope.address).then(function(){
+                // shallow copy of object
+                var address = Object.assign({}, $scope.address);
+                $scope.savedAddresses.push(address);
+                window.console.log($scope.savedAddresses);
+                for(var key in $scope.address){
+                    $scope.address[key] = '';
+                }
+            },function(error){
+                window.console.log(error);
+            });
+        };
+
+        $scope.deleteAddress = function(address){
+            // find index of adress to be deleted in list of user addresses
+            var index = $scope.savedAddresses.indexOf(address);
+            if(index > -1){
+                // if found then call api and delete from list
+                addressService.deleteUserAddress(address).then(function(){
+                    $scope.savedAddresses.splice(index, 1);
+                },function(error){
+                    window.console.log(error);
+                });
+            }
+        };
 
     }]);
