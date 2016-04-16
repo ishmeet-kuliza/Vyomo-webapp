@@ -9,7 +9,8 @@
     "angular-ui-router": "~0.2",
     "angular-cookies": "*",
     "eonasdan-bootstrap-datetimepicker": "*",
-    "moment": "*"
+    "moment": "*",
+    "bootstrap": "*"
   },
   "dependencies": {
     "angular-animate": "^1.5.0",

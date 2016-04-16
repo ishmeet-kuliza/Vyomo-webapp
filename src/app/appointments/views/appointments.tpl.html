@@ -3,37 +3,48 @@
 		<span class="heading">YOUR APPOINTMENTS</span>
 		<hr class="horizontal-bar"></hr>
 	</div>
-	<div ng-if="appointmentsAvailable" class="appointments-available inline-flex">
-		<div ng-repeat="appointment in appointments" class="appointment">
-			<div>
+	<div ng-if="appointmentsAvailable" class="appointments-available flex">
+		<div ng-repeat="appointment in appointments track by $index" class="appointment">
+			<div class="order-id-container inline-flex">
 				<span>ORDER ID - {{appointment.appointment_id}}</span>
-				<span id="openServiceListIcon" class= "fa"  ng-hide="viewCart" ng-class="isCollapsed ? ['fa-angle-down'] : ['fa-angle-up']">
-				 	<a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapsed-appointment" aria-expanded="false" aria-controls="collapsed-appointment">
-					</a>
-				</span>
+			 	<!-- <a role="button" class="fa fa-angle-down" data-toggle="collapse" href="#collapsed-appointment" aria-expanded="false" aria-controls="collapsed-appointment">
+				</a> -->
+				<button class="fa" type="button" data-toggle="collapse" data-target="#collapsed{{$index}}" aria-expanded="false" aria-controls="collapsed" ng-class="appointment.isCollapsed ? 'fa-angle-down' : 'fa-angle-up'" ng-click="toggleCollapse(appointment)">
+				</button>
 			</div>
 			
-			<!-- <div class="appointment-details" id="collapsed-appointment"> -->
-				<div>{{appointment.appointment_date}}</div>
-				<div>
-					<span>{{appointment.services.length}} services booked</span>
-					<span> Status {{appointment_status}}</span>
+			<div id="collapsed{{$index}}" class="collapse">
+				<div class="appointment-details-container inline-flex">
+					<div>
+						<span>{{appointment.appointment_date}}</span>
+						<div>{{appointment.services.length}} services booked</div>
+					</div>
+						<span> Status: <span ng-class="(appointment.appointment_status=='Complete')?  'color-complete': 'default-color'" >{{appointment.appointment_status}}</span></span>
 				</div>
-			<!-- </div> -->
 
-			<div class="appointment-details" id="collapsed-appointment">
-				<div ng-repeat="service in appointment.services">
-					<span> {{service.service_name}}</span>
-					<<span>&#8377;&nbsp;{{service.service_cost}}</span>
+				<div class="appointment-details" id="collapsed-appointment">
+					<div ng-repeat="service in appointment.services" class="service-container inline-flex">
+						<span> {{service.service_name}}</span>
+						<span>&#8377;&nbsp;{{service.service_cost}}</span>
+					</div>
 				</div>
-			</div>
-			<div>
-				<span>Total</span>
-				<span>&#8377;&nbsp;{{appointment.total_amount}}</span>
+				<div class="total-container inline-flex">
+					<span>Total</span>
+					<span>&#8377;&nbsp;{{appointment.total_amount}}</span>
+				</div>
+				<div class="payment-info-container inline-flex"> 
+					<span>Paid using 
+						<span class="mode">Cash</span>
+					</span>
+					<div class="cancel-btn" ng-if="appointment.appointment_status!='Complete'">
+						<span ng-click="cancelAppointmen(appointment)">Cancel</span>
+					</div>
+				</div>
+
 			</div>
 		</div>
 	</div>
-	<div ng-if="!appointmentsAvailable" class="noAppointments">
+	<div ng-if="!appointmentsAvailable" class="no-appointments">
 		<span> No Appointments </span>
 	</div>
 </div>

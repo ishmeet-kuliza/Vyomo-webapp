@@ -67,7 +67,8 @@ module.exports = {
         'vendor/angular-animate/angular-animate.min.js',
         'vendor/jquery/dist/jquery.min.js',
 
-      'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
+      'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+      'vendor/bootstrap/dist/js/bootstrap.min.js'
 
 
 

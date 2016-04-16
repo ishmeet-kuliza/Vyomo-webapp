@@ -3,6 +3,12 @@
 	background: #eeeeee;
 	font-family: 'SourceSansPro';
 
+	.no-appointments {
+	  text-align: center;
+    color: #8a8a8a;
+    padding: 2rem 0;
+	}
+
 	.heading {
 		color: #8a8a8a;
 		font-size: 2rem;
@@ -15,14 +21,88 @@
 	}
 
 	.appointments-available {
-		justify-content: space-between;
 		padding: 3rem 0;
+		width: 100%;
+		display: flex;
+    align-items: flex-start;
+    flex-direction: row;
 	}
 
 	.appointment {
 		background: #FFF;
     font-weight: 100;
     color: #929292;
+    padding: 2rem;
+    width: 100%;
+    margin-right: 1rem;
+
+    .order-id-container {
+    	color: #5b5b5b;
+    	width: 100%;
+    	justify-content: space-between;
+
+    	button {
+    		color: #5DC1BC;
+    		padding-top: 0.6rem;
+    		background: transparent;
+    		border: none;
+    		outline: none;
+    	}
+    }
+
+    &:last-child {
+    	margin-right: 0;
+    }
+
+    .appointment-details-container {
+       width: 100%;
+	    font-size: 1rem;
+	    justify-content: space-between;
+	    padding: 0.5rem 0;
+
+	    > span {
+	    	padding-top: 1.3rem;
+	    }
+    }
+
+    .appointment-details {
+      border-bottom: 1px solid #dfdfdf;
+	    border-top: 1px solid #dfdfdf;
+	    margin: 0.2rem 0;
+	    padding: 0.7rem 0;
+
+	    .service-container {
+		    width: 100%;
+		    justify-content: space-between;
+		    font-size: 1.2rem;
+		    padding: 0.2rem 0;
+	    }
+    }
+
+    .total-container {
+	    width: 100%;
+	    justify-content: space-between;
+	    color: #5b5b5b;
+    }
+
+    .payment-info-container {
+      padding: 0.5rem 0;
+    	font-size: 1.3rem;
+    	width: 100%;
+    	justify-content: space-between;
+
+    	.mode {
+    		color: #5b5b5b;
+		    font-size: 1.8rem;
+		    padding-left: 0.2rem;
+    	}
+
+    	.cancel-btn {
+    		padding-top: 0.6rem;
+    		color: #F00;
+    		cursor: pointer;
+    	}
+    }
 	}
 }
 
@@ -39,4 +119,12 @@
   display: -webkit-inline-box;
   display: -ms-inline-flex;
   display: inline-flex;
+}
+
+.color-complete {
+	color: #FF749B;
+}
+
+.default-color {
+	color: #5DC1BC;
 }
