@@ -30,7 +30,7 @@ angular.module('Vyomo').directive('totalPriceHeader' , ['cart' ,'promoCodeServic
                 $scope.totalPrice = newPrice;
             });
 
-            $scope.promoCode = null;
+            $scope.promoCode = '';
             $scope.discount = 0;
             $scope.errorMsg = '';
             $scope.verifyPromoCode = function(){
