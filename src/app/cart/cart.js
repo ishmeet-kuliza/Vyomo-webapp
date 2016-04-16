@@ -8,6 +8,8 @@ angular.module('Vyomo')
         $scope.categories = [];
         $scope.step1Collapse = false;
         $scope.step2Collapse = false;
+
+        $scope.paymentMode = true;
         $scope.dueDate = '';
         //API Call success method block
         //When in cookies any item/cart is not present
@@ -85,7 +87,9 @@ angular.module('Vyomo')
         $scope.dateOptions = '{format:"DD.MM.YYYY HH:mm"}';
         $scope.savedAddresses = [];
         $scope.dataCities = globals.getCities();
-
+        $scope.selectedAddress = {
+            'id':'0'
+        };
        function getSavedAddress(){
             //API Call success method block
             addressService.getAllUserAddress().then(function(userAddresses){
