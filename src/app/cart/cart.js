@@ -134,11 +134,11 @@ angular.module('Vyomo')
 
         $scope.addAddress = function(){
             $scope.address.address = $scope.address.line1 + ',' + $scope.address.line2;
-            addressService.addUserAddress($scope.address).then(function(){
+            addressService.addUserAddress($scope.address).then(function(address_id){
                 // shallow copy of object
                 var address = Object.assign({}, $scope.address);
+                address.address_id = address_id;
                 $scope.savedAddresses.push(address);
-                window.console.log($scope.savedAddresses);
                 for(var key in $scope.address){
                     $scope.address[key] = '';
                 }

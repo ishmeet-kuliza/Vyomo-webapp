@@ -9,12 +9,12 @@ angular.module('Vyomo')
         var BASE_URL = env.BASE_URL;
         var user = auth.getUser();
         var accessToken = user.sessionToken ;
-        var deferred = $q.defer();
+
         // method to call api for fetching all user addresses
         address.getAllUserAddress = function(){
-
             var postData = {access_token: accessToken};
             var url = BASE_URL + '/get_all_address';
+            var deferred = $q.defer();
             $http.post(url, postData).then(function(response){
                 if(response && response.data && response.data.status_code === 200){
                     deferred.resolve(response.data.message);
@@ -38,6 +38,7 @@ angular.module('Vyomo')
                 longitude: addressObj.longitude,
                 city: addressObj.city
             };
+            var deferred = $q.defer();
             var url = BASE_URL + '/add_address';
             $http.post(url, postData).then(function(response){
                 if(response && response.data && response.data.status_code === 200){
@@ -58,6 +59,7 @@ angular.module('Vyomo')
                 access_token: accessToken,
                 address_id: addressObj.address_id
             };
+            var deferred = $q.defer();
             var url = BASE_URL + '/delete_address';
            $http.post(url, postData).then(function(response){
                 if(response && response.data && response.data.status_code ===200){

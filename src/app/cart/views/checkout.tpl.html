@@ -4,11 +4,11 @@
 
         <div class="mt-25 flexBox selected-address-box">
 
-            <div class="vm-address-box" ng-repeat="address in savedAddresses track by $index" latitude="address.latitude" id="{{address.id}}" longitude="address.longitude">
+            <div class="vm-address-box" ng-repeat="address in savedAddresses track by $index" latitude="address.latitude" id="address.id" longitude="address.longitude">
                 <!-- Rounded checkbox -->
                 <div class="roundedOne pull-left" ng-class="{'checked' : selectAddress}">
-                    <input type="checkbox" ng-model="selectAddress" value="address.id" id="roundedOne{{address.id}}" name="address"  />
-                    <label for="roundedOne{{address.id}}"></label>
+                    <input type="checkbox" ng-model="selectAddress" value="{{address.address_id}}" id="roundedOne{{address.address_id}}" name="address"  />
+                    <label for="roundedOne{{address.address_id}}"></label>
                 </div>
                 <div class=" pull-left ml-10 address-text">
                     <span> Select address</span>
@@ -21,7 +21,7 @@
                 </div>
 
 
-                <div class="mt-20 remove-address vm-link cursorPointer">Remove</div>
+                <div class="mt-20 remove-address vm-link cursorPointer" ng-click="deleteAddress(address)">Remove</div>
             </div>
 
             <div class="vm-add-new-address cursorPointer mt-25" ng-click="showAddressAddBox = !showAddressAddBox" ng-hide="showAddressAddBox">
