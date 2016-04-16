@@ -4,11 +4,11 @@
 
         <div class="mt-25 flexBox selected-address-box">
 
-            <div class="vm-address-box" ng-repeat="address in savedAddresses" latitude="address.latitude" id="address.id" longitude="address.longitude">
+            <div class="vm-address-box" ng-repeat="address in savedAddresses track by $index" latitude="address.latitude" id="{{address.address_id}}" longitude="address.longitude">
                 <!-- Rounded checkbox -->
                 <div class="roundedOne pull-left" ng-class="{'checked' : selectAddress}">
-                    <input type="checkbox" ng-model="selectAddress" value="address.id" id="roundedOne{{address.id}}" name="address"  />
-                    <label for="roundedOne{{address.id}}"></label>
+                    <input type="checkbox" ng-model="selectAddress" value="address.id" id="roundedOne{{address.address_id}}" name="address"  />
+                    <label for="roundedOne{{address.address_id}}"></label>
                 </div>
                 <div class=" pull-left ml-10 address-text">
                     <span> Select address</span>
@@ -21,7 +21,7 @@
                 </div>
 
 
-                <div class="mt-20 remove-address vm-link cursorPointer">Remove</div>
+                <div class="mt-20 remove-address vm-link cursorPointer" ng-click="deleteAddress(address)">Remove</div>
             </div>
 
             <div class="vm-add-new-address cursorPointer mt-25" ng-click="showAddressAddBox = !showAddressAddBox" ng-hide="showAddressAddBox">
@@ -42,23 +42,16 @@
                     </div>
 
                     <div class = "form-group group">
-                        <input type="text" name="addressLine1" ng-model="address.line1"  class="vm-address-line-1 inputMaterial" required>
+                        <input type="text" name="address" ng-model="address.address"  class="vm-address-line-1 inputMaterial" required>
                         <span class="bar"></span>
-                        <label class="address-label">Address Line 1(Flat No,House No,Street No) *</label>
-                        <span ng-show="addressForm.addressLine1.$error.required"  class="control-label">Required</span>
+                        <label class="address-label">Address Line *</label>
+                        <span ng-show="addressForm.address.$error.required"  class="control-label">Required</span>
                     </div>
                     <div class = "form-group group">
-                        <input type="text" name="addressLine2" ng-model="address.line2" id="locality" class="vm-address-line-2 inputMaterial" required>
+                        <input type="text" name="landmark" ng-model="address.landmark" id="locality" class="vm-address-line-2 inputMaterial" required>
 
                         <span class="bar"></span>
-                        <label class="address-label">Address Line 2 (Apartment/Locality/Street) *</label>
-                        <span ng-show="addressForm.addressLine2.$error.required" class="control-label">Required</span>
-                    </div>
-
-                    <div class = "form-group group">
-                        <input type="text" name="landmark" ng-model="address.landmark" class="landmark inputMaterial" required>
-                        <span class="bar"></span>
-                        <label class="address-label">Landmark *</label>
+                        <label class="address-label">Locality/Street *</label>
                         <span ng-show="addressForm.landmark.$error.required" class="control-label">Required</span>
                     </div>
 
@@ -125,7 +118,7 @@
         <total-price-header show-offer-code = "true" sub-total = "750" discount="NA" total="500"></total-price-header>
 
         <div class="row removeRowMargin p25 ">
-            <a class="vm-primary-btn" id="vm-confirm-order"> CONFIRM ORDER</a>
+            <a class="vm-primary-btn" id="vm-confirm-order" ng-click="confirmOrder()"> CONFIRM ORDER</a>
         </div>
     </div>
 
