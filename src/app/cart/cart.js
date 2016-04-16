@@ -8,7 +8,7 @@ angular.module('Vyomo')
         $scope.categories = [];
         $scope.step1Collapse = false;
         $scope.step2Collapse = false;
-
+        $scope.dueDate = '';
         //API Call success method block
         //When in cookies any item/cart is not present
 
@@ -77,14 +77,26 @@ angular.module('Vyomo')
 
     }])
 
-    .controller( 'CartCheckoutCtrl',['$scope','globals', function CartController($scope,globals) {
+    .controller( 'CartCheckoutCtrl',['$scope','globals','addressService', function CartController($scope,globals,addressService) {
 
         $scope.showAddressAddBox = false;
         //Date AND TIME STORe
         $scope.dateTime = new Date();
         $scope.dateOptions = '{format:"DD.MM.YYYY HH:mm"}';
-
+        $scope.savedAddresses = [];
         $scope.dataCities = globals.getCities();
+
+       function getSavedAddress(){
+            //API Call success method block
+            addressService.getAllUserAddress().success(function (response) {
+                window.console.log(response);
+                if(response.hasOwnProperty('status_code') && response['status_code'] === 200){
+                    if(response.hasOwnProperty('message')){
+                        $scope.savedAddresses = response.message;
+                    }
+                }
+            });
+        }
         //Autocomplet address
         //in $scope.address --all the values being stored
         $scope.address = {
@@ -95,17 +107,32 @@ angular.module('Vyomo')
             "latitude" : '',
             "longitude" : ''
         };
-        var options = {
-            componentRestrictions: {country: "in"}
+
+        function addressAutocomplete(){
+            var options = {
+                componentRestrictions: {country: "in"}
+            };
+
+            var inputFrom = document.getElementById('locality');
+            var autocompleteFrom = new google.maps.places.Autocomplete(inputFrom, options);
+            google.maps.event.addListener(autocompleteFrom, 'place_changed', function() {
+                var place = autocompleteFrom.getPlace();
+                $scope.address.latitude = place.geometry.location.lat();
+                $scope.address.longitude = place.geometry.location.lng();
+                $scope.address.line2 = place.formatted_address;
+                $scope.$apply();
+            });
+        }
+
+
+        $scope.setDate = function(){
+            window.console.log("htlto");
+
         };
 
-        var inputFrom = document.getElementById('locality');
-        var autocompleteFrom = new google.maps.places.Autocomplete(inputFrom, options);
-        google.maps.event.addListener(autocompleteFrom, 'place_changed', function() {
-            var place = autocompleteFrom.getPlace();
-            $scope.address.latitude = place.geometry.location.lat();
-            $scope.address.longitude = place.geometry.location.lng();
-            $scope.address.line2 = place.formatted_address;
-            $scope.$apply();
-        });
+        //Init functions
+        addressAutocomplete();
+        getSavedAddress();
+
+
     }]);
