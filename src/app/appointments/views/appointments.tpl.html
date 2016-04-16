@@ -1,0 +1,39 @@
+<div class="appointments-container">
+	<div> 
+		<span>YOUR APPOINTMENTS</span>
+		<div></div>
+	</div>
+	<div ng-if="appointmentsAvailable">
+		<div ng-repeat="appointment in appointments">
+			<div>
+				<span>ORDER ID - {{appointment.appointment_id}}</span>
+				<span id="openServiceListIcon" class= "fa"  ng-hide="viewCart" ng-class="isCollapsed ? ['fa-angle-down'] : ['fa-angle-up']">
+				 	<a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapsed-appointment" aria-expanded="false" aria-controls="collapsed-appointment">
+					</a>
+				</span>
+			</div>
+			
+			<!-- <div class="appointment-details" id="collapsed-appointment"> -->
+				<div>{{appointment.appointment_date}}</div>
+				<div>
+					<span>{{appointment.services.length}} services booked</span>
+					<span> Status {{appointment_status}}</span>
+				</div>
+			<!-- </div> -->
+
+			<div class="appointment-details" id="collapsed-appointment">
+				<div ng-repeat="service in appointment.services">
+					<span> {{service.service_name}}</span>
+					<<span>&#8377;&nbsp;{{service.service_cost}}</span>
+				</div>
+			</div>
+			<div>
+				<span>Total</span>
+				<span>&#8377;&nbsp;{{appointment.total_amount}}</span>
+			</div>
+		</div>
+	</div>
+	<div ng-if="!appointmentsAvailable" class="noAppointments">
+		<span> No Appointments </span>
+	</div>
+</div>

@@ -118,4 +118,15 @@ angular.module('Vyomo')
         }
     });
 
+    $stateProvider.state( 'appointments', {
+      url: '/appointments',
+      views: {
+          "main": {
+              controller: 'appointmentsCtrl',
+              templateUrl: '/src/app/appointments/views/appointments.tpl.html'
+          }
+      },
+      data:{ pageTitle: 'Login'}
+    });
+
 }]);
