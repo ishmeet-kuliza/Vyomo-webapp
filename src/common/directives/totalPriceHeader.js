@@ -34,7 +34,6 @@ angular.module('Vyomo').directive('totalPriceHeader' , ['cart' ,'promoCodeServic
                     },function(error){
                         $scope.successMsg = '';
                         $scope.errorMsg = error;
-                        window.console.log(error);
                     });
                 }
             };

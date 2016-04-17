@@ -156,7 +156,9 @@ angular.module('Vyomo')
         //Init functions
         addressAutocomplete();
         getSavedAddress();
+
         $scope.errorMsg = '';
+
         $scope.addAddress = function(){
             $.blockUI({message: blockUIMsg});
             addressService.addUserAddress($scope.address).then(function(address_id){
@@ -164,9 +166,19 @@ angular.module('Vyomo')
                 var address = Object.assign({}, $scope.address);
                 address.address_id = address_id;
                 $scope.savedAddresses.push(address);
+                // select newly added address for delivery
+                window.setTimeout(function(){
+                    var dom = document.getElementById('roundedOne'+ address_id);
+                    if(dom){
+                        dom.checked = true;
+                        $scope.selectedAddress.id = address_id;
+                        }
+                    }, 100);
+
                 for(var key in $scope.address){
                     $scope.address[key] = '';
                 }
+                // done to hide address form
                 $scope.showAddressAddBox = false;
                 $scope.errorMsg = '';
                 $.unblockUI();
