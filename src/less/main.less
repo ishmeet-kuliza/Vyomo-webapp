@@ -112,7 +112,7 @@ Main  Content
   height: 100%;
 
   .content-wrapper {
-    margin-top: 5.5rem;
+    margin-top: @headerHeightMobile;
   }
 
   /**
@@ -163,6 +163,7 @@ Main  Content
 
 @media only screen and (min-width: 768px) {
   .vm-main-content .content-wrapper {
+    margin-top: @headerHeight;
     margin-left: @sidebarWidthCollapsed;
     padding-top: 0;
   }

@@ -27,6 +27,7 @@ angular.module('Vyomo').controller('headerController', ['$scope', '$log', 'auth'
     $scope.logout = function() {
         $cookies.remove('userObj');
         window.location.reload();
+        $state.go('homePage');
     };
 
     $scope.goToLogin = function() {

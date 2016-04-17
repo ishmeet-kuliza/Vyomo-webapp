@@ -74,12 +74,10 @@ Header
   float: left;
   width: @sidebarWidth;
   display: block;
-  height: 100%;
 
   img {
     display: block;
-    height: 100%;
-    width: 100%;
+
     vertical-align: middle;
     padding: 0 0.5rem;
   }
@@ -213,7 +211,6 @@ Top Navigation
 .vm-nav {
   /* top nav - not visible on mobile devices */
   float: left;
-  margin-right:30px;
   height: calc(100% - 50px);
   font-size: 13px;
   z-index: 999;
@@ -331,7 +328,7 @@ Sidebar
   left: 0;
   top: 0;
   width: 100%;
-  padding: @headerHeight 0 0;
+  padding: @headerHeightMobile 0 0;
   background-color: @white;
   visibility: hidden;
   opacity: 0;

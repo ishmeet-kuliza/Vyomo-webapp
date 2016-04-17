@@ -5,13 +5,18 @@
         <span class="control-label">{{errorMsg}}</span>
     </div>
     <span class="vm-link ml-10 mt-10" id="vm-applyCoupon" ng-if='showOfferCode=="true" && successMsg.length === 0 ' ng-click="verifyPromoCode()">Apply</span>
-    <div class="list-inline-elems pull-right totalField fields mt-10">Total Cost
-        <span class="totalVal font-bold">&#8377 {{totalPrice}}</span>
+    <div class="pull-right list-inline-elems priceValues">
+        <div class="subTotalField fields mt-10">Sub Total
+            <span class="subTotalVal font-bold">&#8377 {{subTotal}}</span>
+        </div>
+
+        <div class=" disountField fields mt-10">Discount
+            <span class="discountVal font-bold">&#8377 {{discount}}</span>
+        </div>
+
+        <div class="totalField fields mt-10">Total Cost
+            <span class="totalVal font-bold">&#8377 {{totalPrice}}</span>
+        </div>
     </div>
-    <div class="list-inline-elems pull-right disountField fields mt-10">Discount
-        <span class="discountVal font-bold">&#8377 {{discount}}</span>
-    </div>
-    <div class="list-inline-elems pull-right subTotalField fields mt-10">Sub Total
-        <span class="subTotalVal font-bold">&#8377 {{subTotal}}</span>
-    </div>
+
 </div>

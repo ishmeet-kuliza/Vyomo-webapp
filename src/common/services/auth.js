@@ -1,6 +1,6 @@
 /*
 ** This service is used to authenticate users 
-** author: @ishmeet-kuliza
+** author: @ishmeet
 */
 angular.module('Vyomo')
 .factory('auth', ['$http', '$q', 'env', '$cookies', function($http, $q, env, $cookies) {

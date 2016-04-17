@@ -1,7 +1,7 @@
 <div class="vyomo-service-page">
 
     <div class="citySelection">
-        <h4 class="servicesHead" ng-if="!citySelected"> WHERE DO YOU NEED OUR SERVICES? </h4>
+        <h4 class="servicesHead" ng-if="citySelected"> WHERE DO YOU NEED OUR SERVICES? </h4>
         <span class="label-selected-city" ng-if="citySelected">SELECTED CITY</span>
         <div class = "vm-select-combobox form-group" ng-class="{inlineElem : citySelected}">
           <select class="vm-select-city form-control" placeholder="Select your city" ng-model="data.selectedCity" ng-change="getServicesPackages()">
