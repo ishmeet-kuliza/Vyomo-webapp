@@ -98,7 +98,7 @@ angular.module('Vyomo')
     }])
 
 
-    .controller( 'CartCheckoutCtrl',['$scope','globals', 'addressService', 'submitBookingService', '$state', function CartController($scope,globals,addressService,submitBookingService,$state) {
+    .controller( 'CartCheckoutCtrl',['$scope','globals', 'addressService', 'submitBookingService', '$state', 'cart',function CartController($scope, globals, addressService, submitBookingService, $state, cart) {
         $scope.showAddressAddBox = false;
         //Date AND TIME STORe
         $scope.dateTime = new Date();
@@ -189,6 +189,7 @@ angular.module('Vyomo')
             var when = document.getElementById('date-time').value;
             submitBookingService.bookRequest(addressId, when).then(function(confirmMessage){
             window.console.log(confirmMessage);
+                cart.clearCart();
                 $state.go('appointments');    
             },function(error){
                 $scope.bookingError = '*' + error;

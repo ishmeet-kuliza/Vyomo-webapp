@@ -20,15 +20,18 @@ angular.module('Vyomo').directive('totalPriceHeader' , ['cart' ,'promoCodeServic
 
             $scope.discount = 0;
             $scope.errorMsg = '';
-
+            $scope.successMsg = '';
             $scope.verifyPromoCode = function(){
                 var promocode = document.getElementById('promocode').value;
-                window.console.log(promocode);
+                var when = document.getElementById('date-time').value;
                 if(promocode){
-                    promoCodeService.verifyCode(promocode).then(function(costAfterPromo){
+                    promoCodeService.verifyCode(promocode,when).then(function(costAfterPromo){
                         $scope.discount = cart.totalPrice - costAfterPromo;
                         cart.totalPrice = costAfterPromo;
+                        $scope.errorMsg = '';
+                        $scope.successMsg = 'Promo code applied successfully';
                     },function(error){
+                        $scope.successMsg = '';
                         $scope.errorMsg = error;
                         window.console.log(error);
                     });

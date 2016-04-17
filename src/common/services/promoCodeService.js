@@ -7,14 +7,14 @@
   .factory('promoCodeService', ['$http', 'cart', 'auth', 'env', '$q', function($http, cart, auth, env, $q){
         var promoCode = {code: ''};
         var BASE_URL = env.BASE_URL;
-        promoCode.verifyCode = function(code){
+        promoCode.verifyCode = function(code, when){
             var self = this;
             var accessToken = auth.getUser().sessionToken;
             var postData = {
                 service_ids: cart.getAllItems().toString(),
                 access_token: accessToken,
                 promotional_code: code,
-                when: '2016-04-18 13:00'
+                when: when
             };
             var url = BASE_URL + '/verify_promotional_code';
             var deferred = $q.defer();

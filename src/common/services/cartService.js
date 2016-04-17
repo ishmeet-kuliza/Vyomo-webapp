@@ -112,5 +112,9 @@ angular.module('Vyomo')
 			return $cookies.getObject('city');
 		};
 
+		cart.clearCart = function(){
+			this._updateCookie(this.itemCookie, []);
+		};
+
 		return cart;
 	}]);
