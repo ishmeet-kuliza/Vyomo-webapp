@@ -54,6 +54,7 @@ var app = angular.module( 'Vyomo', [
     if ( angular.isDefined( toState.data.pageTitle ) ) {
       $scope.pageTitle = 'Vyomo |' + toState.data.pageTitle ;
     }
+    $scope.toggleNavMenuMobile = false;
   });
   $scope.routeIs = function(routeName) {
     if(routeName !== "/") {
