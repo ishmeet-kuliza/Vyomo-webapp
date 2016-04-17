@@ -2,9 +2,6 @@ angular.module('Vyomo').directive('totalPriceHeader' , ['cart' ,'promoCodeServic
     return {
         restrict : 'AE',
         scope:{
-            offerCode : '@',
-            subTotal : '@',
-            discount : '@',
             showOfferCode : '@'
         },
 
@@ -13,6 +10,7 @@ angular.module('Vyomo').directive('totalPriceHeader' , ['cart' ,'promoCodeServic
         replace : true,
 
         link: function($scope){
+
             $scope.$watchCollection(function(){
                 return cart.totalPrice;
             },
@@ -20,12 +18,14 @@ angular.module('Vyomo').directive('totalPriceHeader' , ['cart' ,'promoCodeServic
                 $scope.totalPrice = newPrice;
             });
 
-            $scope.promoCode = '';
             $scope.discount = 0;
             $scope.errorMsg = '';
+
             $scope.verifyPromoCode = function(){
-                if($scope.promoCode && $scope.promoCode.length){
-                    promoCodeService.verifyCode($scope.promoCode).then(function(costAfterPromo){
+                var promocode = document.getElementById('promocode').value;
+                window.console.log(promocode);
+                if(promocode){
+                    promoCodeService.verifyCode(promocode).then(function(costAfterPromo){
                         $scope.discount = cart.totalPrice - costAfterPromo;
                         cart.totalPrice = costAfterPromo;
                     },function(error){

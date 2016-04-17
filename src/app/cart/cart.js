@@ -8,6 +8,8 @@ angular.module('Vyomo')
         $scope.categories = [];
         $scope.step1Collapse = false;
         $scope.step2Collapse = false;
+
+        $scope.paymentMode = true;
         $scope.dueDate = '';
         //API Call success method block
         //When in cookies any item/cart is not present
@@ -78,14 +80,16 @@ angular.module('Vyomo')
     }])
 
 
-    .controller( 'CartCheckoutCtrl',['$scope','globals', 'addressService', 'submitBookingService', function CartController($scope,globals,addressService,submitBookingService) {
+    .controller( 'CartCheckoutCtrl',['$scope','globals', 'addressService', 'submitBookingService', '$state', function CartController($scope,globals,addressService,submitBookingService,$state) {
         $scope.showAddressAddBox = false;
         //Date AND TIME STORe
         $scope.dateTime = new Date();
         $scope.dateOptions = '{format:"DD.MM.YYYY HH:mm"}';
         $scope.savedAddresses = [];
         $scope.dataCities = globals.getCities();
-
+        $scope.selectedAddress = {
+            'id': ''
+        };
        function getSavedAddress(){
             //API Call success method block
             addressService.getAllUserAddress().then(function(userAddresses){
@@ -163,11 +167,13 @@ angular.module('Vyomo')
         };
 
         $scope.confirmOrder = function(){
-            var addressId = 1;
-            submitBookingService.bookRequest(addressId).then(function(confirmMessage){
-                window.console.log(confirmMessage);
+            var addressId = $scope.selectedAddress.id;
+            var when = document.getElementById('date-time').value;
+            submitBookingService.bookRequest(addressId, when).then(function(confirmMessage){
+            window.console.log(confirmMessage);
+                $state.go('appointments');    
             },function(error){
-                window.console.log(error);
+                $scope.bookingError = '*' + error;
             });
         };
 
