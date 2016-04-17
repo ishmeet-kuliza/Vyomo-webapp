@@ -1,7 +1,10 @@
 <div class="vm-cart-page">
 
     <div class="vm-checkout-step1">
-        <section-header ng-click='collapsePanels("step1")' title = "YOUR CART"  subtext ="" class="cart-head"></section-header>
+        <div ng-click='collapsePanels("step1")' class="cart-head">
+            <div class="headText">YOUR CART</div>
+            <span id="cartstep1Icon" class= "fa pull-right"  ng-class="step1Collapse ? ['fa-angle-down'] : ['fa-angle-up']"></span>
+        </div>
         <div class="step1-inner" uib-collapse="step1Collapse">
             <div class="vm-cart-list">
                 <div ui-view="packageListCart" class="vyomo-feature-packages"></div>

@@ -10,7 +10,7 @@ Header
   left: 0;
   height: @headerHeightMobile;
   width: 100%;
-  background: @pink;
+  background: @white;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
@@ -21,17 +21,54 @@ Header
     content: "";
     display: table;
   }
+
+  .vm-login-message{
+    color: @textColor;
+    padding: 1rem 0;
+    font-family: 'SourceSansPro';
+    .isLogin-msg {
+      padding: 0 2rem;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    .vm-username {
+      text-decoration: underline;
+      font-size: 1.5rem;
+    }
+    .logout {
+      padding: 0 2rem;
+      cursor: pointer;
+    }
+  }
+  .login-button {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .login-color {
+    color: @pink;
+  }
 }
 
-.vm-login-message {
-  padding: 1rem 0;
-}
 
 @media only screen and (min-width: 768px) {
   .vm-main-header {
     position: fixed;
     height: @headerHeight;
+    background: @pink;
+
+    .vm-login-message{
+      color:@white;
+    }
+    .login-color {
+      font-size:2rem;
+      color: @linkColor;
+    }
   }
+
 }
 .vm-logo {
   float: left;
@@ -48,6 +85,10 @@ Header
   }
 }
 @media only screen and (min-width: 768px) {
+  .vm-main-header {
+    background:@pink;
+    color : @white;
+  }
   .vm-logo {
     background: #fff;
     width:@sidebarWidthCollapsed;
@@ -58,35 +99,20 @@ Header
   .vm-logo {
     background: #fff;
     width:@sidebarWidth;
+    text-align: center;
+    padding:10px;
+
+
   }
 }
 
-@media only screen and (min-width: 450px) and (max-width: 768px) {
-  .vm-logo {
-    display: none;
-  }
-
-  html {
-    font-size: 8px;
-  }
-}
-
-@media only screen and  (max-width: 450px) {
-  .vm-logo {
-    display: none;
-  }
-
-  html {
-    font-size: 6px;
-  }
-}
 
 .hamburger(){
   position: absolute;
   display: inline-block;
   height: 3px;
   width: 24px;
-  background: @white;
+  background: @pink;
 }
 .hamburger-lines{
   content: '';
@@ -153,7 +179,7 @@ Header
 
   &::before {
     /* keep visible other 2 lines */
-    background: @white;
+    background: @pink;
     -webkit-transform: translateX(4px) translateY(-3px) rotate(45deg);
     -moz-transform: translateX(4px) translateY(-3px) rotate(45deg);
     -ms-transform: translateX(4px) translateY(-3px) rotate(45deg);
@@ -162,7 +188,7 @@ Header
   }
   &::after {
     /* keep visible other 2 lines */
-    background: @white;
+    background: @pink;
     -webkit-transform: translateX(4px) translateY(2px) rotate(-45deg);
     -moz-transform: translateX(4px) translateY(2px) rotate(-45deg);
     -ms-transform: translateX(4px) translateY(2px) rotate(-45deg);
@@ -191,39 +217,6 @@ Top Navigation
   height: calc(100% - 50px);
   font-size: 13px;
   z-index: 999;
-
-  .isLogin-msg {
-    padding: 0 2rem;
-    font-size: 2rem;
-    color: #FFF;
-    font-weight: 700;
-    font-family: 'SourceSansPro';
-  }
-
-  .vm-username {
-    text-decoration: underline;
-    font-family: 'SourceSansPro';
-    color: #FFF;
-    font-size: 1.5rem;
-  }
-
-  .logout {
-    padding: 0 2rem;
-    cursor: pointer;
-    color: #FFF;
-  }
-
-  .login-button {
-    cursor: pointer;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  .login-color {
-    color: @pink;
-  }
 
   .vm-top-nav-li{
     display: inline-block;
@@ -479,7 +472,7 @@ Sidebar
   }
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px){
   .vm-side-nav {
     position: relative;
     float: left;
@@ -527,6 +520,10 @@ Sidebar
     li.vm-link-nav {
       padding: 0;
 
+      ul{
+        padding: 0 5rem;
+        font-size: 2.2rem;
+      }
 
       ul > li{
         text-align: left;

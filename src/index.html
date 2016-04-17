@@ -37,6 +37,9 @@
 
     <!--     Google APIS(TODO -TO be change )     -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdtiRMHmELLNLkIAJkzzkWaFKmxun0reU&libraries=places"></script>
+    <!--[if lte IE 8]>
+      <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
   <body initialize-page>
 
@@ -58,14 +61,17 @@
         <div class="vm-login-message" ng-if="number">
           <span class="isLogin-msg font-bold">YOU ARE LOGGED IN </span>
           <span class = "vm-username">{{number}}</span>
-          <span class="logout" ng-click="logout()">Logout</span>
+          <span class="logout" ng-click="logout()">
+            <span class="fa fa-power-off"></span>
+            Logout</span>
         </div>
         <div class="vm-login-message" ng-if="!number">
-          <span class="isLogin-msg font-bold login-button" ng-click="goToLogin()">Log In </span>
+          <span class="isLogin-msg font-bold login-button" ng-click="goToLogin()">
+            <span class="fa fa-sign-in"></span>Log In </span>
         </div>
       </div>
    </header> <!-- .cd-main-header -->
-   <main class="vm-main-content padded-content">
+   <div rolw="main" class="vm-main-content padded-content">
       <nav class="vm-side-nav is-fixed" ng-class="{'nav-is-visible': $root.toggleNavMenuMobile}">
         <ul class="nav-buttons-container">
           <li class="has-children vm-link-nav">
@@ -104,7 +110,7 @@
             </ul>
           </li>
 
-
+    <!-- ======================== Call support and download App section ============ -->
         <!--   <li class="has-children vm-support-nav">
 
             <ul>
@@ -127,7 +133,7 @@
 
      <!-------------------- Footer ---------------------->
 
-     <footer class="footer">
+     <div class="footer">
        <div class="row removeMargin">
          <div class="footer-inner">
            <ul class="social">
@@ -139,16 +145,16 @@
 
 
            <p>
-            <span class="pull-left"> CopyRight (c) 2016 Vyomo. All Rights Reserved. </span>
-            <span class="pull-right" >
-              <a href="#">Terms & Conditions</a>
-              <a href="#">Privacy Rules</a>
-            </span>
+             <span class="pull-left"> CopyRight (c) 2016 Vyomo. All Rights Reserved. </span>
+          <span class="pull-right" >
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Privacy Rules</a>
+          </span>
            </p>
          </div>
        </div>
-     </footer>
-   </main>
+     </div>
+   </div>
    
     <script type="text/javascript" src="vendor/jquery/dist/jquery.min.js"></script>
     <!-- compiled JavaScript --><% scripts.forEach( function ( file ) { %>

@@ -78,14 +78,13 @@ Home Above the fold section
   //To be removed
   img{
     .fade-in;
-    transform: rotateY(180deg);
   }
 }
 
 .banner-text{
   position:absolute;
-  top:calc(@headerHeight + 1.5rem);
-  left: 60%;
+  top:3rem;
+  left: 48%;
   padding:3rem 7rem;
   border:1px solid @pink;
   .box-shadow(1px 1px 2px #ddd);
@@ -207,12 +206,12 @@ Package Section
   .vm-package-box{
     display: -webkit-flex;
     display: -ms-flexbox;
-    display: flex;
-    margin-bottom: 1%;
+
+    margin-bottom: 1.2rem;
     width : 100% ;
   }
   .vm-package-box-inner {
-    flex: 1 1;
+
     .vm-package-box-head {
       position: relative;
       color: #6b6b6b;
@@ -251,7 +250,7 @@ Package Section
     display: -ms-flexbox;
     display: flex;
 
-    margin-bottom: 1%;
+    margin-bottom: 1.2rem;
     width:100%;
   }
 
@@ -403,6 +402,10 @@ Package Section
   .banner-image picture{
     left:@sidebarWidthCollapsed;
   }
+  .banner-text{
+    top:4rem;
+    left: 60%;
+  }
   .vyomo-home-page-feature-packages{
     .vm-package-box{
       width : 32.33% ; //The remaining width of 4% (i.e. 32 x 3 = 96%) will be used to create the space between the boxes and simulate margins
@@ -451,6 +454,7 @@ Package Section
     left:@sidebarWidth;
   }
   .banner-text{
+    top:7rem;
     left:62.5%;
   }
 }

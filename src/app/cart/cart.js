@@ -85,15 +85,10 @@ angular.module('Vyomo')
         };
 
         //Function to collapse steps
-        $scope.collapsePanels = function(step){
+        $scope.collapsePanels = function(){
 
-            if(step === "step1") {
-                $scope.step2Collapse = false;
-                $scope.step1Collapse = true;
-            }else{
-                $scope.step2Collapse = true;
-                $scope.step1Collapse = false;
-            }
+                $scope.step1Collapse = !$scope.step1Collapse;
+
         };
         //Function to get previous addresses
 
@@ -156,9 +151,7 @@ angular.module('Vyomo')
         //Init functions
         addressAutocomplete();
         getSavedAddress();
-
         $scope.errorMsg = '';
-
         $scope.addAddress = function(){
             $.blockUI({message: blockUIMsg});
             addressService.addUserAddress($scope.address).then(function(address_id){

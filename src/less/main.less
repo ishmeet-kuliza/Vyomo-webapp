@@ -65,6 +65,18 @@ html {
   position: relative;
   overflow-x: hidden;
 }
+@media only screen and (min-width: 450px) and (max-width: 768px) {
+  html {
+    font-size: 8px;
+  }
+}
+
+@media only screen and  (max-width: 450px) {
+
+  html {
+    font-size: 8px;
+  }
+}
 body {
   font-size: 1.6rem; /* 1.6 * 10ps  = 16px */
   font-family: SourceSansPro-Light, SourceSansPro, sans-serif;
@@ -100,8 +112,44 @@ Main  Content
   height: 100%;
 
   .content-wrapper {
-    height: 100%;
     margin-top: 5.5rem;
+  }
+
+  /**
+  * Footer
+  */
+
+  .footer {
+
+    background : @pink;
+    color: white;
+    font-size: 1.2rem;
+    .footer-inner {
+      padding: 10px ;
+      border-top: 1px solid #DDD;
+    }
+
+    .social {
+      float: right;
+      margin: 0;
+      list-style: none;
+
+      li {
+        float: left;
+        margin-left: 20px;
+
+        a, a:visited {
+          color: @gray-light;
+          text-decoration: none;
+          font-size: 40px;
+          .transition( 250ms ease-in-out );
+
+          &:hover {
+            color: @gray;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -112,6 +160,7 @@ Main  Content
   content: 'mobile';
 }
 
+
 @media only screen and (min-width: 768px) {
   .vm-main-content .content-wrapper {
     margin-left: @sidebarWidthCollapsed;
@@ -121,6 +170,10 @@ Main  Content
   .vm-main-content::before {
     content: 'tablet';
   }
+
+  .footer{
+    margin-left: @sidebarWidthCollapsed;
+  }
 }
 @media only screen and (min-width: 1170px) {
   .vm-main-content .content-wrapper {
@@ -129,44 +182,11 @@ Main  Content
   .vm-main-content::before {
     content: 'desktop';
   }
-}
-
-/**
- * Footer
- */
-
-.footer {
-
-  background : @pink;
-  color: white;
-  font-size: 1.2rem;
-  .footer-inner {
-    padding: 10px ;
-    border-top: 1px solid #DDD;
-  }
-
-  .social {
-    float: right;
-    margin: 0;
-    list-style: none;
-
-    li {
-      float: left;
-      margin-left: 20px;
-
-      a, a:visited {
-        color: @gray-light;
-        text-decoration: none;
-        font-size: 40px;
-        .transition( 250ms ease-in-out );
-
-        &:hover {
-          color: @gray;
-        }
-      }
-    }
+  .footer{
+    margin-left: @sidebarWidth; //Space for nav
   }
 }
+
 @media only screen and (min-width: 768px) {
   .footer {
     margin-left: @sidebarWidthCollapsed;
@@ -296,8 +316,8 @@ Common classes
 
 /* SQUARED ONE */
 .squaredOne {
-  width: 16px;
-  height: 16px;
+  width: 1.5rem;
+  height: 1.5rem;
   border:1px solid #ccc;
   background: white;
   vertical-align: middle;
@@ -311,10 +331,11 @@ Common classes
 .squaredOne label {
   cursor: pointer;
   position: absolute;
-  width: 16px;
-  height: 16px;
+  width: 1.5rem;
+  height: 1.5rem;
   left: 0px;
   top: 0px;
+  margin:0;
   //background: red;
 }
 
@@ -324,11 +345,12 @@ Common classes
   opacity: 0;
   content: '';
   position: absolute;
-  width: 9px;
-  height: 9px;
+  width: 0.8rem;
+  height: 0.8rem;
   background: #3FC3F8;
-  top: 3px;
+  top: 2px;
   left: 2px;
+  margin:0;
 }
 
 .squaredOne label:hover::after {
@@ -402,8 +424,16 @@ input[type=radio] {
   filter: alpha(opacity=100);
   opacity: 1;
 }
+@media only screen and (min-width: 768px) {
 
+}
+@media only screen and (min-width: 1170px) {
+  .squaredOne label:after {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
 
+}
 /**
  * Now that all app-wide styles have been applied, we can load the styles for
  * all the submodules and components we are using. 

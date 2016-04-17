@@ -11,9 +11,14 @@ angular.module('Vyomo')
 
                 inputElem.datetimepicker({
                     format: format,
-                    sideBySide : true,
+                    stepping : 5,
                     showClear : true,
-                    minDate : today
+                    showClose : true,
+                    minDate : today,
+                    toolbarPlacement : 'top',
+                    widgetPositioning : {
+                        vertical : 'bottom'
+                    }
                 });
                 var picker = inputElem.data("DateTimePicker");
                 window.console.log(picker);
