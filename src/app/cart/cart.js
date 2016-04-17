@@ -23,6 +23,24 @@ angular.module('Vyomo')
                 window.console.log(productInstance.service_id, cart.totalPrice);
             }
         }
+        // fn to remove package from cart and view
+        $scope.removePackageFromCart = function(package){
+            var index = $scope.packages.indexOf(package);
+            if(index > -1){
+                package.clearFromCart();
+                $scope.packages.splice(index, 1);
+            }
+        };
+        // fn to remove category from cart and view
+        $scope.removeCategoryFromCart = function(category){
+            var index = $scope.categories.indexOf(category);
+            if(index > -1){
+                $scope.categories.splice(index, 1);
+                category.list.forEach(function(service) {
+                    service.clearFromCart();
+                });
+            }
+        };
 
         cart.init(cart.getCity());
         if(cart.getCount()){

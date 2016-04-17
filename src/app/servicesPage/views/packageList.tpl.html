@@ -8,9 +8,9 @@
                     <img alt="{{package.service_name}}" src="assets/img/HomePackages-headToToe.jpg" width="100%" height="50%">
                 </div>
                 <div class="box-head vm-package-box-head p15">
-                    <div class="list-inline-elems squaredOne" ng-class="{'checked' : package.isAddedToCart}">
-                        <input type="checkbox" ng-click="package.clearFromCart()" ng-model="package.isAddedToCart" ng-checked="viewCart" class="squaredOneCheckbox" value="{{package.service_id}}" name="packageType" id="package_{{package.service_id}}"/>
-                        <label for="package_{{package.service_id}}" ng-click="addOrRemovePackage(package)">
+                    <div class="list-inline-elems squaredOne" ng-if="!viewCart" ng-class="{'checked' : package.isAddedToCart}">
+                        <input type="checkbox" ng-click="package.clearFromCart()" ng-model="package.isAddedToCart" class="squaredOneCheckbox" value="{{package.service_id}}" name="packageType" id="package_{{package.service_id}}"/>
+                        <label for="package_{{package.service_id}}">
                         </label>
                     </div>
                     <div class="list-inline-elems ml-15 v-align-bottom ">
@@ -40,8 +40,8 @@
             </div>
 
         </div>
-        <!-- Tobe shown in viewCart section only ------->
-        <div class="vm-remove-from-cart vm-link" ng-show="viewCart">Remove</div>
+        <!-- Tobe shown in viewCart section only -->
+        <div class="vm-remove-from-cart vm-link" ng-if="viewCart" ng-click="removePackageFromCart(package)">Remove</div>
     </div>
 
     <div class="vm-cart-addmore cursorPointer" ng-show="viewCart" ng-click="goToState('servicesPage')">

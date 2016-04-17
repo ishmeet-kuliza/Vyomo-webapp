@@ -117,18 +117,8 @@ angular.module( 'Vyomo')
     
     }])
 
-    .controller( 'ServicePackageCtrl',['$scope', function ServiceController($scope) {
-        window.console.log($scope);
-    //     $scope.addOrRemovePackage = function(package){
-    //         // add package to cart if it is not
-    //         if(!package.isAddedToCart){
-    //             package.addToCart();
-    //         }
-    //         else{
-    //             package.removeFromCart();
-    //         }
-    //     };
-    }])
+    .controller( 'ServicePackageCtrl', function ServiceController() {
+    })
 
     .controller( 'ServiceListCtrl',['$scope', function ServiceController($scope) {
         //For each service sub list of its types, collapsed flag
