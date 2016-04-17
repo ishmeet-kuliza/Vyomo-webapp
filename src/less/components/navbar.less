@@ -10,9 +10,11 @@ Header
   left: 0;
   height: @headerHeightMobile;
   width: 100%;
-  background: @white;
+  background: @pink;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  z-index: 3;
 
   &::after {
     clear: both;
@@ -20,43 +22,71 @@ Header
     display: table;
   }
 }
+
+.vm-login-message {
+  padding: 1rem 0;
+}
+
 @media only screen and (min-width: 768px) {
   .vm-main-header {
     position: fixed;
     height: @headerHeight;
-    background: transparent;
-    width: 22%;
   }
 }
 .vm-logo {
   float: left;
   width: @sidebarWidth;
   display: block;
-  padding: 5px 40px;
+  height: 100%;
+
   img {
     display: block;
+    height: 100%;
+    width: 100%;
+    vertical-align: middle;
+    padding: 0 0.5rem;
   }
 }
 @media only screen and (min-width: 768px) {
   .vm-logo {
     background: #fff;
     width:@sidebarWidthCollapsed;
-    padding: 30px 40px 0 30px;
+    height:100%;
   }
 }
 @media only screen and (min-width: 1170px) {
   .vm-logo {
     background: #fff;
     width:@sidebarWidth;
-    padding: 30px 40px 0 50px;
   }
 }
+
+@media only screen and (min-width: 450px) and (max-width: 768px) {
+  .vm-logo {
+    display: none;
+  }
+
+  html {
+    font-size: 8px;
+  }
+}
+
+@media only screen and  (max-width: 450px) {
+  .vm-logo {
+    display: none;
+  }
+
+  html {
+    font-size: 6px;
+  }
+}
+
 .hamburger(){
   position: absolute;
   display: inline-block;
   height: 3px;
   width: 24px;
-  background: @pink;
+  background: @white;
 }
 .hamburger-lines{
   content: '';
@@ -83,8 +113,8 @@ Header
   float: right;
   position: relative;
   display: block;
-  width: 34px;
-  height: 44px;
+  width: 3.4rem;
+  height: 4.4rem;
   margin-right: 5%;
   /* hide text */
   overflow: hidden;
@@ -123,7 +153,7 @@ Header
 
   &::before {
     /* keep visible other 2 lines */
-    background: @pink;
+    background: @white;
     -webkit-transform: translateX(4px) translateY(-3px) rotate(45deg);
     -moz-transform: translateX(4px) translateY(-3px) rotate(45deg);
     -ms-transform: translateX(4px) translateY(-3px) rotate(45deg);
@@ -132,7 +162,7 @@ Header
   }
   &::after {
     /* keep visible other 2 lines */
-    background: @pink;
+    background: @white;
     -webkit-transform: translateX(4px) translateY(2px) rotate(-45deg);
     -moz-transform: translateX(4px) translateY(2px) rotate(-45deg);
     -ms-transform: translateX(4px) translateY(2px) rotate(-45deg);
@@ -156,15 +186,43 @@ Top Navigation
 -------------------------------- */
 .vm-nav {
   /* top nav - not visible on mobile devices */
-  float: right;
+  float: left;
   margin-right:30px;
   height: calc(100% - 50px);
   font-size: 13px;
   z-index: 999;
 
+  .isLogin-msg {
+    padding: 0 2rem;
+    font-size: 2rem;
+    color: #FFF;
+    font-weight: 700;
+    font-family: 'SourceSansPro';
+  }
+
+  .vm-username {
+    text-decoration: underline;
+    font-family: 'SourceSansPro';
+    color: #FFF;
+    font-size: 1.5rem;
+  }
+
+  .logout {
+    padding: 0 2rem;
+    cursor: pointer;
+    color: #FFF;
+  }
+
+  .login-button {
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   .login-color {
     color: @pink;
-    cursor: pointer;
   }
 
   .vm-top-nav-li{
@@ -193,7 +251,7 @@ Top Navigation
 @media only screen and (min-width: 768px) {
   .vm-nav {
     display: block;
-    float: right;
+    float: left;
     height: calc(100% - 50px);
     font-size: 13px;
     z-index: 999;
@@ -277,7 +335,6 @@ Sidebar
 -------------------------------- */
 .vm-side-nav {
   position: absolute;
-
   left: 0;
   top: 0;
   width: 100%;
@@ -298,10 +355,17 @@ Sidebar
     margin : 0 !important;
   }
 
+  .nav-buttons-container {
+    height: calc(100% - 55px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
   li.vm-link-nav{
     background: @white;
     color: @textColor;
-    padding: 20px 30px;
+    padding: 0;
     font-size:18px;
     font-weight: 200;
     cursor:pointer;
@@ -386,6 +450,7 @@ Sidebar
   transition: opacity 0.2s 0s, visibility 0s 0s;
   max-height: none;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  z-index: 2;
 }
 
 .vm-side-nav ul.vm-top-nav > li:last-of-type > a {
@@ -427,6 +492,8 @@ Sidebar
     opacity: 1;
     overflow: visible;
     max-height: none;
+    height: 100%;
+    z-index: 2;
 
     ul {
       /* reset style */
@@ -439,6 +506,7 @@ Sidebar
   }
   .vm-side-nav.is-fixed {
     position: fixed;
+    z-index: 2;
   }
 
 
@@ -454,9 +522,10 @@ Sidebar
 @media only screen and (min-width: 1170px) {
   .vm-side-nav {
     width: @sidebarWidth;
+    height: 100%;
 
     li.vm-link-nav {
-      padding: 20px 40px;
+      padding: 0;
 
 
       ul > li{
