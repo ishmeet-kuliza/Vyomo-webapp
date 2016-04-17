@@ -1,6 +1,6 @@
 
 angular.module('Vyomo')
-    .controller( 'CartCtrl',['$scope', '$state','cartProduct','cart', 'productObjects', function CartController( $scope,$state, cartProduct,cart, productObjects) {
+    .controller( 'CartCtrl',['$scope', '$state','cartProduct','cart', 'productObjects', 'globals',function CartController( $scope,$state, cartProduct,cart, productObjects, globals) {
         $scope.isStep1Complete = "false";
         //Boolean used for hiding headers for packages  and service template used in view cart
         $scope.viewCart = true;
@@ -44,6 +44,8 @@ angular.module('Vyomo')
 
         cart.init(cart.getCity());
         if(cart.getCount()){
+            // to block ui untill response from server
+            $.blockUI({message: globals.blockUIMsg});
             cartProduct.getCartProducts().success(function (response) {
                 if(response.hasOwnProperty("message")){
                     if(response.message.hasOwnProperty("packages") && response.message.packages.all.length > 0){
@@ -66,6 +68,7 @@ angular.module('Vyomo')
                        window.console.log(cart);
                     }
                 }
+                $.unblockUI();
             });
         }else{
             window.console.log("cart is empty");
@@ -105,6 +108,7 @@ angular.module('Vyomo')
         $scope.dateOptions = '{format:"DD.MM.YYYY HH:mm"}';
         $scope.savedAddresses = [];
         $scope.dataCities = globals.getCities();
+        var blockUIMsg = globals.blockUIMsg;
         $scope.selectedAddress = {
             'id': ''
         };
@@ -154,6 +158,7 @@ angular.module('Vyomo')
         getSavedAddress();
         $scope.errorMsg = '';
         $scope.addAddress = function(){
+            $.blockUI({message: blockUIMsg});
             addressService.addUserAddress($scope.address).then(function(address_id){
                 // shallow copy of object
                 var address = Object.assign({}, $scope.address);
@@ -164,7 +169,9 @@ angular.module('Vyomo')
                 }
                 $scope.showAddressAddBox = false;
                 $scope.errorMsg = '';
+                $.unblockUI();
             },function(errorMsg){
+                $.unblockUI();
                 window.console.log(errorMsg);
                 $scope.errorMsg = errorMsg;
             });
@@ -175,9 +182,11 @@ angular.module('Vyomo')
             // find index of adress to be deleted in list of user addresses
             var index = $scope.savedAddresses.indexOf(address);
             if(index > -1){
+                $.blockUI({message: blockUIMsg});
                 // if found then call api and delete from list
                 addressService.deleteUserAddress(address).then(function(){
                     $scope.savedAddresses.splice(index, 1);
+                    $.unblockUI();
                 },function(error){
                     window.console.log(error);
                 });
@@ -187,11 +196,14 @@ angular.module('Vyomo')
         $scope.confirmOrder = function(){
             var addressId = $scope.selectedAddress.id;
             var when = document.getElementById('date-time').value;
+            $.blockUI({message: blockUIMsg});
             submitBookingService.bookRequest(addressId, when).then(function(confirmMessage){
-            window.console.log(confirmMessage);
+                window.console.log(confirmMessage);
+                $.unblockUI();
                 cart.clearCart();
                 $state.go('appointments');    
             },function(error){
+                $.unblockUI();
                 $scope.bookingError = '*' + error;
             });
         };

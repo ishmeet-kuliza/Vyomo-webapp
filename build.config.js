@@ -68,8 +68,8 @@ module.exports = {
         'vendor/jquery/dist/jquery.min.js',
 
       'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
-      'vendor/bootstrap/dist/js/bootstrap.min.js'
-
+      'vendor/bootstrap/dist/js/bootstrap.min.js',
+      'bower_components/jquery.blockUI/jquery.blockUI.min.js'
 
 
     ],

@@ -67,7 +67,9 @@ angular.module( 'Vyomo')
                 //API Call success method block
                 var cache = servicesPackagesCacheService.getCache();
                 if(!Object.keys(cache).length) {
+                    $.blockUI({message: globals.blockUIMsg});
                     vyomoAPIservice.getAllPackagesServices(city).success(function (response) {
+                        $.unblockUI();
                         $scope.packages = [];
                         $scope.services = [];
                         if(response.hasOwnProperty("status_code")){
@@ -103,20 +105,19 @@ angular.module( 'Vyomo')
                                                     updateCartPrice(service);
                                                 });
                                             });
-                                            //window.console.log($scope.categories);
-                                           
                                         }
                                     }
-
                                 }
                             }
                         }
 
                     });
                 } else {
+                    $.blockUI({message: globals.blockUIMsg});
                     $scope.packages = [];
                     $scope.services = [];
                     servicesPackagesCacheService.setCache().then(function(response){
+                        $.unblockUI();
                         var packagesJson = response['packages'];
                         if(packagesJson.hasOwnProperty("all")){
                             var allPackages = packagesJson.all;
@@ -143,8 +144,6 @@ angular.module( 'Vyomo')
                                     updateCartPrice(service);
                                 });
                             });
-                            //window.console.log($scope.categories);
-                           
                         }
                     });
                 }

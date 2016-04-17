@@ -29,8 +29,9 @@ angular.module('Vyomo')
   function getCities() {
     return cities;
   }
-
+  var blockUIMsg = '<h1><i class="fa fa-2x fa-spinner fa-spin" ></i>  Please Wait...</h1>';
   return {
-    getCities: getCities
+    getCities: getCities,
+    blockUIMsg: blockUIMsg
   };
 }]);
