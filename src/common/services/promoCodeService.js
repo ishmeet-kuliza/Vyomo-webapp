@@ -14,7 +14,7 @@
                 service_ids: cart.getAllItems().toString(),
                 access_token: accessToken,
                 promotional_code: code,
-                when: when
+                when: when //format = 'YYYY-MM-DD HH:mm'
             };
             var url = BASE_URL + '/verify_promotional_code';
             var deferred = $q.defer();

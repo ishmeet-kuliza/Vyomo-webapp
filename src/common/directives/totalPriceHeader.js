@@ -15,6 +15,7 @@ angular.module('Vyomo').directive('totalPriceHeader' , ['cart' ,'promoCodeServic
                 return cart.totalPrice;
             },
             function(newPrice){
+                $scope.subTotal = newPrice;
                 $scope.totalPrice = newPrice;
             });
 
@@ -26,8 +27,8 @@ angular.module('Vyomo').directive('totalPriceHeader' , ['cart' ,'promoCodeServic
                 var when = document.getElementById('date-time').value;
                 if(promocode){
                     promoCodeService.verifyCode(promocode,when).then(function(costAfterPromo){
-                        $scope.discount = cart.totalPrice - costAfterPromo;
-                        cart.totalPrice = costAfterPromo;
+                        $scope.discount = $scope.subTotal - costAfterPromo;
+                        $scope.totalPrice = costAfterPromo;
                         $scope.errorMsg = '';
                         $scope.successMsg = 'Promo code applied successfully';
                     },function(error){

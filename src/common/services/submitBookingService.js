@@ -15,7 +15,7 @@ angular.module('Vyomo')
                 access_token: accessToken,
                 service_ids: cart.getAllItems() ? cart.getAllItems().toString(): '',
                 address_id: address_id,
-                when: when,//'2016-04-18 13:00',
+                when: when, //format = 'YYYY-MM-DD HH:mm'
                 promotional_code: code
             };
             var url = BASE_URL + '/submit_booking_request';
