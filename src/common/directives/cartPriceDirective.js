@@ -26,9 +26,10 @@ angular.module('Vyomo')
             });
 
             $scope.goToCart = function(){
-              $state.go('checkoutCart');
+                if(cart.getCount()){
+                    $state.go('checkoutCart');
+                }
             };
-
         }
     };
 }]);
