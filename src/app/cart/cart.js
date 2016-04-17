@@ -197,10 +197,10 @@ angular.module('Vyomo')
             var addressId = $scope.selectedAddress.id;
             var when = document.getElementById('date-time').value;
             $.blockUI({message: blockUIMsg});
-            submitBookingService.bookRequest(addressId, when).then(function(confirmMessage){
-                window.console.log(confirmMessage);
+            submitBookingService.bookRequest(addressId, when).then(function(confirmBookingMsg){
                 $.unblockUI();
                 cart.clearCart();
+                $state.get('appointments').confirmBookingMsg = confirmBookingMsg;
                 $state.go('appointments');    
             },function(error){
                 $.unblockUI();

@@ -1,7 +1,17 @@
 angular.module('Vyomo')
-.controller("appointmentsCtrl", ['$scope', 'auth', 'env', '$http',  function($scope, auth, env, $http) {
+.controller("appointmentsCtrl", ['$scope', 'auth', 'env', '$http', '$state', function($scope, auth, env, $http, $state) {
   var sessionUser = auth.getUser(),
       BASE_URL = env.BASE_URL;
+
+  // confirm msg coming from viewCart state
+  // contains confirmation msg after final checkout else is null
+  $scope.confirmBookingMsg = $state.current.confirmBookingMsg;
+  if($scope.confirmBookingMsg){
+    // set value to null after 5 secs so that it vanishes after coming back to this state
+    window.setTimeout(function(){
+      $state.current.confirmBookingMsg = null;
+    },5000); // 5000 = 5 secs
+  }
 
   if(!Object.keys(sessionUser).length) {
     $scope.appointmentsAvailable = false;

@@ -126,7 +126,10 @@ angular.module('Vyomo')
               templateUrl: '/src/app/appointments/views/appointments.tpl.html'
           }
       },
-      data:{ pageTitle: 'Login'}
+      data:{
+        pageTitle: 'Login',
+        confirmBookingMsg: null
+      }
     });
 
 }]);
