@@ -1,7 +1,7 @@
 
 
-angular.module('Vyomo').controller('headerController', ['$scope', '$log', 'auth', '$cookies', '$state',
-                                function($scope, $log, auth, $cookies, $state){
+angular.module('Vyomo').controller('headerController', ['$scope', '$log', 'auth', '$cookies', '$state', '$rootScope',
+                                function($scope, $log, auth, $cookies, $state, $rootScope){
 
     $scope.status = {
         isopen: false
@@ -21,6 +21,7 @@ angular.module('Vyomo').controller('headerController', ['$scope', '$log', 'auth'
 
     $scope.$on('$stateChangeSuccess', function(){
         $scope.number = auth.getUser().number;
+        $rootScope.toggleNavMenuMobile = false;
     });
 
     $scope.logout = function() {

@@ -15,7 +15,7 @@
       <p class="text-center">SERVICES</p>
       <p class="text-center">AT YOUR</p>
       <p class="text-center">DOORSTEP</p>
-      <p class="text-center"><span>TAP TO</span><br>BOOK NOW</p>
+      <p class="text-center book-now" ng-click=goToState("servicesPage")><span>TAP TO</span><br>BOOK NOW</p>
     </div>
 
   </div>
@@ -38,7 +38,7 @@
 
     <div class="mt-20 vyomo-home-page-feature-services" ui-view="homeFeatureService"></div>
 
-    <div class="mt-10 vyomo-home-page-offers" ui-view="homeOffers"></div>
+    <div id="offers" class="mt-10 vyomo-home-page-offers" ui-view="homeOffers"></div>
 
     <div class="mt-10 vyomo-home-page-careers" ui-view="homeCareers"></div>
 

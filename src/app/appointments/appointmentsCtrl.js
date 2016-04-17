@@ -21,6 +21,7 @@ angular.module('Vyomo')
         $scope.appointments.push(JSON.parse(JSON.stringify($scope.appointments[0])));
         $scope.appointments.push(JSON.parse(JSON.stringify($scope.appointments[0])));
         $scope.appointments.push(JSON.parse(JSON.stringify($scope.appointments[0])));
+        $scope.appointments[0].isCollapsed = false; //open the first appointment
       } else {
         $scope.appointments = [];
         $scope.appointmentsAvailable = false;

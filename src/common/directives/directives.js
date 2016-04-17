@@ -75,6 +75,12 @@ angular.module('Vyomo').directive('initializePage',['$window', '$state', functio
                     resizing = true;
                 }
             });
+
+            scope.goToOffers = function() {
+                $('body').animate({
+                    scrollTop: $('#offers').offset().top
+                }, 2000);
+            };
         }
     };
 }]);

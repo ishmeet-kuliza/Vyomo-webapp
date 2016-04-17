@@ -4,7 +4,7 @@
 
 angular.module( 'Vyomo')
 
-    .controller( 'ServiceCtrl', ['$scope', '$state', 'vyomoAPIservice', 'globals', 'cart', 'productObjects', '$cookies', function ServiceController($scope, $state, vyomoAPIservice, globals, cart, productObjects, $cookies) {
+    .controller( 'ServiceCtrl', ['$scope', '$state', 'vyomoAPIservice', 'globals', 'cart', 'productObjects', '$cookies', 'servicesPackagesCacheService', function ServiceController($scope, $state, vyomoAPIservice, globals, cart, productObjects, $cookies, servicesPackagesCacheService) {
         $scope.cartProducts = [];
         $scope.citySelected = false;
         $scope.data = globals.getCities();
@@ -65,52 +65,90 @@ angular.module( 'Vyomo')
                 cart.init(city);
                 
                 //API Call success method block
-                vyomoAPIservice.getAllPackagesServices(city).success(function (response) {
-                    $scope.packages = [];
-                    $scope.services = [];
-                    if(response.hasOwnProperty("status_code")){
-                        if(response.status_code === 200){
-                            if (response.hasOwnProperty("message")) {
-                                if (response.message.hasOwnProperty('packages')) {
-                                    var packagesJson = response.message.packages;
-                                    if(packagesJson.hasOwnProperty("all")){
-                                        var allPackages = packagesJson.all;
-                                        $scope.packages = _sortAccordingtoPrice(allPackages);
-                                        // adding properties to package objs
-                                        $scope.packages.forEach(function(package){
-                                            productObjects.setProductObject(package);
-                                            // if package is in cart update cart price
-                                            updateCartPrice(package);
-                                        });
-
-                                    }
-
-                                }
-
-                                if (response.message.hasOwnProperty('services')) {
-                                    var servicesJson = response.message.services;
-                                    if(servicesJson.hasOwnProperty("all")){
-                                        //categories ==== services provided by vyomo
-                                        var allServices = servicesJson.all;
-                                        $scope.categories = allServices;
-                                        // adding properties to service objs
-                                        $scope.categories.forEach(function(category){
-                                            category.list.forEach(function(service){
-                                                productObjects.setProductObject(service);
-                                                // if service is in cart update cart price
-                                                updateCartPrice(service);
+                var cache = servicesPackagesCacheService.getCache();
+                if(!Object.keys(cache).length) {
+                    vyomoAPIservice.getAllPackagesServices(city).success(function (response) {
+                        $scope.packages = [];
+                        $scope.services = [];
+                        if(response.hasOwnProperty("status_code")){
+                            if(response.status_code === 200){
+                                if (response.hasOwnProperty("message")) {
+                                    if (response.message.hasOwnProperty('packages')) {
+                                        var packagesJson = response.message.packages;
+                                        if(packagesJson.hasOwnProperty("all")){
+                                            var allPackages = packagesJson.all;
+                                            $scope.packages = _sortAccordingtoPrice(allPackages);
+                                            // adding properties to package objs
+                                            $scope.packages.forEach(function(package){
+                                                productObjects.setProductObject(package);
+                                                // if package is in cart update cart price
+                                                updateCartPrice(package);
                                             });
-                                        });
-                                        //window.console.log($scope.categories);
-                                       
-                                    }
-                                }
 
+                                        }
+
+                                    }
+
+                                    if (response.message.hasOwnProperty('services')) {
+                                        var servicesJson = response.message.services;
+                                        if(servicesJson.hasOwnProperty("all")){
+                                            //categories ==== services provided by vyomo
+                                            var allServices = servicesJson.all;
+                                            $scope.categories = allServices;
+                                            // adding properties to service objs
+                                            $scope.categories.forEach(function(category){
+                                                category.list.forEach(function(service){
+                                                    productObjects.setProductObject(service);
+                                                    // if service is in cart update cart price
+                                                    updateCartPrice(service);
+                                                });
+                                            });
+                                            //window.console.log($scope.categories);
+                                           
+                                        }
+                                    }
+
+                                }
                             }
                         }
-                    }
 
-                });
+                    });
+                } else {
+                    $scope.packages = [];
+                    $scope.services = [];
+                    servicesPackagesCacheService.setCache().then(function(response){
+                        var packagesJson = response['packages'];
+                        if(packagesJson.hasOwnProperty("all")){
+                            var allPackages = packagesJson.all;
+                            $scope.packages = _sortAccordingtoPrice(allPackages);
+                            // adding properties to package objs
+                            $scope.packages.forEach(function(package){
+                                productObjects.setProductObject(package);
+                                // if package is in cart update cart price
+                                updateCartPrice(package);
+                            });
+
+                        }
+
+                        var servicesJson = response['services'];
+                        if(servicesJson.hasOwnProperty("all")){
+                            //categories ==== services provided by vyomo
+                            var allServices = servicesJson.all;
+                            $scope.categories = allServices;
+                            // adding properties to service objs
+                            $scope.categories.forEach(function(category){
+                                category.list.forEach(function(service){
+                                    productObjects.setProductObject(service);
+                                    // if service is in cart update cart price
+                                    updateCartPrice(service);
+                                });
+                            });
+                            //window.console.log($scope.categories);
+                           
+                        }
+                    });
+                }
+                
                 $state.go('servicesPage.list');
             }
         }
