@@ -116,38 +116,35 @@ angular.module( 'Vyomo')
                     $.blockUI({message: globals.blockUIMsg});
                     $scope.packages = [];
                     $scope.services = [];
-                    servicesPackagesCacheService.setCache().then(function(response){
-                        $.unblockUI();
-                        var packagesJson = response['packages'];
-                        if(packagesJson.hasOwnProperty("all")){
-                            var allPackages = packagesJson.all;
-                            $scope.packages = _sortAccordingtoPrice(allPackages);
-                            // adding properties to package objs
-                            $scope.packages.forEach(function(package){
-                                productObjects.setProductObject(package);
-                                // if package is in cart update cart price
-                                updateCartPrice(package);
-                            });
+                    var packagesJson = cache['packages'];
+                    if(packagesJson.hasOwnProperty("all")){
+                        var allPackages = packagesJson.all;
+                        $scope.packages = _sortAccordingtoPrice(allPackages);
+                        // adding properties to package objs
+                        $scope.packages.forEach(function(package){
+                            productObjects.setProductObject(package);
+                            // if package is in cart update cart price
+                            updateCartPrice(package);
+                        });
 
-                        }
+                    }
 
-                        var servicesJson = response['services'];
-                        if(servicesJson.hasOwnProperty("all")){
-                            //categories ==== services provided by vyomo
-                            var allServices = servicesJson.all;
-                            $scope.categories = allServices;
-                            // adding properties to service objs
-                            $scope.categories.forEach(function(category){
-                                category.list.forEach(function(service){
-                                    productObjects.setProductObject(service);
-                                    // if service is in cart update cart price
-                                    updateCartPrice(service);
-                                });
+                    var servicesJson = cache['services'];
+                    if(servicesJson.hasOwnProperty("all")){
+                        //categories ==== services provided by vyomo
+                        var allServices = servicesJson.all;
+                        $scope.categories = allServices;
+                        // adding properties to service objs
+                        $scope.categories.forEach(function(category){
+                            category.list.forEach(function(service){
+                                productObjects.setProductObject(service);
+                                // if service is in cart update cart price
+                                updateCartPrice(service);
                             });
-                        }
-                    });
+                        });
+                    }
                 }
-                
+                $.unblockUI();
                 $state.go('servicesPage.list');
             }
         }
