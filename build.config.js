@@ -62,11 +62,12 @@ module.exports = {
       'vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
       'vendor/placeholders/angular-placeholders-0.0.1-SNAPSHOT.min.js',
       'bower_components/angular-cookies/angular-cookies.min.js',
+      'bower_components/angular-cookies/angular-cookies.min.js.map',
       'vendor/angular-ui-router/release/angular-ui-router.js',
       'vendor/angular-ui-utils/modules/route/route.js',
-        'vendor/angular-animate/angular-animate.min.js',
-        'vendor/jquery/dist/jquery.min.js',
-
+      'vendor/angular-animate/angular-animate.min.js',
+      'vendor/angular-animate/angular-animate.min.js.map',
+      'vendor/jquery/dist/jquery.min.js',
       'bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
       'vendor/bootstrap/dist/js/bootstrap.min.js',
       'bower_components/blockUI/jquery.blockUI.js'
