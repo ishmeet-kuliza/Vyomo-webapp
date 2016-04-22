@@ -1,10 +1,11 @@
 <div class="vm-cart-bill-row">
     <div class="vm-offer-code-box list-inline-elems" ng-if='showOfferCode=="true"'>
-        <input type="text" name="offerCode" ng-model="promoCode" class="form-control" id="promocode" placeholder="Enter Offer Code">
+        <input type="text" name="offerCode" ng-model="promoCode" class="form-control" id="promocode" placeholder="Enter Offer Code" ng-disabled="successMsg">
         <span class="success-control-label">{{successMsg}}</span>
         <span class="control-label">{{errorMsg}}</span>
     </div>
     <span class="vm-link ml-10 mt-10" id="vm-applyCoupon" ng-if='showOfferCode=="true" && successMsg.length === 0 ' ng-click="verifyPromoCode()">Apply</span>
+    <span class="vm-link ml-10 mt-10" id="vm-remove-promo" ng-if='showOfferCode=="true" && successMsg.length !== 0 ' ng-click="removePromoCode()">Remove</span>
     <div class="pull-right list-inline-elems priceValues">
         <div class="subTotalField fields mt-10">Sub Total
             <span class="subTotalVal font-bold">&#8377 {{subTotal}}</span>
