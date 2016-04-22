@@ -1,8 +1,9 @@
 <div class="appointments-container">
 	<div ng-if="confirmBookingMsg" class="alert alert-success">{{confirmBookingMsg}}</div>
-	<div class="flex"> 
+	<div class="flex your-appointments"> 
 		<span class="heading">YOUR APPOINTMENTS</span>
 		<hr class="horizontal-bar"></hr>
+		<span ng-if="errorMessage" class="appointment-error">*{{errorMessage}}</span>
 	</div>
 	<div ng-if="appointmentsAvailable" class="appointments-available flex">
 		<div ng-repeat="appointment in appointments track by $index" class="appointment">
@@ -38,7 +39,7 @@
 						<span class="mode">Cash</span>
 					</span>
 					<div class="cancel-btn" ng-if="appointment.appointment_status!='Complete'">
-						<span ng-click="cancelAppointmen(appointment)">Cancel</span>
+						<span ng-click="cancelAppointment(appointment)">Cancel</span>
 					</div>
 				</div>
 

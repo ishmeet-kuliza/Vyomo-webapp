@@ -1,5 +1,6 @@
 angular.module('Vyomo')
-.controller("appointmentsCtrl", ['$scope', 'auth', 'env', '$http', '$state', function($scope, auth, env, $http, $state) {
+.controller("appointmentsCtrl", ['$scope', 'auth', 'env', '$http', '$state', '$timeout', 
+            function($scope, auth, env, $http, $state, $timeout) { 
   var sessionUser = auth.getUser(),
       BASE_URL = env.BASE_URL;
 
@@ -28,9 +29,6 @@ angular.module('Vyomo')
           appointment.isCollapsed = true;
         });
         $scope.appointmentsAvailable = true;
-        $scope.appointments.push(JSON.parse(JSON.stringify($scope.appointments[0])));
-        $scope.appointments.push(JSON.parse(JSON.stringify($scope.appointments[0])));
-        $scope.appointments.push(JSON.parse(JSON.stringify($scope.appointments[0])));
         $scope.appointments[0].isCollapsed = false; //open the first appointment
       } else {
         $scope.appointments = [];
@@ -50,10 +48,14 @@ angular.module('Vyomo')
     };
     $http({method: 'POST', data: params, url: BASE_URL + '/cancel_appointment'}).then(function(response){
       if(response && response.data && response.data.status_code === 200) {
-        deleteAppointment(appointment.appointment_id);     
+        deleteAppointment(appointment.appointment_id); 
+        $timeout(function(){
+          $scope.errorMessage = '';
+        });    
       } else {
-        $scope.appointments = [];
-        $scope.appointmentsAvailable = false;
+        $timeout(function(){
+          $scope.errorMessage = response.data.error_message;
+        });
       }
     });
   };
