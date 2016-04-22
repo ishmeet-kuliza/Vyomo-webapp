@@ -29,7 +29,7 @@ angular.module('Vyomo')
   function getCities() {
     return cities;
   }
-  var blockUIMsg = '<div class="row"><i class="fa fa-2x fa-spinner fa-spin" ></i>  Please Wait...</div>';
+  var blockUIMsg = '<div class="loader-gif"><img src="assets/img/loader.gif" ></div>';
   return {
     getCities: getCities,
     blockUIMsg: blockUIMsg

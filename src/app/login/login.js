@@ -43,7 +43,7 @@ angular.module('Vyomo')
       $scope.formData.otp = resp.otp;
       access_token = resp.access_token;
       $scope.errorMsg = '';
-      $.unblockUI();
+      // $.unblockUI();
     }, function(error) {
       $scope.errorMsg = error;
       $.unblockUI();
