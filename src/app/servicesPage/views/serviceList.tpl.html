@@ -34,7 +34,7 @@
                             <span class="rupeeSymbol">&#8377</span>
                             <span class="serviceTypeCost">{{serviceType.cost}}</span>
                         </div>
-                        <div class="row removeMarginLeftRight mt-10 personSelectionDiv" ng-show="isCheckService || viewCart">
+                        <div class="row removeMarginLeftRight mt-10 personSelectionDiv" ng-show="isCheckService || (viewCart && serviceType.count)">
                             <div class="col-xs-3 text-center ">
                                 <span class=" cursorPointer fa fa-plus addPerson" ng-click="serviceType.addToCart()"></span>
                             </div>

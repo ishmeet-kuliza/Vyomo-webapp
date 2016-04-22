@@ -36,5 +36,10 @@
             });
             return deferred.promise;
         };
+
+        promoCode.removePromoCode = function() {
+            this.code = '';
+        };
+
   return promoCode;
 }]);
