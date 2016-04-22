@@ -9,6 +9,9 @@ angular.module('Vyomo')
   $scope.otpNeeded = false;
 
   $scope.sendForm = function() {
+    if($scope.forgotPassword) {
+      return;
+    }
     var data = $scope.formData;
     auth.authenticate(data.mobileNumber, data.password).then(function(resp) {
       if(resp.otpVerified) {
@@ -38,7 +41,7 @@ angular.module('Vyomo')
     auth.forgotPassword($scope.formData.mobileNumber).then(function(resp){
       $scope.forgotPassword = true;
       $scope.formData.otp = resp.otp;
-      access_token = resp.sessionToken;
+      access_token = resp.access_token;
       $scope.errorMsg = '';
       $.unblockUI();
     }, function(error) {

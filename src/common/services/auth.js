@@ -111,9 +111,7 @@ angular.module('Vyomo')
 
     $http.post(authUrl, { number: number}).then(function(response) {
       if (response && response.data && response.data.status_code === 200){
-        userObj = _generateUserObj(response.data.message, number);
-        storeInCookie(userObj);
-        deferred.resolve(userObj);
+        deferred.resolve(response.data.message);
       } else {
         deferred.reject(response.data.error_message);
       }
@@ -132,6 +130,8 @@ angular.module('Vyomo')
         storeInCookie(userObj);
         deferred.resolve(userObj);
       } else {
+        userObj = {};
+        storeInCookie(userObj);
         deferred.reject(response.data.error_message);
       }
     });
