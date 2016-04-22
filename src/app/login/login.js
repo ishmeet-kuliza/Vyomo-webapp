@@ -1,6 +1,7 @@
 angular.module('Vyomo')
 .controller("loginCtrl", ['$scope', 'auth', 'globals', '$state',  function($scope, auth, globals, $state) {
-  var sessionUser = auth.getUser();
+  var sessionUser = auth.getUser(),
+      access_token = '';
   $scope.formData = {};
   $scope.formData.selectedCity = sessionUser.selectedCity ? sessionUser.selectedCity : '';
   $scope.errorMsg = '';
@@ -29,6 +30,38 @@ angular.module('Vyomo')
       goToHomePage();
     },function(error){
       $scope.errorMsg = error;
+    });
+  };
+
+  $scope.toggleForgotPassword = function() {
+    $.blockUI({message: globals.blockUIMsg});
+    auth.forgotPassword($scope.formData.mobileNumber).then(function(resp){
+      $scope.forgotPassword = true;
+      $scope.formData.otp = resp.otp;
+      access_token = resp.sessionToken;
+      $scope.errorMsg = '';
+      $.unblockUI();
+    }, function(error) {
+      $scope.errorMsg = error;
+      $.unblockUI();
+    });
+  };
+
+  $scope.setNewPassword = function() {
+    var params = {
+      otp: $scope.formData.otp,
+      access_token: access_token,
+      password: $scope.formData.newPassword
+    };
+
+    $.blockUI({message: globals.blockUIMsg});
+    auth.resetPassword(params).then(function() {
+      $.unblockUI();
+      $scope.errorMsg = '';
+      goToHomePage();
+    }, function(error){
+      $scope.errorMsg = error;
+      $.unblockUI();
     });
   };
 

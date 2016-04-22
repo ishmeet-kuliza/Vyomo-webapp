@@ -104,6 +104,40 @@ angular.module('Vyomo')
     return deferred.promise;
   }
 
+  function forgotPassword(number) {
+    var deferred = $q.defer();
+    // login call to server.
+    var authUrl = BASE_URL + '/forgot_password';
+
+    $http.post(authUrl, { number: number}).then(function(response) {
+      if (response && response.data && response.data.status_code === 200){
+        userObj = _generateUserObj(response.data.message, number);
+        storeInCookie(userObj);
+        deferred.resolve(userObj);
+      } else {
+        deferred.reject(response.data.error_message);
+      }
+    });
+    return deferred.promise;
+  }
+
+  function resetPassword(params) {
+    var deferred = $q.defer();
+    // login call to server.
+    var authUrl = BASE_URL + '/reset_password';
+
+    $http.post(authUrl, params).then(function(response) {
+      if (response && response.data && response.data.status_code === 200){
+        userObj = _generateUserObj(response.data.message, params.number);
+        storeInCookie(userObj);
+        deferred.resolve(userObj);
+      } else {
+        deferred.reject(response.data.error_message);
+      }
+    });
+    return deferred.promise;
+  }
+
   function isAuthenticated() {
     return !!Object.keys(getUser()).length;
   }
@@ -113,7 +147,9 @@ angular.module('Vyomo')
     getUser: getUser,
     signup: signup,
     verifyOtp: verifyOtp,
-    isAuthenticated: isAuthenticated
+    isAuthenticated: isAuthenticated,
+    forgotPassword: forgotPassword,
+    resetPassword: resetPassword
   };
 
 }]);
