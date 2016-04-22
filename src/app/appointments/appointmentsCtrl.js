@@ -1,6 +1,6 @@
 angular.module('Vyomo')
-.controller("appointmentsCtrl", ['$scope', 'auth', 'env', '$http', '$state', '$timeout', 
-            function($scope, auth, env, $http, $state, $timeout) { 
+.controller("appointmentsCtrl", ['$scope', 'auth', 'env', '$http', '$state', '$timeout', 'globals',
+            function($scope, auth, env, $http, $state, $timeout, globals) {
   var sessionUser = auth.getUser(),
       BASE_URL = env.BASE_URL;
 
@@ -21,8 +21,9 @@ angular.module('Vyomo')
     var params = {
       'access_token': 'QWthc2gxNDYwMjA0NDM2U2F0IEFwciAwOSAyMDE2IDE3OjUwOjM2IEdNVCswNTMwIChJU1Qp' //sessionUser.access_token
     };
-
+    $.blockUI({message: globals.blockUIMsg});
     $http({method: 'POST', data: params, url: BASE_URL + api}).then(function(response){
+      $.unblockUI();
       if(response && response.data && response.data.status_code === 200) {
         $scope.appointments = response.data.message['appointments'];
         $scope.appointments.forEach(function(appointment){
@@ -46,7 +47,9 @@ angular.module('Vyomo')
       'access_token': 'QWthc2gxNDYwMjA0NDM2U2F0IEFwciAwOSAyMDE2IDE3OjUwOjM2IEdNVCswNTMwIChJU1Qp', //sessionUser.access_token
       'appointment_id': appointment.appointment_id
     };
+    $.blockUI({message: globals.blockUIMsg});
     $http({method: 'POST', data: params, url: BASE_URL + '/cancel_appointment'}).then(function(response){
+      $.unblockUI();
       if(response && response.data && response.data.status_code === 200) {
         deleteAppointment(appointment.appointment_id); 
         $timeout(function(){

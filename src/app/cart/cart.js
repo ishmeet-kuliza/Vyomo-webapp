@@ -108,10 +108,13 @@ angular.module('Vyomo')
             'id': ''
         };
        function getSavedAddress(){
+            $.blockUI({message: globals.blockUIMsg});
             //API Call success method block
             addressService.getAllUserAddress().then(function(userAddresses){
+                $.unblockUI();
                 $scope.savedAddresses = userAddresses;
             },function(error){
+                $.unblockUI();
                 window.console.log(error);
             });
 
