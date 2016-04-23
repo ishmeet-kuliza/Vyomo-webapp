@@ -4,8 +4,10 @@
         <span class="success-control-label">{{successMsg}}</span>
         <span class="control-label">{{errorMsg}}</span>
     </div>
-    <span class="vm-link ml-10 mt-10" id="vm-applyCoupon" ng-if='showOfferCode=="true" && successMsg.length === 0 ' ng-click="verifyPromoCode()">Apply</span>
-    <span class="vm-link ml-10 mt-10" id="vm-remove-promo" ng-if='showOfferCode=="true" && successMsg.length !== 0 ' ng-click="removePromoCode()">Remove</span>
+    <div class="list-inline-elems coupon-action">
+        <span class="vm-link" id="vm-applyCoupon" ng-if='showOfferCode=="true" && successMsg.length === 0 ' ng-click="verifyPromoCode()">Apply</span>
+        <span class="vm-link ml-10 " id="vm-remove-promo" ng-if='showOfferCode=="true" && successMsg.length !== 0 ' ng-click="removePromoCode()">Remove</span>
+    </div>
     <div class="pull-right list-inline-elems priceValues">
         <div class="subTotalField fields mt-10">Sub Total
             <span class="subTotalVal font-bold">&#8377 {{subTotal}}</span>

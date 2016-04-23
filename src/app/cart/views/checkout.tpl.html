@@ -23,7 +23,7 @@
                 </div>
 
 
-                <div class="mt-20 remove-address vm-link cursorPointer" ng-click="deleteAddress(address)">Remove</div>
+                <span class="mt-20 remove-address vm-link cursorPointer" ng-click="deleteAddress(address)">Remove</span>
             </div>
 
             <div class="vm-add-new-address cursorPointer mt-25" ng-click="showAddressAddBox = !showAddressAddBox" ng-hide="showAddressAddBox">
@@ -50,7 +50,7 @@
                         <span ng-show="addressForm.address.$error.required"  class="control-label">Required</span>
                     </div>
                     <div class = "form-group group">
-                        <input type="text" name="landmark" ng-model="address.landmark" id="locality" class="vm-address-line-2 inputMaterial" required>
+                        <input type="text" name="landmark" ng-model="address.landmark" id="locality" ng-change="adjustAutocompleteGooglePos()" class="vm-address-line-2 inputMaterial" required>
 
                         <span class="bar"></span>
                         <label class="address-label">Locality/Street *</label>

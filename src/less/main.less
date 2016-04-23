@@ -87,6 +87,7 @@ body {
   right: 0;
   left: 0;
   bottom: 0;
+  overflow-x: hidden;
 }
 
 body::after {
@@ -211,7 +212,6 @@ Flexbox grid
   flex-wrap: wrap;
   flex-direction: column;
   align-items: stretch;
-  justify-content: space-between;
 
 }
 /****************
@@ -317,8 +317,8 @@ Common classes
 
 /* SQUARED ONE */
 .squaredOne {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 2rem;
+  height: 2rem;
   border:1px solid #ccc;
   background: white;
   vertical-align: middle;
@@ -346,8 +346,8 @@ Common classes
   opacity: 0;
   content: '';
   position: absolute;
-  width: 0.8rem;
-  height: 0.8rem;
+  width: 1.3rem;
+  height: 1.3rem;
   background: #3FC3F8;
   top: 2px;
   left: 2px;
@@ -355,12 +355,34 @@ Common classes
 }
 
 .squaredOne label:hover::after {
-  opacity: 0.3;
+  opacity: 0;
 }
 
 .squaredOne input[type=checkbox]:checked + label:after {
   opacity: 1;
 }
+
+@media only screen and (min-width: 1170px) {
+  .squaredOne {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .squaredOne label {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .squaredOne label:after {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+
+  .squaredOne label:hover::after {
+    opacity: 0.3;
+  }
+}
+
 input[type=radio] {
   visibility: hidden;
 }
@@ -425,14 +447,9 @@ input[type=radio] {
   filter: alpha(opacity=100);
   opacity: 1;
 }
-@media only screen and (min-width: 768px) {
 
-}
 @media only screen and (min-width: 1170px) {
-  .squaredOne label:after {
-    width: 0.9rem;
-    height: 0.9rem;
-  }
+
 
 }
 

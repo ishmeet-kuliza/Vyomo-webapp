@@ -129,6 +129,39 @@ angular.module('Vyomo')
             longitude : ''
         };
 
+        function getAbsPosition(el){
+                var el2 = el;
+                var curtop = 0;
+                var curleft = 0;
+                if (document.getElementById || document.all) {
+                    do  {
+                        curleft += el.offsetLeft-el.scrollLeft;
+                        curtop += el.offsetTop-el.scrollTop;
+                        el = el.offsetParent;
+                        el2 = el2.parentNode;
+                        while (el2 !== el) {
+                            curleft -= el2.scrollLeft;
+                            curtop -= el2.scrollTop;
+                            el2 = el2.parentNode;
+                        }
+                    } while (el.offsetParent);
+
+                } else if (document.layers) {
+                    curtop += el.y;
+                    curleft += el.x;
+                }
+                return [curtop, curleft];
+        }
+
+
+        $scope.adjustAutocompleteGooglePos = function(){
+
+          var inputElemTop = document.getElementById("locality");
+          var posInputElem = getAbsPosition(inputElemTop);
+          var autoCompleteTop = posInputElem[0] + 50 + "px";
+          document.querySelector('.pac-container').style.top = autoCompleteTop;
+        };
+
         function addressAutocomplete(){
             var options = {
                 componentRestrictions: {country: "in"}
@@ -144,12 +177,6 @@ angular.module('Vyomo')
                 $scope.$apply();
             });
         }
-
-
-        $scope.setDate = function(){
-            window.console.log("htlto");
-
-        };
 
         //Init functions
         addressAutocomplete();

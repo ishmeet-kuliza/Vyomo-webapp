@@ -7,11 +7,11 @@
     <div class="input-wrapper">
       <input type="number" placeholder="Enter Mobile Number" required ng-model="formData.mobileNumber" name="mobNumber" value=""/>
       <div ng-if="getPassword && !forgotPassword" class="inline-flex">
-        <input type="password" placeholder="" required ng-model="formData.password" name="password" value=""/>
+        <input type="password" placeholder="Password" required ng-model="formData.password" name="password" value=""/>
         <span class="service-info login-pointer" ng-click="toggleForgotPassword()">Forgot Password?</span>
       </div>
       <input type="text" ng-if="otpNeeded || forgotPassword" placeholder="Enter Validation Code" required ng-model="formData.otp" name="otp" value=""/>
-      <input ng-if="forgotPassword" type="password" placeholder="" required ng-model="formData.newPassword" name="password" value=""/>
+      <input ng-if="forgotPassword" type="password" placeholder="Password" required ng-model="formData.newPassword" name="password" value=""/>
       <div class="action-block">
           <div class="error-div no-signup" ng-if="errorMsg">
             *{{errorMsg}}

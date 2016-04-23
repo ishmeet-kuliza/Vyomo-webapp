@@ -97,24 +97,24 @@ Home Above the fold section
     animation: w70 0.5s linear;
   }
   p:nth-child(1),p:nth-child(2) {
-    font-size:2.4rem;
+    font-size:2rem;
     font-weight:600;
   }
   p:nth-child(3) {
-    font-size:2.2rem;
+    font-size:1.8rem;
   }
   p:nth-child(4) {
-    font-size:2.4rem;
+    font-size:2rem;
     font-weight:600;
   }
   p:nth-child(5) {
     margin-top:10px;
-    font-size:1.8rem;
+    font-size:1.4rem;
     font-weight:600;
     cursor: pointer;
 
     span{
-      font-size:1.4rem;
+      font-size:1rem;
       cursor: pointer;
     }
     &:before {
@@ -172,6 +172,32 @@ p.sectionSubhead{
   font-size:1.4rem;
   color:@grayLight;
 }
+
+@media only screen and (min-width: 1170px)  {
+  .banner-text {
+    p:nth-child(1), p:nth-child(2) {
+      font-size: 2.4rem;
+      font-weight: 600;
+    }
+    p:nth-child(3) {
+      font-size: 2.2rem;
+    }
+    p:nth-child(4) {
+      font-size: 2.4rem;
+      font-weight: 600;
+    }
+    p:nth-child(5) {
+      margin-top: 10px;
+      font-size: 1.8rem;
+      font-weight: 600;
+      cursor: pointer;
+
+      span {
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
 /**********************
 How It Works Section
 ***********************/
@@ -211,7 +237,7 @@ Package Section
     width : 100% ;
   }
   .vm-package-box-inner {
-
+    width : 100%;
     .vm-package-box-head {
       position: relative;
       color: #6b6b6b;
@@ -314,6 +340,7 @@ Package Section
   }
   .vm-offers-detail{
     margin-top:10px;
+    margin-bottom: 10px;
       p{
         margin-bottom: 0 !important;
         font-size:1.6rem;
@@ -332,6 +359,9 @@ Package Section
 }
 
 /********************Customers Reviews **************/
+.vyomo-home-page-customer-revies{
+  min-height: 270px;
+}
 #vm-customers-review-slider{
 
   position: relative;
@@ -409,11 +439,13 @@ Package Section
   .vyomo-home-page-feature-packages{
     .vm-package-box{
       width : 32.33% ; //The remaining width of 4% (i.e. 32 x 3 = 96%) will be used to create the space between the boxes and simulate margins
+      margin-left:8px;
     }
   }
   .vyomo-home-page-feature-services{
     .vm-service-box{
       width : 32.33% ; //The remaining width of 4% (i.e. 32 x 3 = 96%) will be used to create the space between the boxes and simulate margins
+      margin-left:8px;
     }
   }
   .offers-section-row{
