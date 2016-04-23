@@ -43,7 +43,7 @@ angular.module( 'Vyomo')
             }
         };
 
-        function getServicesPackages(cityCookie) {
+        function getServicesPackages(cityCookie,  clearCache) {
             if ($scope.data.selectedCity !== null) {
                 $scope.citySelected = true;
 
@@ -63,6 +63,10 @@ angular.module( 'Vyomo')
                 }
                 // initiating cart for selected city
                 cart.init(city);
+
+                if(clearCache) {
+                    servicesPackagesCacheService.clearCache();
+                }
                 
                 //API Call success method block
                 var cache = servicesPackagesCacheService.getCache();

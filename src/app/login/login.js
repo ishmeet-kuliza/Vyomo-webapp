@@ -1,5 +1,5 @@
 angular.module('Vyomo')
-.controller("loginCtrl", ['$scope', 'auth', 'globals', '$state',  function($scope, auth, globals, $state) {
+.controller("loginCtrl", ['$scope', 'auth', 'globals', '$state', '$rootScope',  function($scope, auth, globals, $state, $rootScope) {
   var sessionUser = auth.getUser(),
       access_token = '';
   $scope.formData = {};
@@ -69,7 +69,7 @@ angular.module('Vyomo')
   };
 
   function goToHomePage() {
-    $state.go('homePage');
+    $state.go(fromState);
   }
 
   $scope.showPasswordInput = function() {
@@ -84,4 +84,14 @@ angular.module('Vyomo')
   $scope.registerNow = function() {
     $state.go('signup');
   };
+
+  var fromState = 'homePage'; //default
+
+  $rootScope.$on('$stateChangeStart', function(event, toState) {
+    if(toState.name !== 'login') {
+      fromState = toState.name;
+    }
+  });
+
+
 }]);//controller
