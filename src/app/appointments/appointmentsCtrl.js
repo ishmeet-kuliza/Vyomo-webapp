@@ -75,7 +75,9 @@ angular.module('Vyomo')
         index = i;
       }
     });
-    $scope.appointments.splice(index, 1);
+    $timeout(function(){
+      $scope.appointments[index].appointment_status = 'Cancelled';
+    });
   }
 
 }]);//controller
