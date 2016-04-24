@@ -63,7 +63,7 @@ angular.module('Vyomo')
     });
 
     $stateProvider.state( 'login', {
-      url: '/login',
+      url: '/login/:section',
       views: {
           "main": {
               controller: 'loginCtrl',
@@ -74,7 +74,7 @@ angular.module('Vyomo')
     });
 
     $stateProvider.state('signup',{
-        url : "/signup",
+        url : "/signup/:section",
         views : {
             "main":{
                 controller : 'signUpCtrl',
@@ -89,7 +89,7 @@ angular.module('Vyomo')
 
   //Cart checkout Page
     $stateProvider.state('checkoutCart',{
-        url : '/viewCart',
+        url : '/viewCart/:seciton',
         views: {
             "main": {
                 controller: 'CartCtrl',
@@ -105,7 +105,7 @@ angular.module('Vyomo')
         },
         data:{ pageTitle: 'Cart' }
     }).state('checkoutCart.checkoutStep2',{
-        url : "/checkout",
+        url : "/checkout/:section",
         views : {
             "checkoutView" : {
                 controller : 'CartCheckoutCtrl',

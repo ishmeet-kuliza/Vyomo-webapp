@@ -40,7 +40,9 @@ var app = angular.module( 'Vyomo', [
     //keep track of previous states
     $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
       $state.previous = fromState;
-
+      if(toState.name !== 'login' && toState.name !== 'signup') {
+        $rootScope.previousState = toState.name;
+      }
     });
 }])
 

@@ -69,7 +69,12 @@ angular.module('Vyomo')
   };
 
   function goToHomePage() {
-    $state.go(fromState);
+    if($rootScope.previousState) {
+      $state.go($rootScope.previousState);
+    } else {
+      $state.go('homePage');
+    }
+    
   }
 
   $scope.showPasswordInput = function() {
@@ -85,13 +90,12 @@ angular.module('Vyomo')
     $state.go('signup');
   };
 
-  var fromState = 'homePage'; //default
 
-  $rootScope.$on('$stateChangeStart', function(event, toState) {
-    if(toState.name !== 'login') {
-      fromState = toState.name;
-    }
-  });
+  // $rootScope.$on('$stateChangeStart', function(event, toState) {
+  //   if(toState.name !== 'login') {
+  //     $rootScope.previousState = toState.name;
+  //   }
+  // });
 
 
 }]);//controller
