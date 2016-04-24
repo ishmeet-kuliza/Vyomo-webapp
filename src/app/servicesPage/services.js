@@ -147,8 +147,8 @@ angular.module( 'Vyomo')
                             });
                         });
                     }
+                    $.unblockUI();
                 }
-                $.unblockUI();
                 $state.go('servicesPage.list');
             }
         }
