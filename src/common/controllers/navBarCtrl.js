@@ -26,30 +26,35 @@ angular.module('Vyomo').controller('headerController', ['$scope', '$log', 'auth'
 
     $scope.logout = function() {
         $cookies.remove('userObj');
-        window.location.reload();
         $state.go('homePage');
+        window.location.reload();
+
     };
 
     $scope.goToLogin = function() {
         $state.go('login');
     };
 
+
     $scope.appendToEl = angular.element(document.querySelector('#dropdown-long-content'));
 }]);
 
 
-angular.module('Vyomo').controller('sideMenuController', ['$scope', '$state',
-    function($scope, $state){
+angular.module('Vyomo').controller('sideMenuController', ['$scope', '$state','$location','$anchorScroll','$rootScope',
+    function($scope, $state,$location,$anchorScroll,$rootScope){
         $scope.isHome = true;
 
         $scope.goToOffers = function() {
-            $scope.isHome = false;
+            $scope.isHome = false;  //Flag for active class of home icon
            if($state.current.name === "homePage"){
-               window.location.hash = "offers";
+               $location.hash("offers");
+               $anchorScroll();
            }else{
-               $state.go('homePage',{'section':'offers'});
+               $rootScope.section = "offers";
+               $state.go('homePage');
            }
             $('.vm-home-nav').removeClass('active');
+            $('.vm-aboutus-nav').removeClass('active');
             $('.vm-offers-nav').addClass('active');
 
         };
@@ -57,32 +62,44 @@ angular.module('Vyomo').controller('sideMenuController', ['$scope', '$state',
         $scope.goToAboutUs = function() {
             $scope.isHome = false;
             if($state.current.name === "homePage"){
-                window.location.hash = "aboutUs";
+                $location.hash("aboutUs");
+                $anchorScroll();
             }else{
-                $state.go('homePage',{'section':'aboutUs'});
+                $rootScope.section = "aboutUs";
+                $state.go('homePage');
             }
             $('.vm-home-nav').removeClass('active');
+            $('.vm-offers-nav').removeClass('active');
             $('.vm-aboutus-nav').addClass('active');
 
         };
 
         $scope.goToState = function(toState,params) {
-            if($state.current.name.split('.').indexOf(toState) !== -1) {
-                return;
-            }
-            $scope.isHome = true;
+            //if($state.current.name.split('.').indexOf(toState) !== -1) {
+            //    return;
+            //}
+            $('.vm-offers-nav').removeClass('active');
+            $('.vm-aboutus-nav').removeClass('active');
+
             if(toState === "homePage"){
+
+                $rootScope.section = "";
+                $scope.isHome = true;
                 var url = window.location.toString();
                 var clean_uri = url.substring(0, url.indexOf("/")); //Cleans the url
                 window.history.replaceState({}, document.title, clean_uri);
-            }
-            $('.vm-offers-nav').removeClass('active');
-            $('.vm-aboutus-nav').removeClass('active');
-            if(params){
-                $state.go(toState,params);
+                $location.hash("home");
+                $anchorScroll();
             }else{
-                $state.go(toState);
+                $scope.isHome = false;
             }
+
+
+            if(params){
+                $rootScope.section = params.section;
+            }
+                $state.go(toState);
+
         };
 
     }]);

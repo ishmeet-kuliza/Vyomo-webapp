@@ -8,7 +8,7 @@ angular.module('Vyomo')
 
   //Home Page states
   $stateProvider.state( 'homePage', {
-    url: '/:section',
+    url: '',
     views: {
       "main": {
         controller: 'HomeCtrl',
@@ -40,7 +40,7 @@ angular.module('Vyomo')
 
   //Service Page
   $stateProvider.state( 'servicesPage', {
-      url: '/servicesPage/:section',
+      url: '/servicesPage',
       views: {
           "main": {
               controller: 'ServiceCtrl',
@@ -63,7 +63,7 @@ angular.module('Vyomo')
     });
 
     $stateProvider.state( 'login', {
-      url: '/login/:section',
+      url: '/login',
       views: {
           "main": {
               controller: 'loginCtrl',
@@ -74,7 +74,7 @@ angular.module('Vyomo')
     });
 
     $stateProvider.state('signup',{
-        url : "/signup/:section",
+        url : "/signup",
         views : {
             "main":{
                 controller : 'signUpCtrl',
@@ -89,7 +89,7 @@ angular.module('Vyomo')
 
   //Cart checkout Page
     $stateProvider.state('checkoutCart',{
-        url : '/viewCart/:seciton',
+        url : '/viewCart',
         views: {
             "main": {
                 controller: 'CartCtrl',
@@ -105,7 +105,7 @@ angular.module('Vyomo')
         },
         data:{ pageTitle: 'Cart' }
     }).state('checkoutCart.checkoutStep2',{
-        url : "/checkout/:section",
+        url : "/checkout",
         views : {
             "checkoutView" : {
                 controller : 'CartCheckoutCtrl',
@@ -119,7 +119,7 @@ angular.module('Vyomo')
     });
 
     $stateProvider.state( 'appointments', {
-      url: '/appointments/:section',
+      url: '/appointments',
       views: {
           "main": {
               controller: 'appointmentsCtrl',

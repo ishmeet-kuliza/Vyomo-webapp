@@ -25,6 +25,8 @@ var app = angular.module( 'Vyomo', [
 }])
 
 .run(['$rootScope', 'auth', '$state', function($rootScope, auth, $state) {
+
+    $rootScope.section = "";
     $rootScope.$on('$stateChangeStart', function(event, toState) {
       if(auth.isAuthenticated()) {
         return;
@@ -48,24 +50,48 @@ var app = angular.module( 'Vyomo', [
     });
 }])
 
-.controller( 'AppCtrl', ['$window', '$scope', '$location', 'servicesPackagesCacheService',
-                      function AppCtrl ( $window, $scope, $location, servicesPackagesCacheService ) {
+.controller( 'AppCtrl', ['$window', '$scope', '$location', 'servicesPackagesCacheService','$anchorScroll','cart','$rootScope',
+                      function AppCtrl ( $window, $scope, $location, servicesPackagesCacheService, $anchorScroll, cart,$rootScope ) {
   $window.console.debug('This is our app', app);
   $scope.vyomoContactNo = "1800-102-8454";
   $scope.toggleNavMenuMobile = false;
 
   getAllServices();
 
-  $scope.$on('$stateChangeSuccess', function(event, toState, toParams){
+  // This is a functions that scrolls to #{blah}link
+  //function goToByScroll(id){
+  //  // Remove "link" from the ID
+  //  id = id.replace("link", "");
+  //  // Scroll
+  //  $('html,body').animate({
+  //        scrollTop: $("#"+id).offset().top},
+  //      'slow');
+  //}
+  $scope.$on('$stateChangeSuccess', function(event, toState){
     if ( angular.isDefined( toState.data.pageTitle ) ) {
       $scope.pageTitle = 'Vyomo |' + toState.data.pageTitle ;
     }
     //Redirection to particular section of page
-    if(toState.name === "homePage" || toState.name === "servicesPage"){
-      if(toParams.section !== ""){
+    if(toState.name === "homePage"){
+      if($rootScope.section !== ""){
         window.setTimeout(function(){
-          window.location.hash = toParams.section;
+          $location.hash($rootScope.section);
+          $anchorScroll();
         },300);
+      }
+    }
+    if(toState.name === "servicesPage"){
+      if(!cart.getCity()) {  //City not selected scroll to city selection
+        $location.hash("citySelectBox");
+        // call $anchorScroll()
+        $anchorScroll();
+      }else{
+        if($rootScope.section !== ""){
+          window.setTimeout(function(){
+            $location.hash($rootScope.section);
+            $anchorScroll();
+          },300);
+        }
       }
     }
 
