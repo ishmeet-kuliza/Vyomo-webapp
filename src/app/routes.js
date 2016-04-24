@@ -8,7 +8,7 @@ angular.module('Vyomo')
 
   //Home Page states
   $stateProvider.state( 'homePage', {
-    url: '/',
+    url: '/:section',
     views: {
       "main": {
         controller: 'HomeCtrl',
@@ -40,7 +40,7 @@ angular.module('Vyomo')
 
   //Service Page
   $stateProvider.state( 'servicesPage', {
-      url: '/servicesPage',
+      url: '/servicesPage/:section',
       views: {
           "main": {
               controller: 'ServiceCtrl',
@@ -119,7 +119,7 @@ angular.module('Vyomo')
     });
 
     $stateProvider.state( 'appointments', {
-      url: '/appointments',
+      url: '/appointments/:section',
       views: {
           "main": {
               controller: 'appointmentsCtrl',
@@ -129,7 +129,8 @@ angular.module('Vyomo')
       data:{
         pageTitle: 'Login',
         confirmBookingMsg: null
-      }
+      },
+      reloadOnSearch: false
     });
 
 }]);

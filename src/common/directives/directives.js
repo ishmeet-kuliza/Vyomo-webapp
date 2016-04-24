@@ -1,5 +1,5 @@
 
-angular.module('Vyomo').directive('initializePage',['$window', '$state', function($window, $state){
+angular.module('Vyomo').directive('initializePage',['$window', function($window){
     return {
         restrict: 'AE',
 
@@ -60,9 +60,6 @@ angular.module('Vyomo').directive('initializePage',['$window', '$state', functio
                 scrolling = false;
             };
 
-            scope.goToState = function(toState) {
-                $state.go(toState);
-            };
 
             window.bind('resize', function () {
 
