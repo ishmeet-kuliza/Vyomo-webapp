@@ -139,7 +139,7 @@ angular.module('Vyomo')
   }
 
   function isAuthenticated() {
-    return !!Object.keys(getUser()).length;
+    return !!Object.keys(getUser()).length && getUser().otpVerified; 
   }
 
   function resendOTP(sessionToken) {

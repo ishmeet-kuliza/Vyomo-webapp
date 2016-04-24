@@ -2,6 +2,19 @@
 Start General Classes
 ****************************/
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+
 /* make keyframes that tell the start state and the end state of our object */
 .animate-enter,
 .animate-leave

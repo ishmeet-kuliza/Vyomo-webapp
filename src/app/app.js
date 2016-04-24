@@ -30,8 +30,10 @@ var app = angular.module( 'Vyomo', [
         return;
       } else if(toState.name === 'checkoutCart') {  //redirect to login //Handle appointment
         event.preventDefault();
+        auth.clearUser();
         $state.go('login');
       } else {
+        auth.clearUser();
         return;
       }
 

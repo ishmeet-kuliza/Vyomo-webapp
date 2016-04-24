@@ -1,7 +1,7 @@
 <div class="login-section-wrapper">
   <div class="login-info">
     <span>SHARE YOUR DETAILS </span>
-    <span class="service-info">Once validate you can use our services from anywhere anytime. </span>
+    <span class="service-info">Once validated you can use our services from anywhere anytime. </span>
   </div>
   <form role="form" ng-submit="sendForm()" autocomplete="on" form-auto-fill-fix>
     <select class="vm-select-city form-control" ng-disabled="otpSent" placeholder="Select your city" ng-model="formData.selectedCity" required>
@@ -18,7 +18,8 @@
         <option value="F">F</option>
       </select>
       <input type="password" placeholder="Password" ng-disabled="otpSent" required ng-model="formData.password" name="password" value=""/>
-      <input type="text" ng-if="otpSent" placeholder="Enter Validation Code" required ng-model="formData.otp" name="otp" value="otp"/>
+      <input type="text" ng-if="otpSent" placeholder="Enter OTP" required ng-model="formData.otp" name="otp" value="otp"/>
+      <span ng-if="otpSent" class="signupOTP"> An otp has been sent to your mobile number</span>
       <div class="action-block">
           <div class="error-div" ng-if="errorMsg">
             *{{errorMsg}}

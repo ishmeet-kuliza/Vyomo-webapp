@@ -56,6 +56,7 @@ angular.module('Vyomo')
     var params = {
       otp: $scope.formData.otp,
       access_token: access_token,
+      number: $scope.formData.mobileNumber,
       password: $scope.formData.newPassword
     };
 
