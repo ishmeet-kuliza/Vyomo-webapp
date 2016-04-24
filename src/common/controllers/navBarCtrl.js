@@ -67,6 +67,9 @@ angular.module('Vyomo').controller('sideMenuController', ['$scope', '$state',
         };
 
         $scope.goToState = function(toState,params) {
+            if($state.current.name.split('.').indexOf(toState) !== -1) {
+                return;
+            }
             $scope.isHome = true;
             if(toState === "homePage"){
                 var url = window.location.toString();
