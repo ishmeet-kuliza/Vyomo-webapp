@@ -19,7 +19,7 @@ angular.module('Vyomo')
   } else {
     var api = '/get_all_appointments';
     var params = {
-      'access_token': 'QWthc2gxNDYwMjA0NDM2U2F0IEFwciAwOSAyMDE2IDE3OjUwOjM2IEdNVCswNTMwIChJU1Qp' //sessionUser.access_token
+      'access_token': sessionUser.access_token
     };
     $.blockUI({message: globals.blockUIMsg});
     $http({method: 'POST', data: params, url: BASE_URL + api}).then(function(response){
@@ -44,7 +44,7 @@ angular.module('Vyomo')
 
   $scope.cancelAppointment = function(appointment) {
     var params = {
-      'access_token': 'QWthc2gxNDYwMjA0NDM2U2F0IEFwciAwOSAyMDE2IDE3OjUwOjM2IEdNVCswNTMwIChJU1Qp', //sessionUser.access_token
+      'access_token': sessionUser.access_token,
       'appointment_id': appointment.appointment_id
     };
     $.blockUI({message: globals.blockUIMsg});
