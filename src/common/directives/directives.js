@@ -15,7 +15,7 @@ angular.module('Vyomo').directive('initializePage',['$window', '$state', functio
 
             scope.checkMQ =function() {
                 //check if mobile or desktop device
-                return window.getComputedStyle(document.querySelector('.vm-main-content'), '::before').getPropertyValue('content').replace(/'/g, "").replace(/"/g, "");
+                return window[0].getComputedStyle(document.querySelector('.vm-main-content'), '::before').getPropertyValue('content').replace(/'/g, "").replace(/"/g, "");
             };
 
             scope.moveNavigation = function() {
