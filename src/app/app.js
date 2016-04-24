@@ -34,11 +34,13 @@ var app = angular.module( 'Vyomo', [
       } else {
         return;
       }
+
     });
 
     //keep track of previous states
     $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState) {
       $state.previous = fromState;
+
     });
 }])
 
@@ -50,10 +52,19 @@ var app = angular.module( 'Vyomo', [
 
   getAllServices();
 
-  $scope.$on('$stateChangeSuccess', function(event, toState){
+  $scope.$on('$stateChangeSuccess', function(event, toState, toParams){
     if ( angular.isDefined( toState.data.pageTitle ) ) {
       $scope.pageTitle = 'Vyomo |' + toState.data.pageTitle ;
     }
+    //Redirection to particular section of page
+    if(toState.name === "homePage" || toState.name === "servicesPage"){
+      if(toParams.section !== ""){
+        window.setTimeout(function(){
+          window.location.hash = toParams.section;
+        },300);
+      }
+    }
+
   });
   $scope.routeIs = function(routeName) {
     if(routeName !== "/") {

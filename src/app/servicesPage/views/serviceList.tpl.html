@@ -1,6 +1,6 @@
 <section-header title = "SERVICES" ng-show="citySelected" ng-hide="viewCart" subtext =""></section-header>
 
-<div class="mt-25 flexBox vm-services-row">
+<div class="mt-25 flexBox vm-services-row" id="serviceSection">
     <div class="serviceContainerBox containerBox" ng-repeat="service in categories track by $index | orderBy :'service.category_name'">
         <div class="flexItem vm-service-box element-box" >
             <div class="vm-service-box-inner" ng-click="isCollapsed = !isCollapsed">

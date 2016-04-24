@@ -8,7 +8,7 @@ angular.module('Vyomo')
 
   //Home Page states
   $stateProvider.state( 'homePage', {
-    url: '/',
+    url: '/:section',
     views: {
       "main": {
         controller: 'HomeCtrl',
@@ -40,7 +40,7 @@ angular.module('Vyomo')
 
   //Service Page
   $stateProvider.state( 'servicesPage', {
-      url: '/servicesPage',
+      url: '/servicesPage/:section',
       views: {
           "main": {
               controller: 'ServiceCtrl',
