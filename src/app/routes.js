@@ -119,7 +119,7 @@ angular.module('Vyomo')
     });
 
     $stateProvider.state( 'appointments', {
-      url: '/appointments',
+      url: '/appointments/:section',
       views: {
           "main": {
               controller: 'appointmentsCtrl',
@@ -129,7 +129,8 @@ angular.module('Vyomo')
       data:{
         pageTitle: 'Login',
         confirmBookingMsg: null
-      }
+      },
+      reloadOnSearch: false
     });
 
 }]);

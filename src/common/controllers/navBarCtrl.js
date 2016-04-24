@@ -69,7 +69,9 @@ angular.module('Vyomo').controller('sideMenuController', ['$scope', '$state',
         $scope.goToState = function(toState,params) {
             $scope.isHome = true;
             if(toState === "homePage"){
-                window.location = "/";
+                var url = window.location.toString();
+                var clean_uri = url.substring(0, url.indexOf("/")); //Cleans the url
+                window.history.replaceState({}, document.title, clean_uri);
             }
             $('.vm-offers-nav').removeClass('active');
             $('.vm-aboutus-nav').removeClass('active');
