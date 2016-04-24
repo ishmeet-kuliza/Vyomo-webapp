@@ -12,16 +12,8 @@ angular.module('Vyomo')
       selectedCity : selectedCityName,
       cities:[
           {
-              name : "Bangalore",
-              lat_long : "12.9667,77.566"
-          },
-          {
-              name : "Delhi/NCR",
-              lat_long : "28.613,77.209"
-          },
-          {
-              name : "Mumbai",
-              lat_long : "18.975,72.825"
+              name : "Chennai",
+              lat_long : "13.0827, 80.2707"
           }
       ]
   }; 
@@ -29,9 +21,15 @@ angular.module('Vyomo')
   function getCities() {
     return cities;
   }
+
+  function getDefaultCity() {
+    return 'chennai';
+  }
+
   var blockUIMsg = '<div class="loader-gif"><img src="assets/img/loader.gif" ></div>';
   return {
     getCities: getCities,
-    blockUIMsg: blockUIMsg
+    blockUIMsg: blockUIMsg,
+    getDefaultCity: getDefaultCity
   };
 }]);

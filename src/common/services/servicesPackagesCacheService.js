@@ -3,10 +3,10 @@
 ** author: @ishmeet
 */
 angular.module('Vyomo')
-.factory('servicesPackagesCacheService', ['env', '$http', 'cart', '$q', function(env, $http, cart, $q) {
+.factory('servicesPackagesCacheService', ['env', '$http', 'cart', '$q', 'globals', function(env, $http, cart, $q, globals) {
 	var servicesPackagesCache,
 		api = '/get_all_services',
-		city = cart.getCity() ? cart.getCity().toLowerCase() : 'bangalore';
+		city = cart.getCity() ? cart.getCity().toLowerCase() : globals.getDefaultCity();
 
 	function setCache() {
 		var deferred = $q.defer();
@@ -31,10 +31,13 @@ angular.module('Vyomo')
 		return servicesPackagesCache ? servicesPackagesCache : {};
 	}
 
-
+	function clearCache() {
+		servicesPackagesCache = {};
+	}	
 
 	return {
       setCache: setCache,
-      getCache: getCache
+      getCache: getCache,
+      clearCache: clearCache
     };
 }]);
