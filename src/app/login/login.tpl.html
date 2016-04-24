@@ -5,14 +5,15 @@
   </div>
   <form role="form" ng-submit="sendForm()" autocomplete="on" form-auto-fill-fix>
     <div class="input-wrapper">
-      <input type="number" placeholder="Enter Mobile Number" required ng-model="formData.mobileNumber" name="mobNumber" value=""/>
+      <input type="number" ng-disabled="otpNeeded || forgotPassword" placeholder="Enter Mobile Number" required ng-model="formData.mobileNumber" name="mobNumber" value=""/>
       <div ng-if="getPassword && !forgotPassword" class="inline-flex">
-        <input type="password" placeholder="Password" required ng-model="formData.password" name="password" value=""/>
-        <span class="service-info login-pointer" ng-click="toggleForgotPassword()">Forgot Password?</span>
+        <input type="password" placeholder="Enter Password" ng-disabled="otpNeeded || forgotPassword" required ng-model="formData.password" name="password" value=""/>
+        <span class="service-info login-pointer" ng-if="!otpNeeded" ng-click="toggleForgotPassword()">Forgot Password?</span>
       </div>
       <input type="text" ng-if="otpNeeded || forgotPassword" placeholder="Enter Validation Code" required ng-model="formData.otp" name="otp" value=""/>
       <input ng-if="forgotPassword" type="password" placeholder="Password" required ng-model="formData.newPassword" name="password" value=""/>
-      <span class="resend-sms-button" ng-if="forgotPassword" ng-click="resendOTP()"> Resend sms</span>
+      <span class="resend-sms-button" ng-if="otpNeeded || forgotPassword" ng-click="resendOTP()"> Resend sms</span>
+      <span class="resend-sms-button" ng-if="otpNeeded || forgotPassword" ng-click="changeDetails()"> Change Details</span>
       <div class="action-block">
           <div class="error-div no-signup" ng-if="errorMsg">
             *{{errorMsg}}
@@ -23,8 +24,8 @@
 
           <button class="login no-signup-button" type="button" ng-if="!getPassword" ng-click="showPasswordInput()">NEXT</button>
           <button class="login no-signup-button" type="submit" ng-if="getPassword && !otpNeeded && !forgotPassword">LOGIN</button>
-          <button class="login no-signup-button" ng-click="verifyOtp()" ng-if="otpNeeded">VALIDATE</button>
-          <button class="login no-signup-button" ng-click="setNewPassword()" ng-if="forgotPassword">VALIDATE</button>
+          <button class="login no-signup-button" type="button" ng-click="verifyOtp()" ng-if="otpNeeded">VALIDATE</button>
+          <button class="login no-signup-button" type="button" ng-click="setNewPassword()" ng-if="forgotPassword">VALIDATE</button>
 
       </div>
     </div>

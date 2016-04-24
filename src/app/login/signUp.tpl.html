@@ -17,7 +17,7 @@
         <option value="M">M</option>
         <option value="F">F</option>
       </select>
-      <input type="password" placeholder="Password" ng-disabled="otpSent" required ng-model="formData.password" name="password" value=""/>
+      <input type="password" placeholder="Enter Password" ng-disabled="otpSent" required ng-model="formData.password" name="password" value=""/>
       <input type="text" ng-if="otpSent" placeholder="Enter OTP" required ng-model="formData.otp" name="otp" value="otp"/>
       <span ng-if="otpSent" class="signupOTP"> An otp has been sent to your mobile number</span>
       <div class="action-block">

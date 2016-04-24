@@ -99,13 +99,12 @@ angular.module('Vyomo')
     });
   };
 
-
-
-  // $rootScope.$on('$stateChangeStart', function(event, toState) {
-  //   if(toState.name !== 'login') {
-  //     $rootScope.previousState = toState.name;
-  //   }
-  // });
+  $scope.changeDetails = function() {
+    $scope.otpNeeded = false;
+    $scope.forgotPassword = false;
+    auth.clearUser();
+    $scope.formData = {};
+  };
 
 
 }]);//controller
