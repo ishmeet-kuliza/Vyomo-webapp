@@ -1,11 +1,11 @@
 <section-header title = "PACKAGES" ng-show="citySelected" subtext =""></section-header>
 
 <div class=" mt-25 flexBox vm-package-row" id="packageSection">
-    <div class="packageContainerBox containerBox" ng-repeat="package in packages track by $index" serviceId="package.service_id">
+    <div class="packageContainerBox containerPackageBox" ng-repeat="package in packages track by $index" serviceId="package.service_id">
         <div class=" vm-package-box element-box">
             <div class="box-inner vm-package-box-inner">
                 <div class="vm-package-box-image">
-                    <img alt="{{package.service_name}}" src="assets/img/HomePackages-headToToe.jpg" >
+                    <img alt="{{package.service_name}}" src="{{package.img}}"  >
                 </div>
                 <div class="box-head vm-package-box-head p15">
                     <div class="list-inline-elems squaredOne" ng-if="!viewCart" ng-class="{'checked' : package.isAddedToCart}">
@@ -37,11 +37,12 @@
                         <span class="fa fa-minus removePerson" ng-click="package.removeFromCart()"></span>
                     </div>
                 </div>
+                <!-- Tobe shown in viewCart section only -->
+                <div class=" m10 vm-remove-from-cart vm-link" ng-if="viewCart" ng-click="removePackageFromCart(package)">Remove</div>
             </div>
 
         </div>
-        <!-- Tobe shown in viewCart section only -->
-        <div class="vm-remove-from-cart vm-link" ng-if="viewCart" ng-click="removePackageFromCart(package)">Remove</div>
+
     </div>
 
     <div class="vm-cart-addmore cursorPointer" ng-show="viewCart" ng-click="goToState('servicesPage')">

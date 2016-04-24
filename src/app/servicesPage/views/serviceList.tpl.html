@@ -2,11 +2,11 @@
 
 <div class="mt-25 flexBox vm-services-row" id="serviceSection">
     <div class="serviceContainerBox containerBox" ng-repeat="service in categories track by $index | orderBy :'service.category_name'">
-        <div class="flexItem vm-service-box element-box" >
+        <div class="flexItem vm-service-box element-box removeMarginBottom" >
             <div class="vm-service-box-inner" ng-click="isCollapsed = !isCollapsed">
                 <div class="pull-left imgBox">
                     <! --{{img to be changed to api image key}} -->
-                    <img alt="Vyomo Services {{service.category_name}}" src="assets/img/HomeServices-bodyPolish.jpg"/>
+                    <img alt="Vyomo Services {{service.category_name}}" src="{{service.category_img}}"/>
                 </div>
                 <div class="pull-left vm-service-title">
                     {{service.category_name}}
@@ -22,15 +22,15 @@
             <div class="vm-expanded-service-list">
                 <ul class="service-type-list">
                     <li class="service-list-element" ng-repeat="serviceType in service.list track by $index | orderBy :'serviceType.cost'">
-                        <div class="list-inline-elems squaredOne" ng-class="{'checked' : isCheckService || viewCart}">
+                        <div class="list-inline-elems squaredOne v-baseline" ng-class="{'checked' : isCheckService || viewCart}">
                             <input type="checkbox" ng-model="isCheckService" ng-click="serviceType.clearFromCart()" ng-checked="viewCart" class="squaredOneCheckbox" value="{{serviceType.service_id}}" name="serviceType" id="service_{{serviceType.service_id}}"/>
                             <label for="service_{{serviceType.service_id}}">
                             </label>
                         </div>
-                        <div class="list-inline-elems serviceTypeName ml-10">
+                        <div class="list-inline-elems serviceTypeName ml-10 w70">
                             {{serviceType.service_name}}
                         </div>
-                        <div class="list-inline-elems font-bold serviceTypeCostElem pull-right">
+                        <div class="list-inline-elems font-bold serviceTypeCostElem pull-right v-top">
                             <span class="rupeeSymbol">&#8377</span>
                             <span class="serviceTypeCost">{{serviceType.cost}}</span>
                         </div>
@@ -49,9 +49,10 @@
                     </li>
                 </ul>
             </div>
+            <!-- Tobe shown in viewCart section only -->
+            <div class="vm-remove-from-cart vm-link mb-10 ml-10" ng-if="viewCart" ng-click="removeCategoryFromCart(service)">Remove</div>
         </div>
-        <!-- Tobe shown in viewCart section only -->
-        <div class="vm-remove-from-cart vm-link" ng-if="viewCart" ng-click="removeCategoryFromCart(service)">Remove</div>
+
     </div>
     <div class="vm-cart-addmore cursorPointer" ng-show="viewCart" ng-click="goToState('servicesPage')">
         <span class = "fa fa-plus mr-15"></span> <span class="vm-link">Add another service</span>

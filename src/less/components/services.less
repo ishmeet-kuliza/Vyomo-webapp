@@ -144,9 +144,10 @@ span.label-selected-city{
   }
 
 
-.vm-service-box{
+.removeMarginBottom{
   margin-bottom: 0 !important;
 }
+
 #openServiceListIcon{
   position: absolute;
   top: 5px;
@@ -197,7 +198,7 @@ span.label-selected-city{
 
   .vm-package-row{
     flex-direction:row;
-    align-items: center;
+    align-items: stretch;
   }
   .vm-package-box-image{
     text-align: center;
@@ -212,6 +213,10 @@ span.label-selected-city{
       width:100%;
     }
   }
+  .containerPackageBox{
+    display: flex;
+    .containerBox;
+  }
   .vm-service-box{
     cursor: pointer;
   }
@@ -220,5 +225,9 @@ span.label-selected-city{
   .containerBox{
     width : 32.33% ; //The remaining width of 3% (i.e. 32.33 x 3 = 97%) will be used to create the space between the boxes and simulate margins
     margin-left:8px;
+  }
+  .containerPackageBox{
+    display: flex;
+    .containerBox;
   }
 }
