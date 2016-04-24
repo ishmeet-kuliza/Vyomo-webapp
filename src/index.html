@@ -58,7 +58,7 @@
       <a class="vm-nav-trigger" ng-click="$root.toggleNavMenuMobile = !$root.toggleNavMenuMobile" ng-class="{'nav-is-visible': $root.toggleNavMenuMobile}"><span></span></a>
 
       <div class="vm-nav login-header" >
-        <div class="vm-login-message" ng-if="number">
+        <div class="vm-login-message" ng-if="number" ng-cloak>
           <span class="isLogin-msg font-bold">YOU ARE LOGGED IN </span>
           <span class = "vm-username">{{number}}</span>
           <span class="logout" ng-click="logout()">
