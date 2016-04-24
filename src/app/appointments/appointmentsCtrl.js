@@ -19,13 +19,18 @@ angular.module('Vyomo')
   } else {
     var api = '/get_all_appointments';
     var params = {
-      'access_token': sessionUser.access_token
+      'access_token': sessionUser.sessionToken
     };
     $.blockUI({message: globals.blockUIMsg});
     $http({method: 'POST', data: params, url: BASE_URL + api}).then(function(response){
       $.unblockUI();
       if(response && response.data && response.data.status_code === 200) {
         $scope.appointments = response.data.message['appointments'];
+        if(!$scope.appointments.length) {
+          $scope.appointmentsAvailable = false;
+          return;
+        } 
+        $scope.appointmentsAvailable = true;
         $scope.appointments.forEach(function(appointment){
           appointment.isCollapsed = true;
         });
@@ -44,7 +49,7 @@ angular.module('Vyomo')
 
   $scope.cancelAppointment = function(appointment) {
     var params = {
-      'access_token': sessionUser.access_token,
+      'access_token': sessionUser.sessionToken,
       'appointment_id': appointment.appointment_id
     };
     $.blockUI({message: globals.blockUIMsg});
