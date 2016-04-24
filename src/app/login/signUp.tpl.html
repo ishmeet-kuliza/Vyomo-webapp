@@ -19,7 +19,8 @@
       </select>
       <input type="password" placeholder="Enter Password" ng-disabled="otpSent" required ng-model="formData.password" name="password" value=""/>
       <input type="text" ng-if="otpSent" placeholder="Enter OTP" required ng-model="formData.otp" name="otp" value="otp"/>
-      <span ng-if="otpSent" class="signupOTP"> An otp has been sent to your mobile number</span>
+      <span ng-if="otpSent && !resentOTP" class="signupOTP"> An OTP has been sent to your mobile number</span>
+      <span ng-if="otpSent && resentOTP" class="signupOTP"> An OTP has been resent to your mobile number</span>
       <div class="action-block">
           <div class="error-div" ng-if="errorMsg">
             *{{errorMsg}}

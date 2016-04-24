@@ -10,10 +10,11 @@
         <input type="password" placeholder="Enter Password" ng-disabled="otpNeeded || forgotPassword" required ng-model="formData.password" name="password" value=""/>
         <span class="service-info login-pointer" ng-if="!otpNeeded" ng-click="toggleForgotPassword()">Forgot Password?</span>
       </div>
-      <input type="text" ng-if="otpNeeded || forgotPassword" placeholder="Enter Validation Code" required ng-model="formData.otp" name="otp" value=""/>
-      <input ng-if="forgotPassword" type="password" placeholder="Password" required ng-model="formData.newPassword" name="password" value=""/>
+      <input type="text" ng-if="otpNeeded || forgotPassword" placeholder="Enter OTP" required ng-model="formData.otp" name="otp" value=""/>
+      <input ng-if="forgotPassword" type="password" placeholder="Set New Password" required ng-model="formData.newPassword" name="password" value=""/>
       <span class="resend-sms-button" ng-if="otpNeeded || forgotPassword" ng-click="resendOTP()"> Resend sms</span>
       <span class="resend-sms-button" ng-if="otpNeeded || forgotPassword" ng-click="changeDetails()"> Change Details</span>
+      <span class="signupOTP" ng-if="(otpNeeded || forgotPassword) && resentOTP" ng-click="resendOTP()"> An OTP has been resent to your mobile number</span>
       <div class="action-block">
           <div class="error-div no-signup" ng-if="errorMsg">
             *{{errorMsg}}

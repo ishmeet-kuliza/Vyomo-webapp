@@ -89,13 +89,19 @@ angular.module('Vyomo')
     return deferred.promise;
   }
 
-  function verifyOtp(sessionToken, otp) {
+  function verifyOtp(sessionToken, otp, mobNumber) {
     var deferred = $q.defer();
     // login call to server.
     var authUrl = BASE_URL + '/validate_otp';
-
     $http.post(authUrl, { access_token: sessionToken, otp: otp }).then(function(response) {
       if (response && response.data && response.data.status_code === 200){
+        var params = {
+          access_token: sessionToken,
+          otp_verified: response.data.message.otp_verified,
+          otp: otp
+        };
+        userObj = _generateUserObj(params, mobNumber);
+        storeInCookie(userObj);
         deferred.resolve(userObj);
       } else {
         deferred.reject(response.data.error_message);

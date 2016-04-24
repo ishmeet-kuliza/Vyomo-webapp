@@ -13,6 +13,7 @@ angular.module('Vyomo')
   $scope.errorMsg = '';
   $scope.data = globals.getCities();
   $scope.otpSent = false;
+  $scope.resentOTP = false;
 
   $scope.sendForm = function() {
     var formData = $scope.formData;
@@ -24,7 +25,9 @@ angular.module('Vyomo')
   };
 
   function doSignUp(data) {
+    $.blockUI({message: globals.blockUIMsg});
     auth.signup(data).then(function(resp) {
+      $.unblockUI();
       $scope.errorMsg = '';
       if(resp.otpVerified) {
         goToHomePage();
@@ -33,16 +36,20 @@ angular.module('Vyomo')
         // $scope.formData.otp = resp.otp;
       }
     }, function(error) {
+      $.unblockUI();
       $scope.errorMsg = error;
     });
   }
 
   function verifyOtp(data) {  //This is same as login, should be modular
+    $.blockUI({message: globals.blockUIMsg});
     var user = auth.getUser();
     auth.verifyOtp(user.sessionToken, data.otp).then(function() {
+      $.unblockUI();
       $scope.errorMsg = '';
       goToHomePage();
     },function(error){
+      $.unblockUI();
       $scope.errorMsg = error;
     });
   }
@@ -52,13 +59,16 @@ angular.module('Vyomo')
   }
 
   $scope.resendOTP = function() {
+    $.blockUI({message: globals.blockUIMsg});
     auth.resendOTP().then(function(){
-      window.console.log('OTP Sent');
+      $.unblockUI();
+      $scope.resentOTP = true;
     });
   };
 
   $scope.changeDetails = function() {
     $scope.otpSent = false;
+    $scope.resentOTP = false;
     $scope.formData = {};
     auth.clearUser();
   };

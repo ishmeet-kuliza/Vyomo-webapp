@@ -21,7 +21,7 @@
 						<span>{{appointment.appointment_date}}</span>
 						<div>{{appointment.services.length}} services booked</div>
 					</div>
-						<span> Status: <span ng-class="(appointment.appointment_status=='Complete')?  'color-complete': 'default-color'" >{{appointment.appointment_status}}</span></span>
+						<span> Status: <span ng-class="(appointment.appointment_status=='Cancelled')?  'color-complete': 'default-color'" >{{appointment.appointment_status}}</span></span>
 				</div>
 
 				<div class="appointment-details" id="collapsed-appointment">
@@ -39,7 +39,7 @@
 						<span class="mode">Cash</span>
 					</span>
 					<div class="cancel-btn" ng-if="appointment.appointment_status!='Complete'">
-						<span ng-click="cancelAppointment(appointment)">Cancel</span>
+						<span ng-if="appointment.appointment_status!='Cancelled'"ng-click="cancelAppointment(appointment)">Cancel</span>
 					</div>
 				</div>
 
