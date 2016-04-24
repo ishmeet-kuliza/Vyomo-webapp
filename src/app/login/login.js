@@ -18,7 +18,7 @@ angular.module('Vyomo')
         goToHomePage();
       } else {  //Need to verify OTP
         $scope.otpNeeded = true;
-        $scope.formData.otp = resp.otp;
+        // $scope.formData.otp = resp.otp;
         // verifyOtp(resp);
       } 
     }, function(error) {
@@ -36,11 +36,13 @@ angular.module('Vyomo')
     });
   };
 
+  var access_token_temp;
   $scope.toggleForgotPassword = function() {
     $.blockUI({message: globals.blockUIMsg});
     auth.forgotPassword($scope.formData.mobileNumber).then(function(resp){
       $scope.forgotPassword = true;
-      $scope.formData.otp = resp.otp;
+      access_token_temp = resp.access_token;
+      // $scope.formData.otp = resp.otp;
       access_token = resp.access_token;
       $scope.errorMsg = '';
       $.unblockUI();
@@ -89,6 +91,13 @@ angular.module('Vyomo')
   $scope.registerNow = function() {
     $state.go('signup');
   };
+
+  $scope.resendOTP = function() {
+    auth.resendOTP(access_token_temp).then(function(){
+      window.console.log('OTP Sent');
+    });
+  };
+
 
 
   // $rootScope.$on('$stateChangeStart', function(event, toState) {

@@ -4,20 +4,20 @@
     <span class="service-info">Once validate you can use our services from anywhere anytime. </span>
   </div>
   <form role="form" ng-submit="sendForm()" autocomplete="on" form-auto-fill-fix>
-    <select class="vm-select-city form-control" placeholder="Select your city" ng-model="formData.selectedCity" required>
+    <select class="vm-select-city form-control" ng-disabled="otpSent" placeholder="Select your city" ng-model="formData.selectedCity" required>
       <option value="" class="placeholder">Select your city</option>
       <option ng-repeat="city in  data.cities" value="{{city.name}}" latLong="{{city.lat_long}}">{{city.name}}</option>
     </select>
     <div class="input-wrapper">
-      <input type="text" placeholder="Name" required autofocus ng-model="formData.custName" name="custName" value="">
-      <input type="email" placeholder="Email" required ng-model="formData.email" name="email" value=''/>
-      <input type="number" placeholder="Mobile Number" required ng-model="formData.mobNumber" name="mobNumber" value=""/>
-      <select class="vm-select-city" placeholder="Gender" ng-model="formData.gender" required>
+      <input type="text" placeholder="Name" ng-disabled="otpSent" required autofocus ng-model="formData.custName" name="custName" value="">
+      <input type="email" placeholder="Email" ng-disabled="otpSent" required ng-model="formData.email" name="email" value=''/>
+      <input type="number" placeholder="Mobile Number" ng-disabled="otpSent" required ng-model="formData.mobNumber" name="mobNumber" value=""/>
+      <select class="vm-select-city" placeholder="Gender" ng-disabled="otpSent" ng-model="formData.gender" required>
         <option value="" class="placeholder">Gender</option>
         <option value="M">M</option>
         <option value="F">F</option>
       </select>
-      <input type="password" placeholder="Password" required ng-model="formData.password" name="password" value=""/>
+      <input type="password" placeholder="Password" ng-disabled="otpSent" required ng-model="formData.password" name="password" value=""/>
       <input type="text" ng-if="otpSent" placeholder="Enter Validation Code" required ng-model="formData.otp" name="otp" value="otp"/>
       <div class="action-block">
           <div class="error-div" ng-if="errorMsg">
@@ -29,7 +29,8 @@
 
           <button class="login" type="submit" ng-if="!otpSent">SEND VALIDATION CODE</button>
           <button class="login" type="submit" ng-if="otpSent">VALIDATE ME</button>
-          <span class="resend-sms-button" ng-if="otpSent" ng-click="sendForm(true)"> Resend SMS</span>
+          <span class="resend-sms-button" ng-if="otpSent" ng-click="resendOTP()"> Resend SMS</span>
+          <span class="resend-sms-button" ng-if="otpSent" ng-click="changeDetails()"> Change Details</span>
       </div>
     </div>
   </form>

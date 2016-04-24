@@ -14,9 +14,9 @@ angular.module('Vyomo')
   $scope.data = globals.getCities();
   $scope.otpSent = false;
 
-  $scope.sendForm = function(forceQuery) {
+  $scope.sendForm = function() {
     var formData = $scope.formData;
-    if(!$scope.otpSent || forceQuery) {
+    if(!$scope.otpSent) {
       doSignUp(formData);
     } else {
       verifyOtp(formData);
@@ -30,7 +30,7 @@ angular.module('Vyomo')
         goToHomePage();
       } else {
         $scope.otpSent = true;
-        $scope.formData.otp = resp.otp;
+        // $scope.formData.otp = resp.otp;
       }
     }, function(error) {
       $scope.errorMsg = error;
@@ -50,5 +50,17 @@ angular.module('Vyomo')
   function goToHomePage() {
     $state.go('homePage');
   }
+
+  $scope.resendOTP = function() {
+    auth.resendOTP().then(function(){
+      window.console.log('OTP Sent');
+    });
+  };
+
+  $scope.changeDetails = function() {
+    $scope.otpSent = false;
+    $scope.formData = {};
+    auth.clearUser();
+  };
 
 }]);//controller

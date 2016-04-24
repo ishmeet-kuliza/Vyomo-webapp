@@ -142,6 +142,29 @@ angular.module('Vyomo')
     return !!Object.keys(getUser()).length;
   }
 
+  function resendOTP(sessionToken) {
+    var deferred = $q.defer();
+    // login call to server.
+    var authUrl = BASE_URL + '/resend_verification_code';
+
+    var params = {
+      access_token: sessionToken ? sessionToken : getUser()['sessionToken'],
+      flag: 0
+    };
+
+    $http.post(authUrl, params).then(function(response) {
+      if (response && response.data && response.data.status_code === 200){
+        deferred.resolve();
+      }
+    });
+    return deferred.promise;
+  }
+
+  function clearUser() {
+    userObj = {};
+    storeInCookie(userObj);
+  }
+
   return {
     authenticate: authenticate,
     getUser: getUser,
@@ -149,7 +172,9 @@ angular.module('Vyomo')
     verifyOtp: verifyOtp,
     isAuthenticated: isAuthenticated,
     forgotPassword: forgotPassword,
-    resetPassword: resetPassword
+    resetPassword: resetPassword,
+    resendOTP: resendOTP,
+    clearUser: clearUser
   };
 
 }]);

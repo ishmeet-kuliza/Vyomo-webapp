@@ -12,6 +12,7 @@
       </div>
       <input type="text" ng-if="otpNeeded || forgotPassword" placeholder="Enter Validation Code" required ng-model="formData.otp" name="otp" value=""/>
       <input ng-if="forgotPassword" type="password" placeholder="Password" required ng-model="formData.newPassword" name="password" value=""/>
+      <span class="resend-sms-button" ng-if="forgotPassword" ng-click="resendOTP()"> Resend sms</span>
       <div class="action-block">
           <div class="error-div no-signup" ng-if="errorMsg">
             *{{errorMsg}}
