@@ -44,7 +44,7 @@ angular.module('Vyomo')
   function verifyOtp(data) {  //This is same as login, should be modular
     $.blockUI({message: globals.blockUIMsg});
     var user = auth.getUser();
-    auth.verifyOtp(user.sessionToken, data.otp).then(function() {
+    auth.verifyOtp(user.sessionToken, data.otp, $scope.formData.mobNumber).then(function() {
       $.unblockUI();
       $scope.errorMsg = '';
       goToHomePage();
