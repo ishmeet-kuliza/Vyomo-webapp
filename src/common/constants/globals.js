@@ -26,10 +26,16 @@ angular.module('Vyomo')
     return 'chennai';
   }
 
+  function getNthIndex(str, m, i) {
+     return str.split(m, i).join(m).length;
+  }
+
+
   var blockUIMsg = '<div class="loader-gif"><img src="assets/img/loader.gif" ></div>';
   return {
     getCities: getCities,
     blockUIMsg: blockUIMsg,
-    getDefaultCity: getDefaultCity
+    getDefaultCity: getDefaultCity,
+    getNthIndex: getNthIndex
   };
 }]);

@@ -54,8 +54,8 @@ var app = angular.module( 'Vyomo', [
     });
 }])
 
-.controller( 'AppCtrl', ['$window', '$scope', '$location', 'servicesPackagesCacheService','$anchorScroll','cart','$rootScope', '$timeout',
-                      function AppCtrl ( $window, $scope, $location, servicesPackagesCacheService, $anchorScroll, cart,$rootScope, $timeout ) {
+.controller( 'AppCtrl', ['$window', '$scope', '$location', 'servicesPackagesCacheService','$anchorScroll','cart','$rootScope', '$timeout', 'globals',
+                      function AppCtrl ( $window, $scope, $location, servicesPackagesCacheService, $anchorScroll, cart,$rootScope, $timeout, globals ) {
   $window.console.debug('This is our app', app);
   $scope.vyomoContactNo = "1800-102-8454";
   $scope.toggleNavMenuMobile = false;
@@ -71,6 +71,13 @@ var app = angular.module( 'Vyomo', [
   //        scrollTop: $("#"+id).offset().top},
   //      'slow');
   //}
+
+  function clearHash() {
+    var url = window.location.toString();
+    var clean_uri = url.substring(0, globals.getNthIndex(url, "#", 2)); //Cleans the url
+    window.history.replaceState({}, document.title, clean_uri);
+  }
+
   $scope.$on('$stateChangeSuccess', function(event, toState){
     if ( angular.isDefined( toState.data.pageTitle ) ) {
       $scope.pageTitle = 'Vyomo |' + toState.data.pageTitle ;
@@ -100,6 +107,9 @@ var app = angular.module( 'Vyomo', [
     }
     $location.hash("headerPage");
     $anchorScroll();
+    window.setTimeout(function(){
+      clearHash();
+    });
   });
   $scope.routeIs = function(routeName) {
     if(routeName !== "/") {
