@@ -78,7 +78,7 @@ Header
 
   img {
     display: block;
-
+    width : 100%;
     vertical-align: middle;
     padding: 0 0.5rem;
   }
@@ -90,8 +90,11 @@ Header
   .vm-logo-mobile{
     display:none;
   }
+  .vm-logo{
+    width : @sidebarWidthCollapsed;
+  }
   .vm-main-header {
-    margin-left:@sidebarWidth;
+    margin-left:@sidebarWidthCollapsed;
     background:@pink;
     color : @white;
   }
