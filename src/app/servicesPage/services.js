@@ -67,6 +67,8 @@ angular.module( 'Vyomo')
                 if(clearCache) {
                     servicesPackagesCacheService.clearCache();
                 }
+
+                servicesPackagesCacheService.setCache();
                 
                 //API Call success method block
                 var cache = servicesPackagesCacheService.getCache();
