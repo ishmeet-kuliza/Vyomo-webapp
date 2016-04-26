@@ -98,7 +98,8 @@ var app = angular.module( 'Vyomo', [
         }
       }
     }
-
+    $location.hash("headerPage");
+    $anchorScroll();
   });
   $scope.routeIs = function(routeName) {
     if(routeName !== "/") {
