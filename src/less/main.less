@@ -142,6 +142,40 @@ Main  Content
     width : 100%;
   }
 }
+
+//IE Support
+
+@media all and (-ms-high-contrast:none)
+{
+  .vm-main-content {
+    margin-left:@sidebarWidth;
+  }
+  .vm-main-content .content-wrapper{
+    width : 100%;
+  }
+  .vm-main-header{
+    padding-left:@sidebarWidth;
+  }
+
+  .footer{
+    width : 100%;
+  }
+}
+
+//IE Edge support
+
+@supports (-ms-accelerator:true) {
+  body{
+    margin-left:28rem;
+  }
+  .vm-logo{
+    margin-left:-28rem;
+  }
+  .vm-main-content{
+    width:127%;
+  }
+}
+
 .vm-main-content {
   margin-top: calc(@headerHeight - 5px);
   height: 100%;
@@ -150,19 +184,7 @@ Main  Content
     margin-top: @headerHeightMobile;
   }
 
-  //IE Edge support
 
-  @supports (-ms-accelerator:true) {
-    body{
-      margin-left:28rem;
-    }
-    .vm-logo{
-      margin-left:-28rem;
-    }
-    .vm-main-content{
-      width:127%;
-    }
-  }
   /**
   * Footer
   */
