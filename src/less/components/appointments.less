@@ -2,7 +2,7 @@
 	padding: 5rem;
 	background: #eeeeee;
 	font-family: 'SourceSansPro';
-    height: 100%;
+  height: 100%;
 	min-height : 672px;
 	.no-appointments {
 	  text-align: center;
@@ -39,7 +39,8 @@
 		width: 100%;
 		display: flex;
     align-items: flex-start;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
 	}
 
 	.appointment {
@@ -47,9 +48,10 @@
     font-weight: 100;
     color: #929292;
     padding: 2rem;
-    width: 100%;
+    width: 30%;
     margin-right: 1rem;
-	margin-bottom: 1rem;
+	  margin-bottom: 1rem;
+
     .order-id-container {
     	color: #5b5b5b;
     	width: 100%;
@@ -143,10 +145,14 @@
 	color: #5DC1BC;
 }
 
-@media only screen and (min-width: 1170px){
+@media only screen and (max-width: 768px){
 	.appointments-container {
 		.appointments-available {
-			flex-direction: row;
+			flex-direction: column;
 		}
+
+    .appointment {
+      width: 100%;
+    }
 	}
 }
