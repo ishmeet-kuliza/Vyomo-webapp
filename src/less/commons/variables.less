@@ -53,11 +53,13 @@
 @greyishBlue:           #757a88;
 @skyBlue:				#51d3d1;
 @pinkLight:             #fff6e9;
-@pink:                  #ff6a94;
+@pink :                 #ff6a94;
+
+@purple:                  #7e459a;
 
 // Vyomo Main colors
 // -------------------------
-@vmPrimaryColor:        @pink;
+@vmPrimaryColor:        @purple;
 
 // Scaffolding
 // -------------------------
@@ -116,20 +118,20 @@
 
 // Buttons
 // -------------------------
-@btnBackground:                     @cyan;
-@btnBackgroundHover:				@cyanDark;
+@btnBackground:                     @pink;
+@btnBackgroundHover:				darken(@pink,10%);
 @btnTextColor:						@white;
 @btnBorderRadius:					@borderRadiusLarge;
-@btnBackgroundHighlight:            lighten(@cyan, 10%);
-@btnBackgroundDisable:				lighten(@cyan, 20%);
+@btnBackgroundHighlight:            lighten(@pink, 10%);
+@btnBackgroundDisable:				lighten(@pink, 20%);
 
-@btnBorder:                         darken(@cyan, 10%);
+@btnBorder:                         darken(@pink, 10%);
 
 @btnPrimaryBackground:              @linkColor;
 @btnPrimaryBackgroundHighlight:     lighten(@linkColor, 10%);
 
-@btnInfoBackground:                 @cyan;
-@btnInfoBackgroundHighlight:        lighten(@cyan, 10%);
+@btnInfoBackground:                 @pink;
+@btnInfoBackgroundHighlight:        lighten(@pink, 10%);
 
 @btnDangerBackground:               @red;
 @btnDangerBackgroundHighlight:      lighten(@red, 10%);
