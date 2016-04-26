@@ -76,6 +76,10 @@ angular.module('Vyomo').controller('sideMenuController', ['$scope', '$state','$l
 
         };
 
+        function getPosition(str, m, i) {
+           return str.split(m, i).join(m).length;
+        }
+
         $scope.goToState = function(toState,params) {
         
             $('.vm-offers-nav').removeClass('active');
@@ -86,7 +90,7 @@ angular.module('Vyomo').controller('sideMenuController', ['$scope', '$state','$l
                 $rootScope.section = "";
                 $scope.isHome = true;
                 var url = window.location.toString();
-                var clean_uri = url.substring(0, url.indexOf("/")); //Cleans the url
+                var clean_uri = url.substring(0, getPosition(url, "/", 1)); //Cleans the url
                 window.history.replaceState({}, document.title, clean_uri);
                 $timeout(function(){
                     $location.hash("home");
