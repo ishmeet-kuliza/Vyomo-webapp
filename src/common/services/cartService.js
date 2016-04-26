@@ -13,7 +13,7 @@ angular.module('Vyomo')
 		cart._updateCookie = function(key, value){
 			// setting cookies with expiry date
 			var expireDate = new Date();
-			expireDate.setDate(expireDate.getDate() + 7);
+			expireDate.setDate(expireDate.getFullYear() + 1);
 			$cookies.putObject(key, value, {expires: expireDate});
 		};
 

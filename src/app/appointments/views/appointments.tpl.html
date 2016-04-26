@@ -14,7 +14,7 @@
 				<button class="fa" type="button" data-toggle="collapse" data-target="#collapsed{{$index}}" aria-expanded="false" aria-controls="collapsed" ng-class="appointment.isCollapsed ? 'fa-angle-down' : 'fa-angle-up'" ng-click="toggleCollapse(appointment)">
 				</button>
 			</div>
-			
+			<span class=>{{appointment.assignee_name}}</span>
 			<div id="collapsed{{$index}}" class="collapse" ng-class='{in:$first}' >
 				<div class="appointment-details-container inline-flex">
 					<div>
@@ -26,9 +26,13 @@
 
 				<div class="appointment-details" id="collapsed-appointment">
 					<div ng-repeat="service in appointment.services" class="service-container inline-flex">
-						<span> {{service.service_name}}</span>
+						<span> {{service.service_name}}<span>&nbsp;X&nbsp;{{service.count}}</span></span>
 						<span>&#8377;&nbsp;{{service.service_cost}}</span>
 					</div>
+				</div>
+				<div class="total-container inline-flex" ng-if="appointment.promo_code">
+					<span>Promo code</span>
+					<span>&#8377;&nbsp;{{appointment.promo_code}}</span>
 				</div>
 				<div class="total-container inline-flex">
 					<span>Total</span>
