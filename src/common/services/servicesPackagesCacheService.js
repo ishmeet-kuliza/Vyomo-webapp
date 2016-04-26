@@ -7,7 +7,7 @@ angular.module('Vyomo')
 	var servicesPackagesCache,
 		api = '/get_all_services',
 		city = cart.getCity() ? cart.getCity().toLowerCase() : globals.getDefaultCity();
-
+		
 	function setCache() {
 		var deferred = $q.defer();
 		var params = {

@@ -23,29 +23,34 @@ angular.module( 'vyomo.homePage', [
 })
 // Include service to fetch packages
 .controller('HomePackageCtrl',['$scope', 'servicesPackagesCacheService', function HomePackageController($scope, servicesPackagesCacheService){
-  var cache = servicesPackagesCacheService.getCache();
-  if(!Object.keys(cache).length) { //if cache is not set
-    servicesPackagesCacheService.setCache().then(function(response){
-      $scope.packageList = response['packages']['featured'];
-    });
-  } else {
-    $scope.packageList = cache['packages']['featured'];
+  function setPackageList() {
+    var cache = servicesPackagesCacheService.getCache();
+    if(!Object.keys(cache).length) { //if cache is not set
+      window.setTimeout(setPackageList, 300);
+      return;
+    } else {
+      $scope.packageList = cache['packages']['featured'];
+    }
+    $scope.viewMorePackagesUrl = "/abc";
   }
-  $scope.viewMorePackagesUrl = "/abc";
+  setPackageList();
 }])
 
 // Include service to fetch Vyom Services
 .controller('HomeServiceCtrl', ['$scope', 'servicesPackagesCacheService', 
                                 function HomeServiceController($scope, servicesPackagesCacheService){
-  var cache = servicesPackagesCacheService.getCache();
-  if(!Object.keys(cache).length) { //if cache is not set
-    servicesPackagesCacheService.setCache().then(function(response){
-      $scope.servicesList = response['services']['featured'];
-    });
-  } else {
-    $scope.servicesList = cache['services']['featured'];
+
+  function setServiceList() {
+    var cache = servicesPackagesCacheService.getCache();
+    if(!Object.keys(cache).length) { //if cache is not set
+      window.setTimeout(setServiceList, 300);
+      return;
+    } else {
+      $scope.servicesList = cache['services']['featured'];
+    }
+    $scope.viewMoreServicesUrl = "/abc";
   }
-  $scope.viewMoreServicesUrl = "/abc";
+  setServiceList();
 }])
 //Offers section controller
 .controller( 'HomeOffersCtrl', function HomeOffersController( ) {
