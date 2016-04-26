@@ -73,9 +73,7 @@ angular.module('Vyomo').controller('sideMenuController', ['$scope', '$state','$l
         };
 
         $scope.goToState = function(toState,params) {
-            //if($state.current.name.split('.').indexOf(toState) !== -1) {
-            //    return;
-            //}
+        
             $('.vm-offers-nav').removeClass('active');
             $('.vm-aboutus-nav').removeClass('active');
 
@@ -92,6 +90,9 @@ angular.module('Vyomo').controller('sideMenuController', ['$scope', '$state','$l
                 $scope.isHome = false;
             }
 
+            if($state.current.name.indexOf(toState) > -1) {
+               return;
+            }
 
             if(params){
                 $rootScope.section = params.section;
