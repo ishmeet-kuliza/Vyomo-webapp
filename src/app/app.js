@@ -54,8 +54,8 @@ var app = angular.module( 'Vyomo', [
     });
 }])
 
-.controller( 'AppCtrl', ['$window', '$scope', '$location', 'servicesPackagesCacheService','$anchorScroll','cart','$rootScope',
-                      function AppCtrl ( $window, $scope, $location, servicesPackagesCacheService, $anchorScroll, cart,$rootScope ) {
+.controller( 'AppCtrl', ['$window', '$scope', '$location', 'servicesPackagesCacheService','$anchorScroll','cart','$rootScope', '$timeout',
+                      function AppCtrl ( $window, $scope, $location, servicesPackagesCacheService, $anchorScroll, cart,$rootScope, $timeout ) {
   $window.console.debug('This is our app', app);
   $scope.vyomoContactNo = "1800-102-8454";
   $scope.toggleNavMenuMobile = false;
@@ -78,10 +78,10 @@ var app = angular.module( 'Vyomo', [
     //Redirection to particular section of page
     if(toState.name === "homePage"){
       if($rootScope.section !== ""){
-        window.setTimeout(function(){
+        $timeout(function(){
           $location.hash($rootScope.section);
           $anchorScroll();
-        },300);
+        });
       }
     }
     if(toState.name === "servicesPage"){
@@ -91,10 +91,10 @@ var app = angular.module( 'Vyomo', [
         $anchorScroll();
       }else{
         if($rootScope.section !== ""){
-          window.setTimeout(function(){
+          $timeout(function(){
             $location.hash($rootScope.section);
             $anchorScroll();
-          },300);
+          });
         }
       }
     }

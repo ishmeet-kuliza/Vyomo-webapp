@@ -38,15 +38,17 @@ angular.module('Vyomo').controller('headerController', ['$scope', '$log', 'auth'
 }]);
 
 
-angular.module('Vyomo').controller('sideMenuController', ['$scope', '$state','$location','$anchorScroll','$rootScope',
-    function($scope, $state,$location,$anchorScroll,$rootScope){
+angular.module('Vyomo').controller('sideMenuController', ['$scope', '$state','$location','$anchorScroll','$rootScope', '$timeout',
+    function($scope, $state,$location,$anchorScroll,$rootScope, $timeout){
         $scope.isHome = true;
 
         $scope.goToOffers = function() {
             $scope.isHome = false;  //Flag for active class of home icon
            if($state.current.name === "homePage"){
-               $location.hash("offers");
-               $anchorScroll();
+                $timeout(function(){
+                    $location.hash("offers");
+                    $anchorScroll();
+                });
            }else{
                $rootScope.section = "offers";
                $state.go('homePage');
@@ -60,8 +62,10 @@ angular.module('Vyomo').controller('sideMenuController', ['$scope', '$state','$l
         $scope.goToAboutUs = function() {
             $scope.isHome = false;
             if($state.current.name === "homePage"){
-                $location.hash("aboutUs");
-                $anchorScroll();
+                $timeout(function(){
+                    $location.hash("aboutUs");
+                    $anchorScroll();
+                });
             }else{
                 $rootScope.section = "aboutUs";
                 $state.go('homePage');
@@ -84,8 +88,10 @@ angular.module('Vyomo').controller('sideMenuController', ['$scope', '$state','$l
                 var url = window.location.toString();
                 var clean_uri = url.substring(0, url.indexOf("/")); //Cleans the url
                 window.history.replaceState({}, document.title, clean_uri);
-                $location.hash("home");
-                $anchorScroll();
+                $timeout(function(){
+                    $location.hash("home");
+                    $anchorScroll();
+                });
             }else{
                 $scope.isHome = false;
             }
