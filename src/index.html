@@ -43,8 +43,8 @@
   </head>
   <body initialize-page>
 
-  <div class="vm-logo vm-logo-nonmobile">
-    <a href="/" ><img src="assets/img/VyomoLogo.svg" alt=" Logo"></a>
+  <div ng-click=goToState("homePage",{"section":"home"}) class="vm-logo vm-logo-nonmobile" ng-controller="sideMenuController">
+    <span ><img src="assets/img/VyomoLogo.svg" alt=" Logo"></span>
   </div>
   <!-- Our Website Content Goes Here -->
    <header class="vm-main-header" ng-controller="headerController" id="headerPage">
