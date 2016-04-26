@@ -40,8 +40,11 @@
     <!--[if lte IE 8]>
       <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-  </head>
-  <body initialize-page>
+    <!--[if IE ]>
+      <p> For better browsing and experience use Google Chrome, Firefox  or Safari</p>
+    <![endif]-->
+    </head>
+    <body initialize-page>
 
   <div ng-click=goToState("homePage",{"section":"home"}) class="vm-logo vm-logo-nonmobile" ng-controller="sideMenuController">
     <span ><img src="assets/img/nlogo.png" alt=" Logo"></span>
@@ -117,10 +120,8 @@
          <li class="has-children vm-support-nav callList">
 
             <ul>
-              <li class="callIcon hidden-xs visible-sm hidden-md">
-                <span class="fa fa-phone"></span>
-              </li>
-              <li class="hidden-xs hidden-sm visible-md visible-lg callText">Call us at <strong>{{vyomoContactNo}}</strong></li>
+
+              <li class="callText">Call us at <strong>{{vyomoContactNo}}</strong></li>
               <!-- <li>
               <span class="visible-xs hidden-sm visible-md visible-lg">Download Our App</span>
                <div class="mt-15 images-inline"><img width="50px" src="assets/img/play-store.png"> <img width="50px" src="assets/img/app-store.png"></div>
