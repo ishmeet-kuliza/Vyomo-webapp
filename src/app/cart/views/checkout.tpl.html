@@ -123,8 +123,12 @@
         <total-price-header show-offer-code = "true" sub-total = "750" discount="NA" total="500"></total-price-header>
 
         <div class="row removeRowMargin p25 ">
-            <a class="vm-primary-btn" id="vm-confirm-order" ng-click="confirmOrder()"> CONFIRM ORDER</a>
-            <span class='control-label ml-10'>{{bookingError}}</span>
+            <div>
+                <a class="vm-primary-btn" id="vm-confirm-order" ng-click="confirmOrder()"> CONFIRM ORDER</a>
+            </div>
+            <div class="mt-10 ml-10">
+                <span class='control-label'>{{bookingError}}</span>
+            </div>
         </div>
     </div>
 
