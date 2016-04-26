@@ -150,6 +150,19 @@ Main  Content
     margin-top: @headerHeightMobile;
   }
 
+  //IE Edge support
+
+  @supports (-ms-accelerator:true) {
+    body{
+      margin-left:28rem;
+    }
+    .vm-logo{
+      margin-left:-28rem;
+    }
+    .vm-main-content{
+      width:127%;
+    }
+  }
   /**
   * Footer
   */
