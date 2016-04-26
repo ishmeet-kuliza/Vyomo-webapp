@@ -21,6 +21,10 @@ var app = angular.module( 'Vyomo', [
   //   requireBase: false
   // });
 
+  if(window.location.hash === '#/' && window.location.pathname ===  '/') {
+    window.location.hash = '';
+  }
+
   $urlRouterProvider.otherwise( '/' );
 }])
 
