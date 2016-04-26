@@ -295,7 +295,8 @@ module.exports = function ( grunt ) {
           app: true, //TO_DO: investigate this
           moment: true,
           $: true,
-          google: true
+          google: true,
+          navigator : true
         }
       },
       globals: {}
