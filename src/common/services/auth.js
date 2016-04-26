@@ -51,7 +51,7 @@ angular.module('Vyomo')
 
   function storeInCookie(userObj) {
     var expireDate = new Date();
-    expireDate.setDate(expireDate.getDate() + 7);
+    expireDate.setDate(expireDate.getYear() + 1);
     $cookies.putObject('userObj', userObj, {expires: expireDate});
   }
 
