@@ -86,8 +86,15 @@ Header
 }
 .vm-logo-nonmobile{
   position:fixed;
+  display: none;
+}
+.vm-logo-mobile{
+  width:14rem;
 }
 @media only screen and (min-width: 768px) {
+  .vm-logo-nonmobile{
+    display: block;
+  }
   .vm-logo-mobile{
     display:none;
   }
@@ -413,6 +420,14 @@ Sidebar
       img {
         width: 30px;
       }
+    }
+  }
+
+  .callList{
+    padding : 8px 30px !important;
+
+    .callText{
+      font-size: 2rem;
     }
   }
   .action-btn a {
