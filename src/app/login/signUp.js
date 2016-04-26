@@ -6,7 +6,8 @@
 /** TO_DO: Handle the case when logged in and otp not verified
 **/
 angular.module('Vyomo')
-.controller("signUpCtrl", ['$scope', 'auth', 'globals', '$state', function($scope, auth, globals, $state) {
+.controller("signUpCtrl", ['$scope', 'auth', 'globals', '$state', '$rootScope', 
+            function($scope, auth, globals, $state, $rootScope) {
   var sessionUser = auth.getUser();
   $scope.formData = {};
   $scope.formData.selectedCity = sessionUser.selectedCity ? sessionUser.selectedCity : '';
@@ -55,7 +56,11 @@ angular.module('Vyomo')
   }
 
   function goToHomePage() {
-    $state.go('homePage');
+    if($rootScope.previousState) {
+      $state.go($rootScope.previousState);
+    } else {
+      $state.go('homePage');
+    }
   }
 
   $scope.resendOTP = function() {
