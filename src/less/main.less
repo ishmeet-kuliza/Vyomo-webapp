@@ -127,6 +127,21 @@ body::after {
 Main  Content
 
 -------------------------------- */
+@-moz-document url-prefix() {
+  .vm-main-content {
+    margin-left:@sidebarWidth;
+  }
+  .vm-main-content .content-wrapper{
+    width : 100%;
+  }
+  .vm-main-header{
+    padding-left:@sidebarWidth;
+  }
+
+  .footer{
+    width : 100%;
+  }
+}
 .vm-main-content {
   margin-top: calc(@headerHeight - 5px);
   height: 100%;
