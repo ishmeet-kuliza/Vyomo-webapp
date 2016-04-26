@@ -186,7 +186,7 @@ angular.module('Vyomo')
             $.blockUI({message: blockUIMsg});
             addressService.addUserAddress($scope.address).then(function(address_id){
                 // shallow copy of object
-                var address = Object.assign({}, $scope.address);
+                var address = angular.extend({}, $scope.address);
                 address.address_id = address_id;
                 $scope.savedAddresses.push(address);
                 // select newly added address for delivery
