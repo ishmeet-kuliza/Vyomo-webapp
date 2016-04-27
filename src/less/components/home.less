@@ -14,6 +14,10 @@ select::-ms-expand {
     display: none;
 }
 
+.cursor-default {
+  cursor: default !important;
+}
+
 
 /* make keyframes that tell the start state and the end state of our object */
 .animate-enter,
@@ -99,7 +103,7 @@ Home Above the fold section
   top:2rem;
   left: 48%;
   padding:3rem 7rem;
-  border:1px solid @pink;
+  border:1px solid @purple;
   .box-shadow(1px 1px 2px #ddd);
   color: @white;
   background: @pink;
@@ -320,8 +324,12 @@ Package Section
 }
 
 /****************Offers Section *************/
+.bg-offer{
+  background: url(../assets/img/offr.png) no-repeat;
+  background-size: cover;
+}
 .offers-section-row{
-  background:#19b2eb;
+  background:#19b2eb ;
   color: @white;
   font-family: SourceSansPro;
   .vm-home-offers-head {
@@ -332,7 +340,7 @@ Package Section
       position: absolute;
       min-height: 100px;
       top: 0;
-      left: 20%;
+
       border: 70px solid transparent;
       padding: 1rem;
       border-image: url(../assets/img/border-img2.png) 40% stretch;
@@ -340,7 +348,7 @@ Package Section
     div.head {
       position: absolute;
       top: 3rem;
-      left: 35%;
+      left: 7%;
       h2 {
         font-size: 6rem;
         font-family: SourceSansPro-Bold;
@@ -352,6 +360,8 @@ Package Section
     }
   }
   .vm-offers-detail{
+    text-align:left;
+    margin-left:7%;
     margin-top:10px;
     margin-bottom: 10px;
       p{

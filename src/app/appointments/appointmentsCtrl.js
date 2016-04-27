@@ -11,6 +11,8 @@ angular.module('Vyomo')
     // set value to null after 5 secs so that it vanishes after coming back to this state
     window.setTimeout(function(){
       $state.current.confirmBookingMsg = null;
+      //Test /to be remove (Gaurav)
+      $scope.confirmBookingMsg = null;
     },5000); // 5000 = 5 secs
   }
 

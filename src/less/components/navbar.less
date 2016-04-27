@@ -50,7 +50,7 @@ Header
   }
 
   .login-color {
-    color: @pink;
+    color: @purple;
   }
 }
 
@@ -58,7 +58,7 @@ Header
 @media only screen and (min-width: 768px) {
   .vm-main-header {
     height: @headerHeight;
-    background: @pink;
+    background: @purple;
 
     .vm-login-message{
       color:@white;
@@ -76,27 +76,35 @@ Header
   float: left;
   width: @sidebarWidth;
   display: block;
-
+  z-index : 12;
   img {
-    display: block;
+
     width : 100%;
     vertical-align: middle;
-    padding: 0 0.5rem;
+
   }
 }
 .vm-logo-nonmobile{
   position:fixed;
+  display: none;
+}
+.vm-logo-mobile{
+  width:14rem;
 }
 @media only screen and (min-width: 768px) {
+  .vm-logo-nonmobile{
+    display: block;
+  }
   .vm-logo-mobile{
     display:none;
   }
   .vm-logo{
+    text-align: center;
     width : @sidebarWidthCollapsed;
   }
   .vm-main-header {
     margin-left:@sidebarWidthCollapsed;
-    background:@pink;
+    background:@purple;
     color : @white;
   }
   .vm-logo {
@@ -127,7 +135,7 @@ Header
   display: inline-block;
   height: 3px;
   width: 24px;
-  background: @pink;
+  background: @purple;
 }
 .hamburger-lines{
   content: '';
@@ -194,7 +202,7 @@ Header
 
   &::before {
     /* keep visible other 2 lines */
-    background: @pink;
+    background: @purple;
     -webkit-transform: translateX(4px) translateY(-3px) rotate(45deg);
     -moz-transform: translateX(4px) translateY(-3px) rotate(45deg);
     -ms-transform: translateX(4px) translateY(-3px) rotate(45deg);
@@ -203,7 +211,7 @@ Header
   }
   &::after {
     /* keep visible other 2 lines */
-    background: @pink;
+    background: @purple;
     -webkit-transform: translateX(4px) translateY(2px) rotate(-45deg);
     -moz-transform: translateX(4px) translateY(2px) rotate(-45deg);
     -ms-transform: translateX(4px) translateY(2px) rotate(-45deg);
@@ -345,7 +353,7 @@ Sidebar
   left: 0;
   top: 0;
   width: 100%;
-  padding: @headerHeightMobile 0 0;
+  padding: 0 0;
   background-color: @white;
   visibility: hidden;
   opacity: 0;
@@ -412,6 +420,14 @@ Sidebar
       img {
         width: 30px;
       }
+    }
+  }
+
+  .callList{
+    padding : 8px 30px !important;
+
+    .callText{
+      font-size: 2rem;
     }
   }
   .action-btn a {
@@ -493,11 +509,11 @@ Sidebar
     top: auto;
     width: @sidebarWidthCollapsed;
     min-height: 100vh;
-    padding-top: @headerHeight;
+    padding-top: @headerHeight + 1rem;
     /* reset style */
     visibility: visible;
     opacity: 1;
-    overflow: visible;
+    overflow: auto;
     max-height: none;
     height: 100%;
     z-index: 2;
@@ -520,7 +536,7 @@ Sidebar
 
   .callIcon > .fa-phone{
     font-size:32px;
-    color:@pink;
+    color:@purple;
   }
   .vm-side-nav .action-btn a {
 

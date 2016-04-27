@@ -59,6 +59,21 @@ var app = angular.module( 'Vyomo', [
   $window.console.debug('This is our app', app);
   $scope.vyomoContactNo = "81100-81100";
   $scope.toggleNavMenuMobile = false;
+  //CHECK browser IE
+                        if (/MSIE 10/i.test(navigator.userAgent)) {
+                          // This is internet explorer 10
+                          window.alert("Sorry! We support Chrome and Firefox for better browsing");
+                        }
+
+                        if(/MSIE 9/i.test(navigator.userAgent) || /rv:11.0/i.test(navigator.userAgent)){
+                          // This is internet explorer 9 or 11
+                          window.alert("Sorry! We support Chrome and Firefox for better browsing");
+                        }
+
+                        if (/Edge\/12./i.test(navigator.userAgent)){
+                          // This is Microsoft Edge
+                          window.alert("Sorry! We support Chrome and Firefox for better browsing");
+                        }
 
   getAllServices();
 
