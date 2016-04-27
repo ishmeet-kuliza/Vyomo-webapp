@@ -39,7 +39,12 @@ angular.module('Vyomo')
 
         function addCountProperty(product) {
             // default product quantity
-            product.count = product.count ? product.count: 0;
+            // product.count = product.count ? product.count: cart.getItemCount(product);
+            product.count = cart.getItemCount(product);
+            // if(product.count){
+            //     getItemCount
+            // }
+            // product.count
             product.addToCart = addToCart;
             product.removeFromCart = removeFromCart;
             product.clearFromCart = clearFromCart;
