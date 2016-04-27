@@ -57,7 +57,7 @@ var app = angular.module( 'Vyomo', [
 .controller( 'AppCtrl', ['$window', '$scope', '$location', 'servicesPackagesCacheService','$anchorScroll','cart','$rootScope', '$timeout', 'globals',
                       function AppCtrl ( $window, $scope, $location, servicesPackagesCacheService, $anchorScroll, cart,$rootScope, $timeout, globals ) {
   $window.console.debug('This is our app', app);
-  $scope.vyomoContactNo = "1800-102-8454";
+  $scope.vyomoContactNo = "81100-81100";
   $scope.toggleNavMenuMobile = false;
 
   getAllServices();
