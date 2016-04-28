@@ -95,7 +95,7 @@ var app = angular.module( 'Vyomo', [
 
   $scope.$on('$stateChangeSuccess', function(event, toState){
     if ( angular.isDefined( toState.data.pageTitle ) ) {
-      $scope.pageTitle = 'Vyomo |' + toState.data.pageTitle ;
+      $scope.pageTitle = 'Naturals |' + toState.data.pageTitle ;
     }
     //Redirection to particular section of page
     if(toState.name === "homePage"){
