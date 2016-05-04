@@ -43,6 +43,22 @@ angular.module( 'Vyomo')
             }
         };
 
+        $scope.checkServiceCountInCategory = function(category, viewCart){
+            if(viewCart){
+                return;
+            }
+            else if(category && category.list){
+                var services = category.list;
+                for(var index = 0; index<services.length; index++){
+                    if(services[index].count){
+                        category.isCollapsed = false;
+                        return;
+                    }
+                }   
+                    category.isCollapsed = true;
+                }
+            };
+
         function getServicesPackages(cityCookie,  clearCache) {
             if ($scope.data.selectedCity !== null) {
                 $scope.citySelected = true;
