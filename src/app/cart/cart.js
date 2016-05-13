@@ -96,7 +96,7 @@ angular.module('Vyomo')
     }])
 
 
-    .controller( 'CartCheckoutCtrl',['$scope','globals', 'addressService', 'submitBookingService', '$state', 'cart', 'servicesPackagesCacheService', function CartController($scope, globals, addressService, submitBookingService, $state, cart, servicesPackagesCacheService) {
+    .controller( 'CartCheckoutCtrl',['$scope','globals', 'addressService', 'submitBookingService', '$state', 'cart', 'servicesPackagesCacheService', 'promoCodeService', function CartController($scope, globals, addressService, submitBookingService, $state, cart, servicesPackagesCacheService, promoCodeService) {
         $scope.showAddressAddBox = false;
         //Date AND TIME STORe
         $scope.dateTime = new Date();
@@ -235,6 +235,7 @@ angular.module('Vyomo')
             submitBookingService.bookRequest(addressId, when).then(function(confirmBookingMsg){
                 $.unblockUI();
                 cart.clearCart();
+                promoCodeService.removePromoCode();
                 servicesPackagesCacheService.clearCache();
                 $state.get('appointments').confirmBookingMsg = confirmBookingMsg;
                 $state.go('appointments');    
