@@ -79,7 +79,7 @@
                     <span class="icon icon-clock mr-10"></span>
                         Select Date & Time
                     </span>
-                <input type="text" ng-model="dueDate" id="date-time" vm-datetime-picker name='datetime' class="form-control">
+                <input type="text" ng-model="dueDate" id="date-time" vm-datetime-picker name='datetime' class="form-control" ng-change="addTaxesToPrice()">
                 <span ng-show="addressForm.datetime.$error.required" class="control-label">Required</span>
                 <!-- <div class="input-group input-group-sm date" options="zdateOptions" datetimepicker ng-model="dateTime"> -->
                     <!--<input type="text" class="form-control" />-->

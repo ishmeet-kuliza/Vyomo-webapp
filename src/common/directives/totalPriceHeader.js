@@ -1,4 +1,4 @@
-angular.module('Vyomo').directive('totalPriceHeader' , ['cart' ,'promoCodeService', 'globals', function(cart, promoCodeService, globals){
+angular.module('Vyomo').directive('totalPriceHeader' , ['cart' ,'promoCodeService', 'globals', '$rootScope', function(cart, promoCodeService, globals, $rootScope){
     return {
         restrict : 'AE',
         scope:{
@@ -10,7 +10,13 @@ angular.module('Vyomo').directive('totalPriceHeader' , ['cart' ,'promoCodeServic
         replace : true,
 
         link: function($scope){
+            $rootScope.$on('addTax', function(event, tax){
+                $scope.totalPrice += tax;
+            });
 
+            $rootScope.$on('clearTax', function(){
+                $scope.totalPrice = cart.totalPrice;
+            });
             $scope.$watchCollection(function(){
                 return cart.totalPrice;
             },

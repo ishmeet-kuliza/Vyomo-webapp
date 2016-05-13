@@ -1,6 +1,6 @@
 
 angular.module('Vyomo')
-    .controller( 'CartCtrl',['$scope', '$state','cartProduct','cart', 'productObjects', 'globals',function CartController( $scope,$state, cartProduct,cart, productObjects, globals) {
+    .controller( 'CartCtrl',['$scope', '$state','cartProduct','cart', 'productObjects', 'globals', '$rootScope',function CartController( $scope,$state, cartProduct,cart, productObjects, globals, $rootScope) {
         $scope.isStep1Complete = "false";
         //Boolean used for hiding headers for packages  and service template used in view cart
         $scope.viewCart = true;
@@ -67,6 +67,7 @@ angular.module('Vyomo')
                         });
                        window.console.log(cart);
                     }
+                $rootScope.$emit('cartUpdated');
                 }
                 $.unblockUI();
             });

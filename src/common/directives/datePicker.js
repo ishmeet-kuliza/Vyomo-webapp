@@ -1,6 +1,6 @@
 
 angular.module('Vyomo')
-    .directive('vmDatetimePicker', function () {
+    .directive('vmDatetimePicker',['cartProduct','cart', '$rootScope', function(cartProduct, cart, $rootScope) {
         var format = 'YYYY-MM-DD HH:mm';
         var today = new Date();
         return {
@@ -8,7 +8,6 @@ angular.module('Vyomo')
             require: 'ngModel',
             link: function (scope, element, attributes, ctrl) {
                 var inputElem = $(element[0]);
-
                 inputElem.datetimepicker({
                     format: format,
                     stepping : 5,
@@ -20,27 +19,58 @@ angular.module('Vyomo')
                         vertical : 'bottom'
                     }
                 });
+
+                function getCurrentFormatedDate(){
+                    var date = new Date();
+                    var month = date.getMonth()+1;
+                    var day = date.getDate();
+                    var hours = ("0" + date.getHours() + 1).slice(-2);
+                    var minutes = ("0" + date.getMinutes()).slice(-2);
+
+                    var formattedDate = date.getFullYear() + '-' +
+                    (month<10 ? '0' : '') + month + '-' +
+                    (day<10 ? '0' : '') + day + ' '+ hours + ':' + minutes;
+                    return formattedDate;
+                    }
+
                 var picker = inputElem.data("DateTimePicker");
-                window.console.log(picker);
+                window.console.log('pixker', picker);
                 ctrl.$formatters.push(function (value) {
                     var date = moment(value);
                     if (date.isValid()) {
+                        window.console.log(date.format(format));
                         return date.format(format);
                     }
-                    return '';
+                     return getCurrentFormatedDate();
                 });
 
-                //inputElem.on('change', function () {
-                //    window.console.log(inputElem.val());
-                //    scope.$apply(function() {
-                //        window.console.log("htlto");
-                //        var date = picker.getDate();
-                //        ctrl.$setViewValue(date.valueOf());
-                //    });
-                //});
+                var oldDate = null;
+                function updateTaxes(firstTime){
+                    var when = inputElem.val();
+                    if(firstTime === true){
+                        when = getCurrentFormatedDate();
+                    }
+                    if(!oldDate){
+                        oldDate = when;
+                    }
+                    if(when.split(' ')[0] !== oldDate.split(' ')[0] || firstTime === true){
+                        $.blockUI();
+                        cartProduct.getAppicableTaxes(when).then(function(taxes){
+                        $.unblockUI();
+                        var totalTax = 0;
+                        $rootScope.$emit('clearTax');
+                        for(var i=0; i<taxes.length; i++){
+                            totalTax += (taxes[i].amount/100) * cart.totalPrice;
+                        }
+                        totalTax = Math.floor(totalTax);
+                        $rootScope.$emit('addTax', totalTax);
+                        oldDate = when;
+                   });
+                }
+            }
+            updateTaxes(true);
 
-
-                window.console.log(scope.dueDate);
+            inputElem.on('dp.change', updateTaxes);  
             }
         };
-    });
+    }]);
