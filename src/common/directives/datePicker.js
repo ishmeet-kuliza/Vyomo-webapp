@@ -43,34 +43,37 @@ angular.module('Vyomo')
                     }
                      return getCurrentFormatedDate();
                 });
+                window.console.log($rootScope);
+            //     var oldDate = null;
+            //     function updateTaxes(firstTime){
+            //         var when = inputElem.val();
+            //         if(firstTime === true){
+            //             when = getCurrentFormatedDate();
+            //         }
+            //         if(!oldDate){
+            //             oldDate = when;
+            //         }
+            //         if(when.split(' ')[0] !== oldDate.split(' ')[0] || firstTime === true){
+            //             $.blockUI();
+            //             cartProduct.getAppicableTaxes(when).then(function(taxes){
+            //             $.unblockUI();
+            //             var totalTax = 0;
+            //             $rootScope.$emit('clearTax');
+            //             for(var i=0; i<taxes.length; i++){
+            //                 totalTax += (taxes[i].amount/100) * cart.totalPrice;
+            //             }
+            //             totalTax = Math.floor(totalTax);
+            //             $rootScope.$emit('addTax', totalTax);
+            //             oldDate = when;
+            //        });
+            //     }
+            // }
+            // updateTaxes(true);
+            cartProduct.updateTaxes(true);
 
-                var oldDate = null;
-                function updateTaxes(firstTime){
-                    var when = inputElem.val();
-                    if(firstTime === true){
-                        when = getCurrentFormatedDate();
-                    }
-                    if(!oldDate){
-                        oldDate = when;
-                    }
-                    if(when.split(' ')[0] !== oldDate.split(' ')[0] || firstTime === true){
-                        $.blockUI();
-                        cartProduct.getAppicableTaxes(when).then(function(taxes){
-                        $.unblockUI();
-                        var totalTax = 0;
-                        $rootScope.$emit('clearTax');
-                        for(var i=0; i<taxes.length; i++){
-                            totalTax += (taxes[i].amount/100) * cart.totalPrice;
-                        }
-                        totalTax = Math.floor(totalTax);
-                        $rootScope.$emit('addTax', totalTax);
-                        oldDate = when;
-                   });
-                }
-            }
-            updateTaxes(true);
-
-            inputElem.on('dp.change', updateTaxes);  
+            inputElem.on('dp.change', function(){
+                cartProduct.updateTaxes(false, inputElem.val(), true);
+            });  
             }
         };
     }]);
