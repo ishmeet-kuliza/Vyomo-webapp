@@ -24,6 +24,7 @@ angular.module('Vyomo')
                     var date = new Date();
                     var month = date.getMonth()+1;
                     var day = date.getDate();
+                    date.setHours(date.getHours()+1);
                     var hours = ("0" + (date.getHours())).slice(-2);
                     var minutes = ("0" + date.getMinutes()).slice(-2);
 
