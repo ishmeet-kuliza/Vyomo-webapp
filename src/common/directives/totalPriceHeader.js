@@ -45,7 +45,7 @@ angular.module('Vyomo').directive('totalPriceHeader' , ['cart' ,'promoCodeServic
                     promoCodeService.verifyCode(promocode,when).then(function(costAfterPromo){
                         $.unblockUI();
                         $('#date-time').prop('disabled', true);
-                        $('remove-promo-msg').text('Remove promo to select date');
+                        $('#remove-promo-msg').text('Remove promo to select date');
                         $scope.discount = $scope.subTotal - costAfterPromo;
                         $scope.totalPrice = costAfterPromo;
                         $scope.errorMsg = '';
@@ -67,7 +67,7 @@ angular.module('Vyomo').directive('totalPriceHeader' , ['cart' ,'promoCodeServic
                 $scope.discount = 0;
                 $scope.totalPrice = cart.totalPrice + getTax(cart.totalPrice);
                 $('#date-time').prop('disabled', false);
-                $('remove-promo-msg').text('');
+                $('#remove-promo-msg').text('');
                 document.getElementById('promocode').value = '';
             };
         }
