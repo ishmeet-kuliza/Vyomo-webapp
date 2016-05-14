@@ -28,6 +28,15 @@ angular.module('Vyomo').directive('totalPriceHeader' , ['cart' ,'promoCodeServic
             $scope.discount = 0;
             $scope.errorMsg = '';
             $scope.successMsg = '';
+
+            function getTax(principle){
+                var totalTax = 0;
+                for(var i=0; i<cart.taxArray.length; i++){
+                    totalTax += (cart.taxArray[i].amount/100) * principle;
+                }
+                totalTax = Math.floor(totalTax);
+                return totalTax;
+            }
             $scope.verifyPromoCode = function(){
                 var promocode = document.getElementById('promocode').value;
                 var when = document.getElementById('date-time').value;
@@ -35,10 +44,14 @@ angular.module('Vyomo').directive('totalPriceHeader' , ['cart' ,'promoCodeServic
                     $.blockUI({message: globals.blockUIMsg});
                     promoCodeService.verifyCode(promocode,when).then(function(costAfterPromo){
                         $.unblockUI();
+                        $('#date-time').prop('disabled', true);
                         $scope.discount = $scope.subTotal - costAfterPromo;
                         $scope.totalPrice = costAfterPromo;
                         $scope.errorMsg = '';
                         $scope.successMsg = 'Promo code applied successfully';
+                        var totalTax = getTax(costAfterPromo);
+                        $scope.totalPrice += totalTax;
+                        getTax(costAfterPromo);
                     },function(error){
                         $.unblockUI();
                         $scope.successMsg = '';
@@ -51,7 +64,8 @@ angular.module('Vyomo').directive('totalPriceHeader' , ['cart' ,'promoCodeServic
                 promoCodeService.removePromoCode();
                 $scope.successMsg = '';
                 $scope.discount = 0;
-                $scope.totalPrice = cart.totalPrice;
+                $scope.totalPrice = cart.totalPrice + getTax(cart.totalPrice);
+                $('#date-time').prop('disabled', false);
                 document.getElementById('promocode').value = '';
             };
         }

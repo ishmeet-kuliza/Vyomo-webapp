@@ -24,7 +24,7 @@ angular.module('Vyomo')
                     var date = new Date();
                     var month = date.getMonth()+1;
                     var day = date.getDate();
-                    var hours = ("0" + date.getHours() + 1).slice(-2);
+                    var hours = ("0" + (date.getHours() + 1)).slice(-2);
                     var minutes = ("0" + date.getMinutes()).slice(-2);
 
                     var formattedDate = date.getFullYear() + '-' +
@@ -56,15 +56,16 @@ angular.module('Vyomo')
                     if(when.split(' ')[0] !== oldDate.split(' ')[0] || firstTime === true){
                         $.blockUI();
                         cartProduct.getAppicableTaxes(when).then(function(taxes){
-                        $.unblockUI();
-                        var totalTax = 0;
-                        $rootScope.$emit('clearTax');
-                        for(var i=0; i<taxes.length; i++){
-                            totalTax += (taxes[i].amount/100) * cart.totalPrice;
-                        }
-                        totalTax = Math.floor(totalTax);
-                        $rootScope.$emit('addTax', totalTax);
-                        oldDate = when;
+                            cart.taxArray = taxes;
+                            $.unblockUI();
+                            var totalTax = 0;
+                            $rootScope.$emit('clearTax');
+                            for(var i=0; i<taxes.length; i++){
+                                totalTax += (taxes[i].amount/100) * cart.totalPrice;
+                            }
+                            totalTax = Math.floor(totalTax);
+                            $rootScope.$emit('addTax', totalTax);
+                            oldDate = when;
                    });
                 }
             }

@@ -7,7 +7,8 @@ angular.module('Vyomo')
 
 		var cart = {
 			itemCookie: '',
-			totalPrice: 0
+			totalPrice: 0,
+			taxArray: []
 		};
 
 		cart._updateCookie = function(key, value){
