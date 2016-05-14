@@ -1,6 +1,6 @@
 
 angular.module('Vyomo')
-    .directive('vmDatetimePicker',['cartProduct','cart', '$rootScope', function(cartProduct, cart, $rootScope) {
+    .directive('vmDatetimePicker',['cartProduct','cart', '$rootScope', 'globals', function(cartProduct, cart, $rootScope, globals) {
         var format = 'YYYY-MM-DD HH:mm';
         var today = new Date();
         return {
@@ -54,7 +54,7 @@ angular.module('Vyomo')
                         oldDate = when;
                     }
                     if(when.split(' ')[0] !== oldDate.split(' ')[0] || firstTime === true){
-                        $.blockUI();
+                        $.blockUI({message: globals.blockUIMsg});
                         cartProduct.getAppicableTaxes(when).then(function(taxes){
                             cart.taxArray = taxes;
                             $.unblockUI();

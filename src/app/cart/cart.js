@@ -68,7 +68,7 @@ angular.module('Vyomo')
                        window.console.log(cart);
                     }
                 }
-                cartProduct.updateTaxes(true);
+                $.unblockUI();
             });
         }else{
             window.console.log("cart is empty");
