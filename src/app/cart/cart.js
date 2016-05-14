@@ -107,6 +107,7 @@ angular.module('Vyomo')
         $scope.selectedAddress = {
             'id': ''
         };
+        promoCodeService.removePromoCode();
        function getSavedAddress(){
             $.blockUI({message: globals.blockUIMsg});
             //API Call success method block
