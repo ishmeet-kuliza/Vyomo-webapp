@@ -77,6 +77,7 @@ angular.module('Vyomo')
         //Function for save & continue and state change to checkoutStep2
         $scope.saveCart = function(){
             //Check if cart items>0
+            $('.vm-checkout-step1').hide();
             if(cart.getCount() > 0 ){
                 $scope.step2Collapse = false;
                 $scope.step1Collapse = true;
