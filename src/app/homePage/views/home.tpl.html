@@ -8,7 +8,7 @@
         <!--<source data-srcset="assets/img/homeBanner1.jpg" srcset="assets/img/naturals.jpg" media="(min-width: 980px) and (max-width: 4000px)" sizes="1296px">-->
         <!--<img style="width: 100%" class=" lazyautosizes lazyloaded" alt="Loading..." data-sizes="auto" src="build/assets/img/naturals.jpg" sizes="1296px">-->
       <!--</picture>-->
-      <img style="width: 100%" class=" lazyautosizes lazyloaded" alt="Loading..." data-sizes="auto" src="assets/img/naturals.jpg" sizes="1296px">
+      <img class=" lazyautosizes lazyloaded" alt="Loading..." data-sizes="auto" src="assets/img/naturals.jpg" sizes="1296px">
     </div>
 
     <div class="banner-text"  ng-animate="'animate'" ng-click=goToState("servicesPage")>
@@ -18,17 +18,18 @@
       <p class="text-center">DOORSTEP</p>
       <p class="text-center book-now" ><span>TAP TO</span><br>BOOK NOW</p>
     </div>
+    <div class="call-btn">
+      <a ng-click=slideOutCaller() ><img src="assets/img/rightThumb1.png" alt="loading"></a>
+      <div class="misscall" style="right: 0px;">
+        <i class="fa fa-times" ng-click=slideInCaller()></i>
 
+        Call us at :
+        <strong><i class="fa fa-phone"></i> 81100-81100</strong>
+      </div>
+    </div>
   </div>
   <!-- =============================================================================== -->
  <!--End Landing Page  -->
-  <!-- =============================================================================== -->
-  <!--Start How it works section Page  -->
-  <!-- =============================================================================== -->
-  <section class="vyomo-home-page-customer-revies">
-
-    <div class="mt-10 vyomo-home-page-reviews" ui-view="homeCustomerReviews"></div>
-  </section>
   <!-- =============================================================================== -->
   <!--Start
    Always add position relative to new divs/sections created-->
@@ -41,8 +42,17 @@
 
     <!--<div id="offers" class="mt-10 vyomo-home-page-offers" ui-view="homeOffers"></div>-->
 
-    <div id="aboutUs" class="mt-10 vyomo-home-page-aboutus" ui-view="homeCareers"></div>
+  </section>
+  <!--Start How it works section Page  -->
+  <!-- =============================================================================== -->
+  <section class="vyomo-home-page-customer-revies">
 
+    <div class="mt-10 vyomo-home-page-reviews" ui-view="homeCustomerReviews"></div>
+  </section>
+  <!-- =============================================================================== -->
+  <!-- ========================About Us Section ====================================== -->
+  <section class="vyomo-home-page-aboutus-section">
+    <div id="aboutUs" class="mt-10 vyomo-home-page-aboutus" ui-view="homeCareers"></div>
   </section>
   <!-- =============================================================================== -->
   <!--End -->

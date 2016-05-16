@@ -95,9 +95,12 @@ Home Above the fold section
   //To be removed
   img{
     .fade-in;
+
   }
 }
-
+.banner-image img{
+  width : 1140px;
+}
 .banner-text{
   position:absolute;
   top:2rem;
@@ -153,7 +156,55 @@ Home Above the fold section
     }
   }
 }
-
+//Call Btn on mobile device only
+.call-btn {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  z-index: 100;
+  padding-right: 10px;
+  display:block;
+}
+.call-btn a {
+  display: block;
+  width: 39px;
+  height: 40px;
+  border: 1px white solid;
+  background-color: rgb(224, 20, 78);
+  border-radius: 5px 0px 0px 5px;
+  padding: 10px;
+}
+.call-btn a img {
+  display: block;
+  margin: auto;
+}
+.misscall {
+  color: rgb(224, 20, 78);
+  margin-top: -50px;
+  display: block;
+  position: absolute;
+  font-size: 2.4rem;
+  width: 240px;
+  transition: all 1s ease-out;
+  left: -400px;
+  text-align: center;
+  background-color: rgb(253, 253, 253);
+  border-radius: 5px 0px 0px 5px;
+  padding: 12px 10px;
+  border: 1px rgb(224, 21, 79) solid;
+}
+.misscall i.fa-times {
+  position: absolute;
+  right: -21px;
+  cursor: pointer;
+  height: 26px;
+  background-color: white;
+  border: 1px #e0154f solid;
+  width: 21px;
+  line-height: 25px;
+  top: 25%;
+  border-right: 0;
+}
 .input-wrapper {
   display: inline-block;
   padding: 0;
@@ -439,15 +490,18 @@ Package Section
 }
 
 /********************Careers Section **************/
+.vyomo-home-page-aboutus-section{
+  position:relative;
+  background : #f7f7f7;
+}
 .vyomo-home-page-aboutus{
-
   h2{
     .sectionHead(100px);
   }
-
 }
 
 @media only screen and (min-width: 768px) {
+
   .vyomo-home-page-customer-revies{
     min-height: 270px;
   }
@@ -457,6 +511,9 @@ Package Section
   .banner-text{
     top:4rem;
     left: 60%;
+  }
+  .call-btn {
+    display:none;
   }
   .vyomo-home-page-feature-packages{
     .vm-package-box{
@@ -510,5 +567,15 @@ Package Section
   .banner-text{
     top:7rem;
     left:62.5%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .banner-text{
+    top: 40rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .banner-image img{
+    width : 1040px;
   }
 }

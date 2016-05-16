@@ -33,12 +33,12 @@ angular.module('Vyomo')
                     return formattedDate;
                     }
 
-                var picker = inputElem.data("DateTimePicker");
-                window.console.log('pixker', picker);
+            
+                
                 ctrl.$formatters.push(function (value) {
                     var date = moment(value);
                     if (date.isValid()) {
-                        window.console.log(date.format(format));
+                       
                         return date.format(format);
                     }
                      return getCurrentFormatedDate();

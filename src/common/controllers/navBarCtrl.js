@@ -108,4 +108,12 @@ angular.module('Vyomo').controller('sideMenuController', ['$scope', '$state','$l
 
         };
 
+        $scope.slideOutCaller = function(){
+
+            document.querySelector('.misscall').style.left = '0';
+        };
+       $scope.slideInCaller = function(){
+            document.querySelector('.misscall').style.left = '-400px';
+        };
+
     }]);

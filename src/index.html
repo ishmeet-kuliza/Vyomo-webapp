@@ -84,15 +84,18 @@
 
       <div class="vm-nav login-header" >
         <div class="vm-login-message" ng-if="number" ng-cloak>
-          <span class="isLogin-msg font-bold">YOU ARE LOGGED IN </span>
-          <span class = "vm-username">{{number}}</span>
+          <!--<span class="isLogin-msg font-bold">YOU ARE LOGGED IN </span>-->
+          <span class = "vm-username">
+            <span class="fa fa-user mr-10"></span>
+            {{number}}
+          </span>
           <span class="logout" ng-click="logout()">
-            <span class="fa fa-power-off"></span>
-            Logout</span>
+            <span class="fa fa-power-off" title="Logout"></span>
+           </span>
         </div>
-        <div class="vm-login-message" ng-if="!number">
-          <span class="isLogin-msg font-bold login-button" ng-click="goToLogin()">
-            <span class="fa fa-sign-in"></span>Log In </span>
+        <div class="vm-login-message mt-5" ng-if="!number">
+          <a class="vm-secondary-btn isLogin-msg font-bold login-button" ng-click="goToLogin()">
+            Log In </a>
         </div>
       </div>
    </header> <!-- .cd-main-header -->
