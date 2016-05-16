@@ -128,8 +128,9 @@ Main  Content
 
 -------------------------------- */
 @-moz-document url-prefix() {
-  .vm-main-content {
-    margin-left:@sidebarWidth;
+
+  .vm-nav{
+    margin-right: 0 !important;
   }
   .vm-main-content .content-wrapper{
     width : 100%;
@@ -141,15 +142,33 @@ Main  Content
   .footer{
     width : 100%;
   }
-}
+  @media only screen and (min-width: 768px) {
+    .vm-main-content {
+      margin-left:@sidebarWidthCollapsed;
+    }
+  }
+  @media only screen and (min-width: 1170px) {
+    .footer {
+      margin-left: @sidebarWidthCollapsed;
+    }
+    .vm-main-content {
+      margin-left:@sidebarWidth;
+    }
+  }
+  @media only screen and (min-width: 1170px) {
+    .footer {
+      margin-left: @sidebarWidth;
+    }
+    .vm-main-content {
+      margin-left:@sidebarWidth;
+    }
+  }
+  }
 
 //IE Support
 
 @media all and (-ms-high-contrast:none)
 {
-  .vm-main-content {
-    margin-left:@sidebarWidth;
-  }
   .vm-main-content .content-wrapper{
     width : 100%;
   }
@@ -159,6 +178,27 @@ Main  Content
 
   .footer{
     width : 100%;
+  }
+  @media only screen and (min-width: 768px) {
+    .vm-main-content {
+      margin-left:@sidebarWidthCollapsed;
+    }
+  }
+  @media only screen and (min-width: 1170px) {
+    .footer {
+      margin-left: @sidebarWidthCollapsed;
+    }
+    .vm-main-content {
+      margin-left:@sidebarWidth;
+    }
+  }
+  @media only screen and (min-width: 1170px) {
+    .footer {
+      margin-left: @sidebarWidth;
+    }
+    .vm-main-content {
+      margin-left:@sidebarWidth;
+    }
   }
 }
 
