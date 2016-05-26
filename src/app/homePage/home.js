@@ -72,7 +72,7 @@ angular.module( 'vyomo.homePage', [
     },
     {
       customerName : "PeMa Dolma",
-      description : "Simply love it vyomo!! Manesha is just so good n frank,I like the way she behave and handle clients and her service is so good,excellent.",
+      description : "Simply love it!! Manesha is just so good n frank,I like the way she behave and handle clients and her service is so good,excellent.",
       rating: 5
     },
     {
